@@ -1,0 +1,197 @@
+name: CD
+
+on:
+  push:
+    branches: [internal, alpha, beta, production]
+  workflow_dispatch:
+    inputs:
+      track:
+        description: 'The target stage for the build (one of internal/alpha/beta/production)'
+        default: 'internal'
+        required: true
+
+jobs:
+  modifications:
+    name: Verify Modifications
+    runs-on: ubuntu-latest
+    outputs:
+      src: ${{ steps.modifications.outputs.src }}
+    steps:
+      # Checkout Latest
+      - name: Checkout Latest
+        uses: actions/checkout@v2
+
+      # Output modifications File Status
+      - name: modifications Files
+        id: modifications
+        uses: dorny/paths-filter@v2.2.0
+        with:
+          filters: '.github/filters.yml'
+            
+      # Fail build if release notes are not updated along with src
+      - name: Check Release Notes
+        if: |
+          github.ref == 'refs/heads/production'
+          || github.ref == 'refs/heads/beta'
+          || github.ref == 'refs/heads/alpha'
+          && steps.modifications.outputs.release-notes == 'true' 
+          && steps.modifications.outputs.src == 'true'
+        run: exit 1
+
+  changelog:
+    name: Generate Changelog
+    runs-on: ubuntu-latest
+    outputs:
+      tag: ${{ steps.changelog.outputs.tag }}
+    steps:
+      # Checkout Repo
+      - name: Checkout Repo
+        uses: actions/checkout@v2
+        
+      # Bumps Version, Generates Changelog, Tags Commit
+      - name: Conventional Changelog Action
+        id: changelog
+        uses: TriPSs/conventional-changelog-action@v3
+        if: |
+          github.ref == 'refs/heads/production'
+          || github.ref == 'refs/heads/beta'
+          || github.ref == 'refs/heads/alpha'
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          version-file: './app/manifest.json' 
+          skip-on-empty: 'true'
+
+  build:
+    name: Build
+    needs: [modifications] 
+    runs-on: ubuntu-latest
+    if: needs.modifications.outputs.src == 'true' 
+    steps:
+      # Checkout Repo
+      - name: Checkout Repo
+        uses: actions/checkout@v2
+
+      # Checkout Submodules
+      - name: Checkout Submodules
+        uses: jwsi/submodule-checkout@v1
+        with:
+          ssh-key: '${{ secrets.SUB_SSH_KEY }}'
+
+      # Setup Java
+      - name: Set up JDK 1.8
+        uses: actions/setup-java@v1
+        with:
+          java-version: 1.8
+
+      # Make Gradle Wrapper Executable
+      - name: Make gradlew executable
+        run: chmod +x ./gradlew
+          
+      # Setup Cache
+      - name: Setup Gradle Cache
+        uses: actions/cache@v2
+        with:
+          path: ~/.gradle/caches
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*') }}
+          restore-keys: |
+            ${{ runner.os }}-gradle-
+            
+      # Decode Google services configuration file
+      - name: Decode google-services.json
+        run: echo $FIREBASE_CONFIG > ./app/google-services.json
+        env:
+          FIREBASE_CONFIG: ${{ secrets.FIREBASE_CONFIG }}
+
+      # Populate Secrets
+      - name: Decode secrets.xml
+        env:
+          SECRETS: ${{ secrets.SECRETS }}
+        run: echo $SECRETS > ./app/src/main/res/values/secrets.xml
+        
+      # Generate Build Artifacts
+      - name: Assemble Artifacts
+        run: ./gradlew assemble && ./gradlew bundle
+        env:
+          RELEASE_KEYSTORE_PASSWORD: ${{ secrets.RELEASE_KEYSTORE_PASSWORD }}
+          RELEASE_KEY_ALIAS: ${{ secrets.RELEASE_KEY_ALIAS }}
+          RELEASE_KEY_PASSWORD: ${{ secrets.RELEASE_KEY_PASSWORD }}
+      
+      # Upload Build Artifacts
+      - name: Upload Build Artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: artifacts
+          path: | 
+            ./app/build/outputs/apk
+            ./app/build/outputs/bundle
+  
+  deploy:
+    name: Deploy
+    needs: [build]
+    runs-on: ubuntu-latest
+    steps:
+      # Checkout Repo
+      - name: Checkout Repo
+        uses: actions/checkout@v2
+
+      # Setup Java
+      - name: Set up JDK 1.8
+        uses: actions/setup-java@v1
+        with:
+          java-version: 1.8
+
+      # Make Gradle Wrapper Executable
+      - name: Make gradlew executable
+        run: chmod +x ./gradlew
+
+      # Download Build Artifacts
+      - name: Download Build Artifacts
+        uses: actions/download-artifact@v2
+        with:
+          name: artifacts
+          path: ./build
+
+      # Publish the Bundle to the Play Store using the release keystore
+      - name: Publish Bundle
+        env:
+          ANDROID_PUBLISHER_CREDENTIALS : ${{ secrets.SERVICE_ACCOUNT }}
+        run: ./gradlew publishBundle --artifact-dir ./build/bundle/release --track ${GITHUB_REF#refs/heads/}
+
+  release:
+    name: Release
+    needs: [build, changelog]
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/production'
+    steps:
+      # Checkout Repo
+      - name: Checkout Repo
+        uses: actions/checkout@v2
+
+      # Download Build Artifacts
+      - name: Download Build Artifacts
+        uses: actions/download-artifact@v2
+        with:
+          name: artifacts
+          path: ./build
+
+      # Create a Github Release
+      - name: Create Release
+        uses: ncipollo/release-action@v1
+        with:
+          draft: 'true'
+          tag: ${{ needs.changelog.outputs.tag }}
+          artifacts: "./build/apk/release/app-release.apk"
+          bodyFile: "./CHANGELOG.md"
+          token: ${{ secrets.GITHUB_TOKEN }}
+      
+  # Note: May require a little manual resolution from time to time when a pending build has release notes when production is rolled out
+  reset-release-notes:
+    needs: [release]
+    name: Reset Release Notes
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/production'
+    steps:
+      # Empty the Release Notes File
+      - name: Empty Release Notes
+        run: |
+          > ./app/src/main/play/release-notes/en-US/default.txt

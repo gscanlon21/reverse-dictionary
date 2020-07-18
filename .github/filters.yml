@@ -1,0 +1,4 @@
+src: 
+  - './app/src/**/*'
+release-notes: 
+  - './app/src/main/play/release-notes/en-US/default.txt'

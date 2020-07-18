@@ -1,0 +1,50 @@
+name: 'Nightly Merge'
+
+on:
+  schedule:
+    - cron:  '0 0 * * *'
+
+jobs:
+  nightly-merge:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checkout Latest
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      # Merge production into beta
+      - name: Nightly Merge
+        uses: robotology/gh-action-nightly-merge@v1.2.0
+        with:
+          stable_branch: 'production'
+          development_branch: 'beta'
+          allow_ff: false
+          push_token: 'PAT'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PAT: ${{ secrets.PAT }}
+          
+      # Merge beta into alpha
+      - name: Nightly Merge
+        uses: robotology/gh-action-nightly-merge@v1.2.0
+        with:
+          stable_branch: 'beta'
+          development_branch: 'alpha'
+          allow_ff: false
+          push_token: 'PAT'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PAT: ${{ secrets.PAT }}
+          
+      # Merge alpha into internal
+      - name: Nightly Merge
+        uses: robotology/gh-action-nightly-merge@v1.2.0
+        with:
+          stable_branch: 'alpha'
+          development_branch: 'internal'
+          allow_ff: false
+          push_token: 'PAT'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PAT: ${{ secrets.PAT }}

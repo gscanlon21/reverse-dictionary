@@ -1,0 +1,10 @@
+android-pixel-4:
+  type: instrumentation
+  # Specify the path to the debug and test apks generated early
+  app: app/build/outputs/apk/debug/app-debug.apk
+  test: app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk
+  device:
+    - model: flame
+      version: 29
+      locale: 'en'
+      orientation: portrait

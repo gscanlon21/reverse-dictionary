@@ -1,0 +1,69 @@
+<resources>
+    <string name="app_name">Reverse Dictionary</string>
+
+    <string name="activity_user_preference">Settings</string>
+
+    <string name="main_tab_search">Search</string>
+    <string name="main_tab_history">History</string>
+
+    <string name="search_result_tab_anagram">Anagrams</string>
+    <string name="search_result_tab_synonym">Synonyms</string>
+    <string name="search_result_tab_antonym">Antonyms</string>
+    <string name="search_result_tab_definition">Definitions</string>
+    <string name="search_result_tab_rhyme">Rhymes</string>
+    <string name="search_result_tab_similar">Similar Words</string>
+    <string name="search_result_tab_meanslike">Means Like</string>
+    <string name="search_result_tab_soundslike">Sounds Like</string>
+    <string name="search_result_tab_spelledlike">Spelled Like</string>
+    <string name="search_result_tab_adjective">Adjectives</string>
+    <string name="search_result_tab_noun">Nouns</string>
+    <string name="search_result_tab_homophone">Homophones</string>
+    <string name="search_result_tab_predecessor">Predecessors</string>
+    <string name="search_result_tab_meronym">Meronyms</string>
+    <string name="search_result_tab_golonym">Golonyms</string>
+    <string name="search_result_tab_follower">Followers</string>
+    <string name="search_result_tab_hyponym">Hyponyms</string>
+    <string name="search_result_tab_hypernym">Hypernyms</string>
+
+    <string name="label_wotd">Word of the Day</string>
+    <string name="label_random_word">Random word</string>
+    <string name="label_pronunciation">Pronunciation</string>
+
+    <string name="placeholder_loading">Loading…</string>
+    <string name="placeholder_success">No Results</string>
+    <string name="placeholder_error">Something went wrong</string>
+    <string name="placeholder_scrabble_score">Scrabble Score: %1$d</string>
+
+    <string name="content_description_settings">Settings</string>
+
+    <string name="search_for_query_hint">Enter a word or phrase</string>
+
+    <string name="error_network_disconnected">No Network Connection</string>
+    <string name="error_user_preference_invalid">The preference could not be saved</string>
+
+    <string name="preference_title_hide_empty_page">Hide Pages with No Results</string>
+    <string name="preference_title_pages_to_show">Pages to Show</string>
+    <string name="preference_summary_paged_to_show">Used to control which pages are visible after searching for a word</string>
+
+    <string-array name="empty_array"/>
+
+    <string-array name="search_result_preference">
+        <item>@string/search_result_tab_definition</item>
+        <item>@string/search_result_tab_anagram</item>
+        <item>@string/search_result_tab_rhyme</item>
+        <item>@string/search_result_tab_adjective</item>
+        <item>@string/search_result_tab_noun</item>
+        <item>@string/search_result_tab_synonym</item>
+        <item>@string/search_result_tab_antonym</item>
+        <item>@string/search_result_tab_similar</item>
+        <item>@string/search_result_tab_soundslike</item>
+        <item>@string/search_result_tab_spelledlike</item>
+        <item>@string/search_result_tab_golonym</item>
+        <item>@string/search_result_tab_homophone</item>
+        <item>@string/search_result_tab_hypernym</item>
+        <item>@string/search_result_tab_hyponym</item>
+        <item>@string/search_result_tab_meronym</item>
+        <item>@string/search_result_tab_predecessor</item>
+        <item>@string/search_result_tab_follower</item>
+    </string-array>
+</resources>

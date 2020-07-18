@@ -1,0 +1,38 @@
+# Local Files
+/local.properties
+
+# Build Files
+/build
+/app/build
+/lint/build
+.gradle
+
+# Misc
+*.iml
+.DS_Store
+.externalNativeBuild
+.cxx
+/captures
+/app/release/output.json
+
+# IntelliJ IDE
+/.idea
+
+# Java Keystore
+*.jks
+
+# Private Key File
+*.pepk
+
+# Android App Bundle
+*.aab
+
+# Android Package
+*.apk
+
+# Secrets and Configs
+/app/google-service.json
+/app/src/debug/res/values/secrets.xml
+/app/src/debug/google-services.json
+/app/src/release/res/values/secrets.xml
+/app/src/release/google-services.json
