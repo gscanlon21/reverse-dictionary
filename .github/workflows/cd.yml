@@ -24,6 +24,7 @@ jobs:
       # Output modifications File Status
       - name: modifications Files
         id: modifications
+        if: github.event_name == 'push'
         uses: dorny/paths-filter@v2.2.0
         with:
           filters: '.github/filters.yml'
