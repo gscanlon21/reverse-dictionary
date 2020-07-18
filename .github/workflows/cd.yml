@@ -16,6 +16,7 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       src: ${{ steps.modifications.outputs.src }}
+      manual: ${{ github.event_name == 'workflow_dispatch' }}
     steps:
       # Checkout Latest
       - name: Checkout Latest
@@ -66,7 +67,9 @@ jobs:
     name: Build
     needs: [modifications] 
     runs-on: ubuntu-latest
-    if: needs.modifications.outputs.src == 'true' 
+    if: |
+      needs.modifications.outputs.src == 'true' 
+      || needs.modifications.outputs.manual == 'true' 
     steps:
       # Checkout Repo
       - name: Checkout Repo
