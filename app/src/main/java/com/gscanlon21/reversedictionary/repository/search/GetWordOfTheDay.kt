@@ -3,7 +3,7 @@ package com.gscanlon21.reversedictionary.repository.search
 import com.gscanlon21.reversedictionary.db.search.SearchDao
 import com.gscanlon21.reversedictionary.db.search.WordOfTheDayEntity
 import com.gscanlon21.reversedictionary.repository.data.NetworkBoundResource
-import com.gscanlon21.reversedictionary.service.SearchService
+import com.gscanlon21.reversedictionary.service.WebService
 import java.time.Instant
 import java.time.LocalDate
 import java.time.ZoneId
@@ -13,7 +13,7 @@ import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.flow.singleOrNull
 
 @ExperimentalCoroutinesApi
-class GetWordOfTheDay(private val searchService: SearchService, private val searchDao: SearchDao) :
+class GetWordOfTheDay(private val searchService: WebService.SearchService, private val searchDao: SearchDao) :
         NetworkBoundResource<WordOfTheDayEntity, String>() {
 
     override suspend fun loadFromDb() = flowOf(searchDao.getWordOfTheDay())

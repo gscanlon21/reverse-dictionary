@@ -11,7 +11,11 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.withContext
 
 @ExperimentalCoroutinesApi
-class HistoryRepository private constructor(private val historyDao: HistoryDao, private val dispatcher: CoroutineDispatcher) {
+class HistoryRepository constructor(
+    private val historyDao: HistoryDao,
+    private val dispatcher: CoroutineDispatcher = Dispatchers.IO
+) {
+
     suspend fun upsert(entity: HistoryUpsertEntity) {
         withContext(Dispatchers.IO) {
             historyDao.upsert(entity)
@@ -20,13 +24,5 @@ class HistoryRepository private constructor(private val historyDao: HistoryDao, 
 
     suspend fun getHistory(): Flow<ViewResource<List<HistoryEntity>>> {
         return GetHistory(historyDao).flow(dispatcher)
-    }
-
-    companion object {
-        @Volatile private var instance: HistoryRepository? = null
-        fun getInstance(historyDao: HistoryDao) =
-            instance ?: synchronized(this) {
-                instance ?: HistoryRepository(historyDao, Dispatchers.IO).also { instance = it }
-            }
     }
 }

@@ -12,7 +12,7 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.suspendCancellableCoroutine
 
 @ExperimentalCoroutinesApi
-class SearchService private constructor(private val requests: Requests) {
+class SearchService constructor(private val requests: Requests) : WebService.SearchService {
     private val wotdUrl =
         "https://api.wordnik.com/v4/words.json/wordOfTheDay?api_key=" + requests.context.getString(
             R.string.wordnik_api_key
@@ -21,7 +21,7 @@ class SearchService private constructor(private val requests: Requests) {
         R.string.wordnik_api_key
     )
 
-    suspend fun requestWordOfTheDay(): Response<String> {
+    override suspend fun requestWordOfTheDay(): Response<String> {
         return suspendCancellableCoroutine { continuation ->
             val jsonObjectRequest = JsonObjectRequest(
                 Request.Method.GET, wotdUrl, null,
@@ -37,7 +37,7 @@ class SearchService private constructor(private val requests: Requests) {
         }
     }
 
-    suspend fun requestRandomWord(): Response<String> {
+    override suspend fun requestRandomWord(): Response<String> {
         return suspendCancellableCoroutine { continuation ->
             val jsonObjectRequest = JsonObjectRequest(
                 Request.Method.GET, randomWordUrl, null,
@@ -55,11 +55,5 @@ class SearchService private constructor(private val requests: Requests) {
 
     companion object {
         const val WORDNIK_WORD_KEY = "word"
-
-        @Volatile private var instance: SearchService? = null
-        fun getInstance(requests: Requests) =
-            instance ?: synchronized(this) {
-                instance ?: SearchService(requests).also { instance = it }
-            }
     }
 }
