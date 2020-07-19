@@ -1,1 +1,2 @@
-Initial Release
+Fixes
+  - Occasional crash when pages are removed from view

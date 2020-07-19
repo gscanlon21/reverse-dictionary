@@ -15,7 +15,7 @@ jobs:
     name: Verify Modifications
     runs-on: ubuntu-latest
     outputs:
-      src: ${{ steps.modifications.outputs.src }}
+      src: ${{ steps.modifications.outputs.src == 'true' }}
       manual: ${{ github.event_name == 'workflow_dispatch' }}
     steps:
       # Checkout Latest
