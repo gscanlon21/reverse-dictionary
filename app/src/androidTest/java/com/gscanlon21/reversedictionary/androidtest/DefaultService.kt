@@ -3,11 +3,12 @@ package com.gscanlon21.reversedictionary.androidtest
 import com.android.volley.Cache
 import com.android.volley.Response
 import com.gscanlon21.reversedictionary.repository.data.ApiType
-import com.gscanlon21.reversedictionary.service.Service.DatamuseModel
+import com.gscanlon21.reversedictionary.service.WebService
+import com.gscanlon21.reversedictionary.service.api.DatamuseModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 
 @ExperimentalCoroutinesApi
-interface DefaultService : Service.SearchService, Service.SearchResultService {
+interface DefaultService : WebService.SearchService, WebService.SearchResultService {
     override suspend fun requestRandomWord(): Response<String> {
         return Response.success("", Cache.Entry())
     }

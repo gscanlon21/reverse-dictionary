@@ -73,20 +73,17 @@ jobs:
         run: ./gradlew test
 
       # Assemble debug apk to send to firebase test lab
-      # Commenting out until I can switch to Mockito or Mockk supports Gradle 6
-      #- name: Assemble Debug APK
-      #  run: ./gradlew assembleDebug
+      - name: Assemble Debug APK
+        run: ./gradlew assembleDebug
 
       # Assemble debug test apk to send to firebase test lab
-      # Commenting out until I can switch to Mockito or Mockk supports Gradle 6
-      #- name: Assemble Debug Test APK
-      #  run: ./gradlew assembleDebugAndroidTest
+      - name: Assemble Debug Test APK
+        run: ./gradlew assembleDebugAndroidTest
 
       # Run instrumented tests on firebase test lab
-      # Commenting out until I can switch to Mockito or Mockk supports Gradle 6
-      #- name: Run tests on Firebase Test Lab
-      #  uses: asadmansr/Firebase-Test-Lab-Action@v1.0
-      #  with:
-      #    arg-spec: '.github/tests.yml:android-pixel-4'
-      #  env:
-      #    SERVICE_ACCOUNT: ${{ secrets.SERVICE_ACCOUNT }}
+      - name: Run tests on Firebase Test Lab
+        uses: asadmansr/Firebase-Test-Lab-Action@v1.0
+        with:
+          arg-spec: '.github/tests.yml:android-pixel-4'
+        env:
+          SERVICE_ACCOUNT: ${{ secrets.SERVICE_ACCOUNT }}

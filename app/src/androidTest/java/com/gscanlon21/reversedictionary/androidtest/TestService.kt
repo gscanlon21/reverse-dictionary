@@ -3,6 +3,7 @@ package com.gscanlon21.reversedictionary.androidtest
 import com.gscanlon21.reversedictionary.repository.data.ApiType
 import com.gscanlon21.reversedictionary.service.SearchResultService
 import com.gscanlon21.reversedictionary.service.SearchService
+import com.gscanlon21.reversedictionary.service.WebService
 import io.mockk.clearAllMocks
 import io.mockk.coEvery
 import io.mockk.mockkConstructor
@@ -14,8 +15,8 @@ import org.junit.Before
 
 @ExperimentalCoroutinesApi
 interface TestService {
-    val searchService: Service.SearchService get() = object : DefaultService { }
-    val searchResultService: Service.SearchResultService get() = object : DefaultService { }
+    val searchService: WebService.SearchService get() = object : DefaultService { }
+    val searchResultService: WebService.SearchResultService get() = object : DefaultService { }
 
     @Before
     fun api_before() {
