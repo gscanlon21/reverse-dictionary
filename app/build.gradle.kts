@@ -15,6 +15,7 @@ plugins {
 
 data class ManifestFile (val version: String)
 android {
+    testOptions.unitTests.isIncludeAndroidResources = true
     compileSdkVersion(30)
     buildToolsVersion("30.0.0")
     compileOptions {
