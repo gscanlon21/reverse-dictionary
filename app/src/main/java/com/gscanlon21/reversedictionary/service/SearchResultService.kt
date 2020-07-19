@@ -18,8 +18,8 @@ import kotlin.coroutines.resumeWithException
 import kotlinx.coroutines.suspendCancellableCoroutine
 import org.json.JSONObject
 
-class SearchResultService private constructor(private val requests: Requests) {
-    suspend fun getAnagrams(word: String): Response<List<String>> {
+class SearchResultService constructor(private val requests: Requests) : WebService.SearchResultService {
+    override suspend fun getAnagrams(word: String): Response<List<String>> {
         return suspendCancellableCoroutine { continuation ->
             val url = "http://anagramica.com/best/:$word"
             val jsonObjectRequest = JsonObjectRequest(
@@ -38,7 +38,7 @@ class SearchResultService private constructor(private val requests: Requests) {
         }
     }
 
-    suspend fun getAudioUris(word: String): Response<List<String>?> {
+    override suspend fun getAudioUris(word: String): Response<List<String>?> {
         return suspendCancellableCoroutine { continuation ->
             val url =
                 "https://api.wordnik.com/v4/word.json/$word/audio?api_key=${requests.context.getString(
@@ -61,7 +61,7 @@ class SearchResultService private constructor(private val requests: Requests) {
         }
     }
 
-    suspend fun datamuseLookup(term: String, type: ApiType.Datamuse): Response<List<DatamuseModel>> {
+    override suspend fun datamuseLookup(term: String, type: ApiType.Datamuse): Response<List<DatamuseModel>> {
         return suspendCancellableCoroutine { continuation ->
             val datamuseUrl = "https://api.datamuse.com/words?md=d&${type.apiRoute}$term"
             val jsonObjectRequest = JsonArrayRequest(
@@ -88,11 +88,5 @@ class SearchResultService private constructor(private val requests: Requests) {
     companion object {
         const val WORDNIK_AUDIO_URL_KEY = "fileUrl"
         const val ANAGRAMICA_WORD_KEY = "best"
-
-        @Volatile private var instance: SearchResultService? = null
-        fun getInstance(requests: Requests) =
-            instance ?: synchronized(this) {
-                instance ?: SearchResultService(requests).also { instance = it }
-            }
     }
 }

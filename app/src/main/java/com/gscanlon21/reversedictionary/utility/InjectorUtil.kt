@@ -21,17 +21,17 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 @ExperimentalCoroutinesApi
 object InjectorUtil {
     private fun getHistoryRepository(context: Context): HistoryRepository {
-        return HistoryRepository.getInstance(SearchDb.getInstance(context.applicationContext).history())
+        return HistoryRepository(SearchDb.getInstance(context.applicationContext).history())
     }
 
     private fun getSearchRepository(context: Context): SearchRepository {
-        return SearchRepository.getInstance(
-            SearchService.getInstance(Requests(context.applicationContext)), SearchDb.getInstance(context.applicationContext).search())
+        return SearchRepository(
+            SearchService(Requests.getInstance(context.applicationContext)), SearchDb.getInstance(context.applicationContext).search())
     }
 
     private fun getSearchResultRepository(context: Context): SearchResultRepository {
-        return SearchResultRepository.getInstance(
-            SearchResultService.getInstance(Requests(context.applicationContext)), SearchDb.getInstance(context.applicationContext).searchResults())
+        return SearchResultRepository(
+            SearchResultService(Requests.getInstance(context.applicationContext)), SearchDb.getInstance(context.applicationContext).searchResults())
     }
 
     fun provideHistoryViewModelFactory(context: Context): HistoryViewModelFactory {

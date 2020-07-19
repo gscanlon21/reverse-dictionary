@@ -5,14 +5,14 @@ import com.gscanlon21.reversedictionary.db.search.result.SearchResultDao
 import com.gscanlon21.reversedictionary.db.search.result.SearchResultEntity
 import com.gscanlon21.reversedictionary.repository.data.ApiType
 import com.gscanlon21.reversedictionary.repository.data.NetworkBoundResource
-import com.gscanlon21.reversedictionary.service.SearchResultService
+import com.gscanlon21.reversedictionary.service.WebService
 import com.gscanlon21.reversedictionary.service.api.DatamuseModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOf
 
 @ExperimentalCoroutinesApi
-class Lookup(private val searchResultDao: SearchResultDao, private val searchResultService: SearchResultService, private val phrase: String, private val type: ApiType.Datamuse) :
+class Lookup(private val searchResultDao: SearchResultDao, private val searchResultService: WebService.SearchResultService, private val phrase: String, private val type: ApiType.Datamuse) :
     NetworkBoundResource<List<SearchResultEntity>, List<DatamuseModel>>() {
     override suspend fun loadFromDb(): Flow<List<SearchResultEntity>> {
         val items = searchResultDao.getList(type, phrase)

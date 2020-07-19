@@ -1,11 +1,10 @@
-package com.gscanlon21.reversedictionary.viewmodel
+package com.gscanlon21.reversedictionary.vm
 
-import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.gscanlon21.reversedictionary.BaseUnitTest
-import com.gscanlon21.reversedictionary.BuildConfig
 import com.gscanlon21.reversedictionary.db.history.HistoryEntity
 import com.gscanlon21.reversedictionary.repository.data.ViewResource
 import com.gscanlon21.reversedictionary.repository.history.HistoryRepository
+import com.gscanlon21.reversedictionary.test.TestCoroutine
 import com.gscanlon21.reversedictionary.ui.main.history.HistoryItem
 import com.gscanlon21.reversedictionary.vm.history.HistoryViewModel
 import com.jraska.livedata.test
@@ -14,24 +13,30 @@ import io.mockk.mockkClass
 import java.time.Instant
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.flowOf
+import kotlinx.coroutines.test.TestCoroutineDispatcher
 import kotlinx.coroutines.test.runBlockingTest
+import org.junit.Before
 import org.junit.Test
-import org.junit.runner.RunWith
-import org.robolectric.annotation.Config
 
 @ExperimentalCoroutinesApi
-@RunWith(AndroidJUnit4::class)
-@Config(sdk = [BuildConfig.MIN_SDK_VERSION, BuildConfig.TARGET_SDK_TEST_VERSION])
-class HistoryViewModelUnitTest : BaseUnitTest() {
+class HistoryViewModelUnitTest : BaseUnitTest(), TestCoroutine {
+    override val testDispatcher: TestCoroutineDispatcher = TestCoroutineDispatcher()
+
     private lateinit var historyViewModel: HistoryViewModel
     private lateinit var historyRepository: HistoryRepository
 
-    override fun setupDependencies() {
+    @Before
+    fun before() {
+        setupDependencies()
+        setupMocks()
+    }
+
+    private fun setupDependencies() {
         historyRepository = mockkClass(HistoryRepository::class)
         historyViewModel = HistoryViewModel(historyRepository)
     }
 
-    override fun setupMocks() {
+    private fun setupMocks() {
         coEvery {
             historyRepository.getHistory()
         } returns flowOf(
@@ -58,6 +63,6 @@ class HistoryViewModelUnitTest : BaseUnitTest() {
         )
         historyViewModel.historyList().test()
             .assertValue { it is ViewResource.WithData.Success<List<*>> &&
-                    it.data == expectedOrder }
+                        it.data == expectedOrder }
     }
 }

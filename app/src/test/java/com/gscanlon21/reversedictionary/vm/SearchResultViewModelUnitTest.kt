@@ -1,12 +1,11 @@
-package com.gscanlon21.reversedictionary.viewmodel
+package com.gscanlon21.reversedictionary.vm
 
-import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.gscanlon21.reversedictionary.BaseUnitTest
-import com.gscanlon21.reversedictionary.BuildConfig
 import com.gscanlon21.reversedictionary.db.search.result.SearchResultEntity
 import com.gscanlon21.reversedictionary.repository.data.ApiType
 import com.gscanlon21.reversedictionary.repository.data.ViewResource
 import com.gscanlon21.reversedictionary.repository.search.result.SearchResultRepository
+import com.gscanlon21.reversedictionary.test.TestCoroutine
 import com.gscanlon21.reversedictionary.ui.main.search.result.SearchResultItem
 import com.gscanlon21.reversedictionary.vm.search.result.SearchResultViewModel
 import com.jraska.livedata.TestLifecycle
@@ -16,24 +15,30 @@ import io.mockk.mockkClass
 import io.mockk.slot
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.flowOf
+import kotlinx.coroutines.test.TestCoroutineDispatcher
 import kotlinx.coroutines.test.runBlockingTest
+import org.junit.Before
 import org.junit.Test
-import org.junit.runner.RunWith
-import org.robolectric.annotation.Config
 
 @ExperimentalCoroutinesApi
-@RunWith(AndroidJUnit4::class)
-@Config(sdk = [BuildConfig.MIN_SDK_VERSION, BuildConfig.TARGET_SDK_TEST_VERSION])
-class SearchResultViewModelUnitTest : BaseUnitTest() {
+class SearchResultViewModelUnitTest : BaseUnitTest(), TestCoroutine {
+    override val testDispatcher: TestCoroutineDispatcher = TestCoroutineDispatcher()
+
     private lateinit var searchResultRepository: SearchResultRepository
     private lateinit var searchResultViewModel: SearchResultViewModel
 
-    override fun setupDependencies() {
+    @Before
+    fun before() {
+        setupDependencies()
+        setupMocks()
+    }
+
+    private fun setupDependencies() {
         searchResultRepository = mockkClass(SearchResultRepository::class)
         searchResultViewModel = SearchResultViewModel(searchResultRepository)
     }
 
-    override fun setupMocks() {
+    private fun setupMocks() {
         val slot = slot<ApiType>()
         coEvery {
             searchResultRepository.lookup(any(), capture(slot))

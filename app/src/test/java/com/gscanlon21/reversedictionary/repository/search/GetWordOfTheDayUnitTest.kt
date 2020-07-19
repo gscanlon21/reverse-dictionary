@@ -1,38 +1,31 @@
 package com.gscanlon21.reversedictionary.repository.search
 
-import androidx.test.ext.junit.runners.AndroidJUnit4
-import com.android.volley.Cache
-import com.android.volley.Response
 import com.gscanlon21.reversedictionary.BaseUnitTest
-import com.gscanlon21.reversedictionary.BuildConfig
 import com.gscanlon21.reversedictionary.db.search.WordOfTheDayEntity
-import com.gscanlon21.reversedictionary.service.SearchService
-import io.mockk.coEvery
-import io.mockk.mockkClass
+import com.gscanlon21.reversedictionary.test.TestCoroutine
+import com.gscanlon21.reversedictionary.test.TestDb
+import com.gscanlon21.reversedictionary.test.TestService
 import java.time.Instant
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.toList
+import kotlinx.coroutines.test.TestCoroutineDispatcher
 import kotlinx.coroutines.test.runBlockingTest
+import org.junit.Before
 import org.junit.Test
-import org.junit.runner.RunWith
-import org.robolectric.annotation.Config
 
 @ExperimentalCoroutinesApi
-@RunWith(AndroidJUnit4::class)
-@Config(sdk = [BuildConfig.MIN_SDK_VERSION, BuildConfig.TARGET_SDK_TEST_VERSION])
-class GetWordOfTheDayUnitTest : BaseUnitTest() {
-    private val searchService: SearchService = mockkClass(SearchService::class)
+class GetWordOfTheDayUnitTest : BaseUnitTest(), TestCoroutine, TestDb, TestService {
+    override val testDispatcher: TestCoroutineDispatcher = TestCoroutineDispatcher()
+
     private lateinit var getWordOfTheDay: GetWordOfTheDay
 
-    override fun setupDependencies() {
-        super.setupDependencies()
-        getWordOfTheDay = GetWordOfTheDay(searchService, searchDao)
+    @Before
+    fun before() {
+        setupDependencies()
     }
 
-    override fun setupMocks() {
-        coEvery {
-            searchService.requestWordOfTheDay()
-        }.returnsMany(Response.success("Syzygy", Cache.Entry()), Response.success("Brilliancy", Cache.Entry()))
+    private fun setupDependencies() {
+        getWordOfTheDay = GetWordOfTheDay(searchService, searchDao)
     }
 
     @Test
