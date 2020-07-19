@@ -4,9 +4,10 @@ import androidx.annotation.VisibleForTesting
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.gscanlon21.reversedictionary.repository.data.ViewResource
 import com.gscanlon21.reversedictionary.ui.navigation.UiView
 import com.gscanlon21.reversedictionary.utility.IdlingResource
-import java.util.concurrent.CountDownLatch
+import kotlinx.coroutines.CompletableDeferred
 
 class MainViewModel : ViewModel() {
     private var viewPagerIdling: IdlingResource? = null
@@ -19,7 +20,7 @@ class MainViewModel : ViewModel() {
     }
 
     val viewPagerItems: ArrayList<UiView> = arrayListOf()
-    var isLoading: CountDownLatch? = null
+    val loadingJobs = mutableMapOf<UiView.SearchResult, CompletableDeferred<ViewResource<Any>>>()
 
     private val _viewPagerScrolling = MutableLiveData<Boolean>()
     val viewPagerScrolling: LiveData<Boolean> get() = _viewPagerScrolling
