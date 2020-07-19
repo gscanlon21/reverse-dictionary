@@ -9,11 +9,8 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
 import com.gscanlon21.reversedictionary.R
-import com.gscanlon21.reversedictionary.extension.defaultSharedPreferences
-import com.gscanlon21.reversedictionary.extension.emptyResultsHidden
 import com.gscanlon21.reversedictionary.repository.data.ApiType
 import com.gscanlon21.reversedictionary.repository.data.ViewResource
-import com.gscanlon21.reversedictionary.ui.main.MainActivity
 import com.gscanlon21.reversedictionary.ui.main.adapter.ListItemFragment
 import com.gscanlon21.reversedictionary.ui.navigation.UiView
 import com.gscanlon21.reversedictionary.utility.InjectorUtil
@@ -65,12 +62,7 @@ class SearchResultFragment : ListItemFragment<SearchResultItem>() {
     private val searchResultObserver = Observer<ViewResource<List<SearchResultItem>>> { resource ->
         when (resource) {
             !is ViewResource.WithData.Loading -> {
-                mainViewModel.isLoading?.countDown()
-
-                val emptyPagesVanish = requireContext().defaultSharedPreferences().emptyResultsHidden(requireContext())
-                if (emptyPagesVanish && !resource.hasData()) {
-                    (requireActivity() as MainActivity).removeViewPagerItem(this.uiView as UiView.SearchResult)
-                }
+                mainViewModel.loadingJobs[uiView]?.complete(resource)
             }
         }
     }

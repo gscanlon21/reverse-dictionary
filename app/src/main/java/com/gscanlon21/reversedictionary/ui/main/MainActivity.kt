@@ -7,6 +7,7 @@ import android.view.MenuItem
 import android.view.View
 import androidx.activity.viewModels
 import androidx.annotation.VisibleForTesting
+import androidx.lifecycle.lifecycleScope
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
@@ -14,6 +15,7 @@ import com.gscanlon21.reversedictionary.R
 import com.gscanlon21.reversedictionary.extension.defaultSharedPreferences
 import com.gscanlon21.reversedictionary.extension.emptyResultsHidden
 import com.gscanlon21.reversedictionary.extension.pagesToShow
+import com.gscanlon21.reversedictionary.repository.data.ViewResource
 import com.gscanlon21.reversedictionary.ui.BaseActivity
 import com.gscanlon21.reversedictionary.ui.main.search.SearchTerm
 import com.gscanlon21.reversedictionary.ui.navigation.IPagerAdapter
@@ -24,10 +26,9 @@ import com.gscanlon21.reversedictionary.ui.preference.PreferenceActivity
 import com.gscanlon21.reversedictionary.utility.InjectorUtil
 import com.gscanlon21.reversedictionary.vm.MainViewModel
 import com.gscanlon21.reversedictionary.vm.search.SearchTermViewModel
-import java.util.concurrent.CountDownLatch
-import java.util.concurrent.TimeUnit
-import kotlin.concurrent.thread
+import kotlinx.coroutines.CompletableDeferred
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.launch
 
 @ExperimentalCoroutinesApi
 class MainActivity : BaseActivity() {
@@ -45,7 +46,6 @@ class MainActivity : BaseActivity() {
         const val EXTRA_SEARCH_TERM = "EXTRA_SEARCH_TERM"
         const val INSTANCE_STATE_TITLE = "INSTANCE_STATE_TITLE"
         const val VIEWPAGER_OFFSCREEN_PAGE_LIMIT_NO_RESULTS = 99
-        const val LOADING_DURATION_MAX_SECONDS = 5L
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -87,11 +87,19 @@ class MainActivity : BaseActivity() {
             mainViewModel.viewPagerItems.addAll(pagesToShow)
 
             if (defaultSharedPreferences().emptyResultsHidden(this)) {
-                mainViewModel.isLoading = CountDownLatch(pagesToShow.count())
+                mainViewModel.loadingJobs.putAll(pagesToShow.map {
+                    Pair(it, CompletableDeferred<ViewResource<Any>>())
+                })
+
                 loadingView.visibility = View.VISIBLE
-                thread {
-                    mainViewModel.isLoading?.await(LOADING_DURATION_MAX_SECONDS, TimeUnit.SECONDS)
-                    runOnUiThread { loadingView.visibility = View.GONE }
+
+                lifecycleScope.launch {
+                    mainViewModel.loadingJobs.forEach {
+                        val value = it.value.await()
+                        if (!value.hasData()) { mainViewModel.viewPagerItems.remove(it.key) }
+                    }
+                    pagerAdapter.notifyDataSetChanged()
+                    loadingView.visibility = View.GONE
                 }
             }
         }
@@ -99,12 +107,6 @@ class MainActivity : BaseActivity() {
 
     private fun restoreActivityFromDisk(savedInstanceState: Bundle) {
         supportActionBar?.title = savedInstanceState.getCharSequence(INSTANCE_STATE_TITLE)
-    }
-
-    fun removeViewPagerItem(type: UiView.SearchResult) {
-        val index = mainViewModel.viewPagerItems.indexOf(type)
-        mainViewModel.viewPagerItems.removeAt(index)
-        pagerAdapter.notifyItemRemoved(index)
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
