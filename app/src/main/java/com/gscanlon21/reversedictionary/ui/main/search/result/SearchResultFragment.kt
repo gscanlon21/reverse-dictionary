@@ -53,7 +53,7 @@ class SearchResultFragment : ListItemFragment<SearchResultItem>() {
         if (uiView == UiView.SearchResult.Definition) {
             childFragmentManager.beginTransaction()
                 .add(R.id.search_result_meta_frame, MetaFragment())
-                .commit()
+                .commitNow()
         }
 
         return root
