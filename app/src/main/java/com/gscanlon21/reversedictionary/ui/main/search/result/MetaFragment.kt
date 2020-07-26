@@ -1,13 +1,17 @@
 package com.gscanlon21.reversedictionary.ui.main.search.result
 
+import android.content.Intent
 import android.media.AudioAttributes
 import android.media.MediaPlayer
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.Menu
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
+import androidx.appcompat.widget.PopupMenu
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -49,27 +53,47 @@ class MetaFragment : MainFragment() {
             )
         }
 
-        searchTermViewModel.searchWord.observe(viewLifecycleOwner, Observer { searchTerm ->
-            root.findViewById<TextView>(R.id.scrabble_score).text =
-                getString(R.string.placeholder_scrabble_score, metaViewModel.scrabbleScore(searchTerm!!))
+        root.findViewById<TextView>(R.id.scrabble_score).text = getString(R.string.placeholder_scrabble_score, metaViewModel.scrabbleScore(searchTermViewModel.searchWord.value!!))
 
-            lifecycleScope.launch {
-                metaViewModel.getAudioUri(searchTerm).observe(viewLifecycleOwner, Observer { audioUri ->
-                    val audioView = root.findViewById<Button>(R.id.audio)
-                    if (audioUri != null) {
-                        mediaPlayer?.setDataSource(audioUri)
-                        mediaPlayer?.prepareAsync()
-                        audioView.visibility = View.VISIBLE
-                        audioView.setOnClickListener {
-                            mediaPlayer?.start()
-                        }
-                    } else {
-                        audioView.visibility = View.GONE
+        lifecycleScope.launch {
+            metaViewModel.getAudioUri(searchTermViewModel.searchWord.value!!).observe(viewLifecycleOwner, Observer { audioData ->
+                val audioView = root.findViewById<Button>(R.id.audio)
+                if (audioData?.audioUrl != null) {
+                    mediaPlayer?.setDataSource(audioData.audioUrl)
+                    mediaPlayer?.prepareAsync()
+                    audioView.visibility = View.VISIBLE
+                    audioView.setOnClickListener {
+                        mediaPlayer?.start()
                     }
-                })
-            }
-        })
+                    audioView.setOnLongClickListener {
+                        showAttributionPopup(it, Uri.parse(audioData.attributionUrl))
+                    }
+                } else {
+                    audioView.visibility = View.GONE
+                }
+            })
+        }
 
         return root
+    }
+
+    private fun showAttributionPopup(v: View, attributionUrl: Uri): Boolean {
+        val popup = PopupMenu(v.context, v)
+        popup.menu.add(Menu.NONE, ATTRIBUTION_ID, ATTRIBUTION_ID, getString(R.string.context_menu_attribution))
+        popup.setOnMenuItemClickListener {
+            when (it.itemId) {
+                ATTRIBUTION_ID -> {
+                    context?.startActivity(Intent(Intent.ACTION_VIEW, attributionUrl))
+                    true
+                }
+                else -> false
+            }
+        }
+        popup.show()
+        return true
+    }
+
+    companion object {
+        private const val ATTRIBUTION_ID = 1
     }
 }
