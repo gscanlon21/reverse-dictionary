@@ -5,12 +5,21 @@
     <SwitchPreferenceCompat
         app:key="@string/key_shared_preference_empty_results_hidden"
         app:defaultValue="true"
+        app:singleLineTitle="false"
         app:title="@string/preference_title_hide_empty_page"/>
+
+    <SwitchPreferenceCompat
+        app:key="@string/key_shared_preference_no_definitions_hidden"
+        app:defaultValue="true"
+        app:singleLineTitle="false"
+        app:title="@string/preference_title_hide_no_definitions"
+        app:summary="@string/preference_summary_hide_no_definitions"
+        />
 
     <MultiSelectListPreference
         android:dialogTitle="@string/preference_title_pages_to_show"
         android:key="@string/key_shared_preference_pages_to_show"
-        android:summary="@string/preference_summary_paged_to_show"
+        android:summary="@string/preference_summary_pages_to_show"
         android:title="@string/preference_title_pages_to_show"
         android:entries="@array/search_result_preference"
         android:entryValues="@array/search_result_preference"

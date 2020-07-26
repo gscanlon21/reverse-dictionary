@@ -51,9 +51,7 @@ object InjectorUtil {
 
     fun provideSearchResultViewModelFactory(context: Context): SearchResultViewModelFactory {
         val repository = getSearchResultRepository(context)
-        return SearchResultViewModelFactory(
-            repository
-        )
+        return SearchResultViewModelFactory(context, repository)
     }
 
     fun provideMetaViewModelFactory(context: Context): MetaViewModelFactory {
