@@ -4,7 +4,7 @@ import android.util.Log
 
 sealed class ViewResource<out T> {
     sealed class WithData<out T>(open val data: T?) : ViewResource<T>() {
-        data class Success<out T>(override val data: T?) : WithData<T>(data)
+        data class Success<out T>(override val data: T) : WithData<T>(data)
         data class Loading<out T>(override val data: T?) : WithData<T>(data)
     }
 
@@ -26,9 +26,13 @@ sealed class ViewResource<out T> {
     }
 }
 
-inline fun <T, R> ViewResource.WithData<T>.map(crossinline transform: (T?) -> R?): ViewResource<R> {
+inline fun <T, R> ViewResource.WithData<T>.map(crossinline transform: (T) -> R): ViewResource<R> {
     return when (this) {
         is ViewResource.WithData.Success -> ViewResource.WithData.Success(transform(this.data))
-        is ViewResource.WithData.Loading -> ViewResource.WithData.Loading(transform(this.data))
+        is ViewResource.WithData.Loading -> ViewResource.WithData.Loading(this.data?.let {
+            transform(
+                it
+            )
+        })
     }
 }

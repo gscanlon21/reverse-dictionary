@@ -14,14 +14,14 @@ import kotlinx.coroutines.flow.mapLatest
 
 @ExperimentalCoroutinesApi
 class SearchResultViewModel constructor(private val searchResultRepository: SearchResultRepository) : ViewModel() {
-    suspend fun resultList(type: ApiType, term: String): LiveData<ViewResource<List<SearchResultItem>>> {
+    suspend fun resultList(type: ApiType, term: String): LiveData<ViewResource<List<SearchResultItem>?>> {
         return searchResultRepository.lookup(term, type).mapLatest { item ->
             when (item) {
                 is ViewResource.WithData -> item.map { data ->
-                    data?.filter { i -> i.value.isNotBlank() && i.value.length > 1 }
+                    data.filter { i -> i.value.isNotBlank() && i.value.length > 1 }
+                        .sortedByDescending { it.score }
+                        .map { SearchResultItem(it) }
                         .nullIfEmpty()
-                        ?.sortedByDescending { it.score }
-                        ?.map { SearchResultItem(it) }
                 }
                 is ViewResource.Error -> item
             }

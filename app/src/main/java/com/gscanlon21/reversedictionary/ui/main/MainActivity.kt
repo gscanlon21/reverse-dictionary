@@ -87,7 +87,7 @@ class MainActivity : BaseActivity() {
 
             if (defaultSharedPreferences().emptyResultsHidden(this)) {
                 mainViewModel.loadingJobs.putAll(pagesToShow.map {
-                    Pair(it, CompletableDeferred<ViewResource<Any>>())
+                    Pair(it, CompletableDeferred<ViewResource<Any?>>())
                 })
 
                 loadingView.visibility = View.VISIBLE

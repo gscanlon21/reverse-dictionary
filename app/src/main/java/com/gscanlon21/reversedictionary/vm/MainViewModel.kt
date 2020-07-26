@@ -20,7 +20,7 @@ class MainViewModel : ViewModel() {
     }
 
     val viewPagerItems: ArrayList<UiView> = arrayListOf()
-    val loadingJobs = mutableMapOf<UiView.SearchResult, CompletableDeferred<ViewResource<Any>>>()
+    val loadingJobs = mutableMapOf<UiView.SearchResult, CompletableDeferred<ViewResource<Any?>>>()
 
     private val _viewPagerScrolling = MutableLiveData<Boolean>()
     val viewPagerScrolling: LiveData<Boolean> get() = _viewPagerScrolling
