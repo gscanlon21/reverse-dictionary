@@ -17,8 +17,8 @@ class HistoryViewModel constructor(private val historyRepository: HistoryReposit
         historyRepository.getHistory().map { response ->
             when (response) {
                 is ViewResource.WithData<List<HistoryEntity>> -> response.map { lst ->
-                    lst?.sortedWith(compareByDescending<HistoryEntity> { it.pinned }.thenByDescending { it.lastModified })
-                        ?.map { HistoryItem(it) }
+                    lst.sortedWith(compareByDescending<HistoryEntity> { it.pinned }.thenByDescending { it.lastModified })
+                        .map { HistoryItem(it) }
                 }
                 is ViewResource.Error -> response
             }

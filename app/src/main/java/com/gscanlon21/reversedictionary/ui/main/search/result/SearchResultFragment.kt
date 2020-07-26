@@ -57,7 +57,7 @@ class SearchResultFragment : ListItemFragment<SearchResultItem>() {
         return root
     }
 
-    private val searchResultObserver = Observer<ViewResource<List<SearchResultItem>>> { resource ->
+    private val searchResultObserver = Observer<ViewResource<List<SearchResultItem>?>> { resource ->
         when (resource) {
             !is ViewResource.WithData.Loading -> {
                 mainViewModel.loadingJobs[uiView]?.complete(resource)
