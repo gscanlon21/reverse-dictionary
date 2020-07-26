@@ -84,7 +84,7 @@ dependencies {
 
     // Kotlin
     implementation(kotlin("stdlib", KotlinCompilerVersion.VERSION))
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.4")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.6")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.3")
 
     // AndroidX
@@ -93,10 +93,10 @@ dependencies {
     implementation("androidx.constraintlayout:constraintlayout:1.1.3")
 
     // Material Styles
-    implementation("com.google.android.material:material:1.3.0-alpha01")
+    implementation("com.google.android.material:material:1.3.0-alpha02")
 
     // Kotlin Extensions
-    implementation("androidx.core:core-ktx:1.3.0")
+    implementation("androidx.core:core-ktx:1.3.1")
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0")
     implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.2.0")
     implementation("androidx.navigation:navigation-fragment-ktx:2.3.0")
@@ -117,7 +117,7 @@ dependencies {
     implementation("androidx.room:room-ktx:2.2.5") // Kotlin Extensions
 
     // Crash Reporting -- Firebase SDK for Crashlytics
-    implementation("com.google.firebase:firebase-crashlytics:17.1.0")
+    implementation("com.google.firebase:firebase-crashlytics:17.1.1")
 
     debugImplementation("androidx.fragment:fragment-testing:1.2.5")
 
