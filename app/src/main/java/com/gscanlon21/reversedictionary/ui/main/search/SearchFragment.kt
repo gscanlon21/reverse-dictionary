@@ -56,10 +56,10 @@ class SearchFragment : ListItemFragment<SearchResultItem>() {
         searchBar.setOnQueryTextListener(searchBarHandlers)
 
         searchTermViewModel.searchPhrase.observe(viewLifecycleOwner, Observer { word ->
-            searchBar.queryHint = word?.term ?: getString(R.string.search_for_query_hint)
-            if (word?.term == null) { return@Observer }
+            searchBar.queryHint = word ?: getString(R.string.search_for_query_hint)
+            if (word == null) { return@Observer }
             lifecycleScope.launch {
-                searchResultViewModel.resultList(ApiType.Datamuse.MeansLike, word.term).observe(viewLifecycleOwner, resourceObserver)
+                searchResultViewModel.resultList(ApiType.Datamuse.MeansLike, word).observe(viewLifecycleOwner, resourceObserver)
             }
         })
 

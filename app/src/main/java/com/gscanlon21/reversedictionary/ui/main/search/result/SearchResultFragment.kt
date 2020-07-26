@@ -39,16 +39,14 @@ class SearchResultFragment : ListItemFragment<SearchResultItem>() {
         val root = super.onCreateView(inflater, container, savedInstanceState)!!
         if (uiView == UiView.None) { return root }
 
-        searchTermViewModel.searchWord.observe(viewLifecycleOwner, Observer { word ->
-            lifecycleScope.launch {
-                ApiType.values().singleOrNull { it.name == uiView.name }?.let {
-                    searchResultViewModel.resultList(it, word?.term!!).apply {
-                        observe(viewLifecycleOwner, resourceObserver)
-                        observe(viewLifecycleOwner, searchResultObserver)
-                    }
+        lifecycleScope.launch {
+            ApiType.values().singleOrNull { it.name == uiView.name }?.let {
+                searchResultViewModel.resultList(it, searchTermViewModel.searchWord.value!!).apply {
+                    observe(viewLifecycleOwner, resourceObserver)
+                    observe(viewLifecycleOwner, searchResultObserver)
                 }
             }
-        })
+        }
 
         if (uiView == UiView.SearchResult.Definition) {
             childFragmentManager.beginTransaction()

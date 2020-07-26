@@ -5,7 +5,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.gscanlon21.reversedictionary.repository.data.ViewResource
 import com.gscanlon21.reversedictionary.repository.search.result.SearchResultRepository
-import com.gscanlon21.reversedictionary.ui.main.search.SearchTerm
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.collect
 
@@ -17,19 +16,14 @@ class MetaViewModel constructor(private val searchResultRepository: SearchResult
         's' to 1, 't' to 1, 'u' to 1, 'v' to 4, 'w' to 4, 'x' to 8, 'y' to 4, 'z' to 10
     )
 
-    fun scrabbleScore(word: SearchTerm): LiveData<Int> {
-        return if (word.term == null) {
-            MutableLiveData(0)
-        } else {
-            val score = word.term.fold(0) { sum, char -> sum + scrabbleDict.getOrDefault(char.toLowerCase(), 0) }
-            MutableLiveData(score)
-        }
+    fun scrabbleScore(word: String): Int {
+        return word.fold(0) { sum, char -> sum + scrabbleDict.getOrDefault(char.toLowerCase(), 0) }
     }
 
     private val _audioUri = MutableLiveData<String?>()
-    suspend fun getAudioUri(word: SearchTerm): LiveData<String?> {
+    suspend fun getAudioUri(word: String): LiveData<String?> {
         if (_audioUri.value != null) { return _audioUri }
-            searchResultRepository.getAudioUris(word.term!!).collect {
+            searchResultRepository.getAudioUris(word).collect {
             _audioUri.value = when (it) {
                 is ViewResource.WithData -> it.data?.firstOrNull()
                 else -> null

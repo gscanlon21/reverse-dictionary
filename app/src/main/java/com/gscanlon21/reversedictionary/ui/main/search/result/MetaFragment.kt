@@ -50,9 +50,8 @@ class MetaFragment : MainFragment() {
         }
 
         searchTermViewModel.searchWord.observe(viewLifecycleOwner, Observer { searchTerm ->
-            metaViewModel.scrabbleScore(searchTerm!!).observe(viewLifecycleOwner, Observer {
-                root.findViewById<TextView>(R.id.scrabble_score).text = getString(R.string.placeholder_scrabble_score, it)
-            })
+            root.findViewById<TextView>(R.id.scrabble_score).text =
+                getString(R.string.placeholder_scrabble_score, metaViewModel.scrabbleScore(searchTerm!!))
 
             lifecycleScope.launch {
                 metaViewModel.getAudioUri(searchTerm).observe(viewLifecycleOwner, Observer { audioUri ->

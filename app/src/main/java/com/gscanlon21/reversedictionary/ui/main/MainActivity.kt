@@ -17,7 +17,6 @@ import com.gscanlon21.reversedictionary.extension.emptyResultsHidden
 import com.gscanlon21.reversedictionary.extension.pagesToShow
 import com.gscanlon21.reversedictionary.repository.data.ViewResource
 import com.gscanlon21.reversedictionary.ui.BaseActivity
-import com.gscanlon21.reversedictionary.ui.main.search.SearchTerm
 import com.gscanlon21.reversedictionary.ui.navigation.IPagerAdapter
 import com.gscanlon21.reversedictionary.ui.navigation.MainPagerAdapter
 import com.gscanlon21.reversedictionary.ui.navigation.MainPagerPageChangeCallback
@@ -55,9 +54,9 @@ class MainActivity : BaseActivity() {
         val loadingView = findViewById<View>(R.id.loading)
         if (savedInstanceState == null) { initActivity(loadingView) } else { restoreActivityFromDisk(savedInstanceState) }
 
-        if (!searchTermViewModel.searchWord.value?.term.isNullOrBlank()) {
+        if (!searchTermViewModel.searchWord.value.isNullOrBlank()) {
             supportActionBar?.setDisplayHomeAsUpEnabled(true)
-            supportActionBar?.title = searchTermViewModel.searchWord.value!!.term
+            supportActionBar?.title = searchTermViewModel.searchWord.value!!
         }
 
         val viewPager = findViewById<ViewPager2>(R.id.view_pager).apply {
@@ -78,7 +77,7 @@ class MainActivity : BaseActivity() {
 
     private fun initActivity(loadingView: View) {
         val searchTerm = this.intent.getStringExtra(EXTRA_SEARCH_TERM)
-        searchTermViewModel.setSearchTerm(SearchTerm(searchTerm))
+        searchTermViewModel.setSearchTerm(searchTerm)
         if (searchTerm.isNullOrBlank() || searchTerm.contains(SearchTermViewModel.SEARCH_WORD_PHRASE_DIFFERENTIATOR)) {
             mainViewModel.viewPagerItems.add(UiView.Main.Search)
             mainViewModel.viewPagerItems.add(UiView.Main.History)
