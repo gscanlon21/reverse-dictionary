@@ -14,4 +14,8 @@ class ReverseDictionaryApp : Application() {
             )
         }
     }
+
+    companion object {
+        const val LANGUAGE_CODE = "en"
+    }
 }

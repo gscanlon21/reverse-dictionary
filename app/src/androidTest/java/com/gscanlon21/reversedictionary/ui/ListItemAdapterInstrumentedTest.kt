@@ -9,10 +9,12 @@ import androidx.test.core.app.launchActivity
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.IdlingRegistry
 import androidx.test.espresso.IdlingResource
+import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.action.ViewActions.longClick
 import androidx.test.espresso.action.ViewActions.swipeLeft
 import androidx.test.espresso.matcher.ViewMatchers.isDisplayingAtLeast
 import androidx.test.espresso.matcher.ViewMatchers.withId
+import androidx.test.espresso.matcher.ViewMatchers.withText
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.filters.LargeTest
 import com.gscanlon21.reversedictionary.R
@@ -62,9 +64,12 @@ class ListItemAdapterInstrumentedTest : TestDb, TestService {
 
         onView(withId(R.id.view_pager)).perform(swipeLeft()) // Navigate to history page
 
-        // Long click on the recycler list item to invoke the function to copy its text to the clipboard
+        // Long click on the recycler list item to bring up the copy menu
         onView(CoreMatchers.allOf(withId(R.id.list_item_text), isDisplayingAtLeast(90)))
             .perform(longClick())
+
+        // Click the copy button
+        onView(withText(R.string.context_menu_copy)).perform(click())
 
         val context = ApplicationProvider.getApplicationContext<Context>()
         val clipboard = ContextCompat.getSystemService(context, ClipboardManager::class.java)

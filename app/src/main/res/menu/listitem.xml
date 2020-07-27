@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/copy"
+        android:title="@string/context_menu_copy" />
+
+    <item android:id="@+id/translate"
+        android:title="@string/context_menu_translate" />
+</menu>
