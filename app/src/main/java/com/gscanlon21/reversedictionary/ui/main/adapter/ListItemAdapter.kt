@@ -88,7 +88,7 @@ class ListItemAdapter<T : IListItem>(private val context: Context) : RecyclerVie
         popup.menuInflater.inflate(R.menu.listitem, popup.menu)
         popup.setOnMenuItemClickListener {
             when (it.itemId) {
-                R.id.copy -> copyToClipboard(holder.itemView, holder.text.text)
+                R.id.copy -> copyToClipboard(holder.itemView, holder.text.text.split("\t").last())
                 R.id.translate -> translateText(holder.itemView, holder.text.text.split("\t").last())
                 else -> false
             }
