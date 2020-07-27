@@ -5,6 +5,7 @@ import com.gscanlon21.reversedictionary.db.search.result.SearchResultEntity
 import com.gscanlon21.reversedictionary.repository.data.ApiType
 import com.gscanlon21.reversedictionary.repository.data.ViewResource
 import com.gscanlon21.reversedictionary.service.WebService
+import com.gscanlon21.reversedictionary.service.api.WordnikAudioModel
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -24,7 +25,7 @@ class SearchResultRepository constructor(
         }.flow(dispatcher)
     }
 
-    suspend fun getAudioUris(word: String): Flow<ViewResource<List<String>?>> {
+    suspend fun getAudioUris(word: String): Flow<ViewResource<List<WordnikAudioModel>>> {
         return GetAudioUri(searchResultService, word).flow(dispatcher)
     }
 }

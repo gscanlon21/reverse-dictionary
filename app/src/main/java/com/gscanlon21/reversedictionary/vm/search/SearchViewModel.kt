@@ -14,7 +14,7 @@ import kotlinx.coroutines.flow.map
 class SearchViewModel constructor(private val searchRepository: SearchRepository) : ViewModel() {
     suspend fun wordOfTheDay(): LiveData<ViewResource<String>> = searchRepository.getWordOfTheDay().map { wotdEntity ->
         when (wotdEntity) {
-            is ViewResource.WithData<WordOfTheDayEntity> -> wotdEntity.map { data -> data?.name }
+            is ViewResource.WithData<WordOfTheDayEntity> -> wotdEntity.map { data -> data.name }
             is ViewResource.Error -> wotdEntity
         }
     }.asLiveData()

@@ -35,7 +35,7 @@ class SearchFragment : ListItemFragment<SearchResultItem>() {
         InjectorUtil.provideSearchViewModelFactory(requireContext())
     }
     private val searchResultViewModel: SearchResultViewModel by viewModels {
-        InjectorUtil.provideSearchResultViewModelFactory(requireContext())
+        InjectorUtil.provideSearchResultViewModelFactory(requireActivity().application)
     }
 
     private val searchBarHandlers = SearchBarHandlers(this)
@@ -56,10 +56,10 @@ class SearchFragment : ListItemFragment<SearchResultItem>() {
         searchBar.setOnQueryTextListener(searchBarHandlers)
 
         searchTermViewModel.searchPhrase.observe(viewLifecycleOwner, Observer { word ->
-            searchBar.queryHint = word?.term ?: getString(R.string.search_for_query_hint)
-            if (word?.term == null) { return@Observer }
+            searchBar.queryHint = word ?: getString(R.string.search_for_query_hint)
+            if (word == null) { return@Observer }
             lifecycleScope.launch {
-                searchResultViewModel.resultList(ApiType.Datamuse.MeansLike, word.term).observe(viewLifecycleOwner, resourceObserver)
+                searchResultViewModel.resultList(ApiType.Datamuse.MeansLike, word).observe(viewLifecycleOwner, resourceObserver)
             }
         })
 
@@ -75,7 +75,7 @@ class SearchFragment : ListItemFragment<SearchResultItem>() {
     private fun randomWordClickListener(view: View) = lifecycleScope.launch {
         searchViewModel.randomWord().observe(viewLifecycleOwner, Observer { resource ->
             when (resource) {
-                is ViewResource.WithData.Success -> launchMainActivity(resource.data!!)
+                is ViewResource.WithData.Success -> launchMainActivity(resource.data)
                 is ViewResource.Error -> Snackbar.make(view, getString(R.string.placeholder_error), Snackbar.LENGTH_SHORT).show()
             }
         })
@@ -84,7 +84,7 @@ class SearchFragment : ListItemFragment<SearchResultItem>() {
     private fun wotdButtonClickListener(view: View) = lifecycleScope.launch {
         searchViewModel.wordOfTheDay().observe(viewLifecycleOwner, Observer { resource ->
             when (resource) {
-                is ViewResource.WithData.Success -> launchMainActivity(resource.data!!)
+                is ViewResource.WithData.Success -> launchMainActivity(resource.data)
                 is ViewResource.Error -> Snackbar.make(view, getString(R.string.placeholder_error), Snackbar.LENGTH_SHORT).show()
             }
         })

@@ -59,7 +59,7 @@ class SearchResultViewModelUnitTest : BaseUnitTest(), TestCoroutine {
     @Test
     fun testSearchResultList_returnsSuccess() = testDispatcher.runBlockingTest {
         ApiType.Datamuse.values().forEach { resultType ->
-            val testObserver = TestObserver.create<ViewResource<List<SearchResultItem>>>()
+            val testObserver = TestObserver.create<ViewResource<List<SearchResultItem>?>>()
             val testLifecycle = TestLifecycle.initialized()
             searchResultViewModel.resultList(resultType, "aglet").observe(testLifecycle, testObserver)
 
@@ -69,7 +69,7 @@ class SearchResultViewModelUnitTest : BaseUnitTest(), TestCoroutine {
             testLifecycle.resume()
 
             testObserver
-                .assertValue { it is ViewResource.WithData.Success<List<SearchResultItem>> }
+                .assertValue { it is ViewResource.WithData.Success<List<SearchResultItem>?> }
 
             testLifecycle.destroy()
         }

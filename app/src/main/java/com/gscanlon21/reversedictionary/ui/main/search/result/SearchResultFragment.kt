@@ -28,7 +28,7 @@ class SearchResultFragment : ListItemFragment<SearchResultItem>() {
     private val searchTermViewModel: SearchTermViewModel by activityViewModels()
     private val mainViewModel: MainViewModel by activityViewModels()
     private val searchResultViewModel: SearchResultViewModel by viewModels {
-        InjectorUtil.provideSearchResultViewModelFactory(requireContext())
+        InjectorUtil.provideSearchResultViewModelFactory(requireActivity().application)
     }
 
     private val uiView: UiView by lazy {
@@ -39,16 +39,14 @@ class SearchResultFragment : ListItemFragment<SearchResultItem>() {
         val root = super.onCreateView(inflater, container, savedInstanceState)!!
         if (uiView == UiView.None) { return root }
 
-        searchTermViewModel.searchWord.observe(viewLifecycleOwner, Observer { word ->
-            lifecycleScope.launch {
-                ApiType.values().singleOrNull { it.name == uiView.name }?.let {
-                    searchResultViewModel.resultList(it, word?.term!!).apply {
-                        observe(viewLifecycleOwner, resourceObserver)
-                        observe(viewLifecycleOwner, searchResultObserver)
-                    }
+        lifecycleScope.launch {
+            ApiType.values().singleOrNull { it.name == uiView.name }?.let {
+                searchResultViewModel.resultList(it, searchTermViewModel.searchWord.value!!).apply {
+                    observe(viewLifecycleOwner, resourceObserver)
+                    observe(viewLifecycleOwner, searchResultObserver)
                 }
             }
-        })
+        }
 
         if (uiView == UiView.SearchResult.Definition) {
             childFragmentManager.beginTransaction()
@@ -59,7 +57,7 @@ class SearchResultFragment : ListItemFragment<SearchResultItem>() {
         return root
     }
 
-    private val searchResultObserver = Observer<ViewResource<List<SearchResultItem>>> { resource ->
+    private val searchResultObserver = Observer<ViewResource<List<SearchResultItem>?>> { resource ->
         when (resource) {
             !is ViewResource.WithData.Loading -> {
                 mainViewModel.loadingJobs[uiView]?.complete(resource)
