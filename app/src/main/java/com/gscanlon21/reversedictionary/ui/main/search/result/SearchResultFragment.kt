@@ -28,7 +28,7 @@ class SearchResultFragment : ListItemFragment<SearchResultItem>() {
     private val searchTermViewModel: SearchTermViewModel by activityViewModels()
     private val mainViewModel: MainViewModel by activityViewModels()
     private val searchResultViewModel: SearchResultViewModel by viewModels {
-        InjectorUtil.provideSearchResultViewModelFactory(requireContext())
+        InjectorUtil.provideSearchResultViewModelFactory(requireActivity().application)
     }
 
     private val uiView: UiView by lazy {

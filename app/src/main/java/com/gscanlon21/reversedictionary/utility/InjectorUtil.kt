@@ -1,5 +1,6 @@
 package com.gscanlon21.reversedictionary.utility
 
+import android.app.Application
 import android.content.Context
 import com.gscanlon21.reversedictionary.db.SearchDb
 import com.gscanlon21.reversedictionary.repository.history.HistoryRepository
@@ -49,11 +50,9 @@ object InjectorUtil {
         return SearchViewModelFactory(repository)
     }
 
-    fun provideSearchResultViewModelFactory(context: Context): SearchResultViewModelFactory {
-        val repository = getSearchResultRepository(context)
-        return SearchResultViewModelFactory(
-            repository
-        )
+    fun provideSearchResultViewModelFactory(application: Application): SearchResultViewModelFactory {
+        val repository = getSearchResultRepository(application)
+        return SearchResultViewModelFactory(application, repository)
     }
 
     fun provideMetaViewModelFactory(context: Context): MetaViewModelFactory {

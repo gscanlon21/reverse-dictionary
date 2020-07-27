@@ -1,5 +1,6 @@
 package com.gscanlon21.reversedictionary.vm
 
+import androidx.test.core.app.ApplicationProvider
 import com.gscanlon21.reversedictionary.BaseUnitTest
 import com.gscanlon21.reversedictionary.db.search.result.SearchResultEntity
 import com.gscanlon21.reversedictionary.repository.data.ApiType
@@ -35,7 +36,7 @@ class SearchResultViewModelUnitTest : BaseUnitTest(), TestCoroutine {
 
     private fun setupDependencies() {
         searchResultRepository = mockkClass(SearchResultRepository::class)
-        searchResultViewModel = SearchResultViewModel(searchResultRepository)
+        searchResultViewModel = SearchResultViewModel(ApplicationProvider.getApplicationContext(), searchResultRepository)
     }
 
     private fun setupMocks() {

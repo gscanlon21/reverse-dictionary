@@ -11,6 +11,9 @@ fun Context.defaultSharedPreferences(): SharedPreferences = PreferenceManager.ge
 fun SharedPreferences.emptyResultsHidden(context: Context) =
     this.getBoolean(context.getString(R.string.key_shared_preference_empty_results_hidden), true)
 
+fun SharedPreferences.missingDefinitionsHidden(context: Context) =
+    this.getBoolean(context.getString(R.string.key_shared_preference_no_definitions_hidden), false)
+
 fun SharedPreferences.pagesToShow(context: Context): List<UiView.SearchResult> {
     return getStringSet(
         context.getString(R.string.key_shared_preference_pages_to_show),

@@ -44,9 +44,11 @@
     <string name="error_user_preference_invalid">The preference could not be saved</string>
 
     <string name="preference_title_hide_empty_page">Hide Pages with No Results</string>
+    <string name="preference_title_hide_no_definitions">Hide Words without Definitions</string>
     <string name="preference_title_pages_to_show">Pages to Show</string>
     <string name="preference_title_attribution">Data Sources</string>
-    <string name="preference_summary_paged_to_show">Used to control which pages are visible after searching for a word</string>
+    <string name="preference_summary_pages_to_show">Used to control which pages are visible after searching for a word</string>
+    <string name="preference_summary_hide_no_definitions">May help prevent odd words that have no real meaning</string>
 
     <string-array name="empty_array"/>
 

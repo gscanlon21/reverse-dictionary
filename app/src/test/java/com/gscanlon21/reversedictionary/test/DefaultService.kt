@@ -5,6 +5,7 @@ import com.android.volley.Response
 import com.gscanlon21.reversedictionary.repository.data.ApiType
 import com.gscanlon21.reversedictionary.service.WebService
 import com.gscanlon21.reversedictionary.service.api.DatamuseModel
+import com.gscanlon21.reversedictionary.service.api.WordnikAudioModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 
 @ExperimentalCoroutinesApi
@@ -28,7 +29,7 @@ interface DefaultService : WebService.SearchService, WebService.SearchResultServ
         return Response.success(listOf(), Cache.Entry())
     }
 
-    override suspend fun getAudioUris(word: String): Response<List<String>?> {
+    override suspend fun getAudioUris(word: String): Response<List<WordnikAudioModel>> {
         return Response.success(listOf(), Cache.Entry())
     }
 }

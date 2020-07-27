@@ -35,7 +35,7 @@ class SearchFragment : ListItemFragment<SearchResultItem>() {
         InjectorUtil.provideSearchViewModelFactory(requireContext())
     }
     private val searchResultViewModel: SearchResultViewModel by viewModels {
-        InjectorUtil.provideSearchResultViewModelFactory(requireContext())
+        InjectorUtil.provideSearchResultViewModelFactory(requireActivity().application)
     }
 
     private val searchBarHandlers = SearchBarHandlers(this)
