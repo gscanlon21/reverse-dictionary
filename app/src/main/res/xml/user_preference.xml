@@ -10,7 +10,7 @@
 
     <SwitchPreferenceCompat
         app:key="@string/key_shared_preference_no_definitions_hidden"
-        app:defaultValue="true"
+        app:defaultValue="false"
         app:singleLineTitle="false"
         app:title="@string/preference_title_hide_no_definitions"
         app:summary="@string/preference_summary_hide_no_definitions"
