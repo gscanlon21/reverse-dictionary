@@ -1,23 +1,25 @@
 Features:
 - Search for a word by its definition
 - Find obscure words
-- View a word's definition
+- View a word's definitions
 - View a word's rhymes
 - View a word's synonyms
 - View a word's antonyms
 - View a word's anagrams
+- View a word's adjectives
+- View a word's nouns
 - View similar words
-- View example sentences for a word
-- Listen to a word's pronunciation
 - View the word of the day
-- Long press to copy a word or definition
-- Search history
-- See the Scrabble(R) score
+- Listen to a word's pronunciation
+- Copy a word or definition
+- Translate a word or definition
+- Keep track of search history
+- View the Scrabble(R) score
 
 Functions as a dictionary, thesaurus, and reverse dictionary
 
 ---
 
-Receives data from the datamuse API, wordnik API, and the anagramica API
+Receives data from the Datamuse, Wordnik, and the Anagramica APIs
 
 English only

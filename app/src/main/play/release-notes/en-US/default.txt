@@ -1,2 +1,6 @@
-Fixes
-  - Occasional crash when pages are removed from view
+Features
+- Quick link to view translations
+- Add setting to allow hiding words without associated definitions
+
+Fix
+- Attribution
