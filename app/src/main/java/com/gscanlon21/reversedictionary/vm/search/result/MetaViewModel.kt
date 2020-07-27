@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.gscanlon21.reversedictionary.repository.data.ViewResource
 import com.gscanlon21.reversedictionary.repository.search.result.SearchResultRepository
+import com.gscanlon21.reversedictionary.service.api.WordnikAudioModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.collect
 
@@ -20,12 +21,12 @@ class MetaViewModel constructor(private val searchResultRepository: SearchResult
         return word.fold(0) { sum, char -> sum + scrabbleDict.getOrDefault(char.toLowerCase(), 0) }
     }
 
-    private val _audioUri = MutableLiveData<String?>()
-    suspend fun getAudioUri(word: String): LiveData<String?> {
+    private val _audioUri = MutableLiveData<WordnikAudioModel?>()
+    suspend fun getAudioUri(word: String): LiveData<WordnikAudioModel?> {
         if (_audioUri.value != null) { return _audioUri }
-            searchResultRepository.getAudioUris(word).collect {
-            _audioUri.value = when (it) {
-                is ViewResource.WithData -> it.data?.firstOrNull()
+            searchResultRepository.getAudioUris(word).collect { viewResource ->
+                _audioUri.value = when (viewResource) {
+                is ViewResource.WithData -> viewResource.data?.firstOrNull()
                 else -> null
             }
         }

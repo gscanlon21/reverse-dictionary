@@ -17,8 +17,25 @@
         android:defaultValue="@array/search_result_preference"
         />
 
-    <Preference
-        android:title="About"
-        android:summary="Data provided by the Datamuse and the Wordnik Api"
-        android:key="about"/>
+    <PreferenceCategory
+        android:title="@string/preference_title_attribution"
+        >
+
+        <Preference
+            android:title="Datamuse"
+            android:key="@string/key_shared_preference_attribution_datamuse"
+            />
+
+        <Preference
+            android:title="Anagramica"
+            android:key="@string/key_shared_preference_attribution_anagramica"
+            />
+
+        <Preference
+            android:title="Wordnik"
+            android:key="@string/key_shared_preference_attribution_wordnik"
+            android:icon="@drawable/logo_wordnik_heart"
+            />
+
+    </PreferenceCategory>
 </PreferenceScreen>

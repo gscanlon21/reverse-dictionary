@@ -13,6 +13,8 @@ import com.gscanlon21.reversedictionary.extension.toSequence
 import com.gscanlon21.reversedictionary.repository.data.ApiType
 import com.gscanlon21.reversedictionary.service.api.DatamuseModel
 import com.gscanlon21.reversedictionary.service.api.Requests
+import com.gscanlon21.reversedictionary.service.api.WordnikAttribution
+import com.gscanlon21.reversedictionary.service.api.WordnikAudioModel
 import kotlin.coroutines.resume
 import kotlin.coroutines.resumeWithException
 import kotlinx.coroutines.suspendCancellableCoroutine
@@ -38,7 +40,7 @@ class SearchResultService constructor(private val requests: Requests) : WebServi
         }
     }
 
-    override suspend fun getAudioUris(word: String): Response<List<String>?> {
+    override suspend fun getAudioUris(word: String): Response<List<WordnikAudioModel>> {
         return suspendCancellableCoroutine { continuation ->
             val url =
                 "https://api.wordnik.com/v4/word.json/$word/audio?api_key=${requests.context.getString(
@@ -48,7 +50,11 @@ class SearchResultService constructor(private val requests: Requests) : WebServi
                 Request.Method.GET, url, null,
                 Response.Listener { response ->
                     val audioFiles = response.toSequence<JSONObject>().map {
-                        if (it.has(WORDNIK_AUDIO_URL_KEY)) { it.getString(WORDNIK_AUDIO_URL_KEY) } else { "" }
+                        WordnikAudioModel(
+                            it.getString(WordnikAudioModel.AUDIO_URL_KEY, ""),
+                            it.getString(WordnikAttribution.ATTRIBUTION_TEXT, ""),
+                            it.getString(WordnikAttribution.ATTRIBUTION_URL, "")
+                        )
                     }.toList()
                     continuation.resume(Response.success(audioFiles, Cache.Entry()))
                 },
@@ -86,7 +92,6 @@ class SearchResultService constructor(private val requests: Requests) : WebServi
     }
 
     companion object {
-        const val WORDNIK_AUDIO_URL_KEY = "fileUrl"
         const val ANAGRAMICA_WORD_KEY = "best"
     }
 }
