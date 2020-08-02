@@ -10,7 +10,6 @@ import android.view.Menu
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.TextView
 import androidx.appcompat.widget.PopupMenu
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
@@ -52,8 +51,6 @@ class MetaFragment : MainFragment() {
                     .build()
             )
         }
-
-        root.findViewById<TextView>(R.id.scrabble_score).text = getString(R.string.placeholder_scrabble_score, metaViewModel.scrabbleScore(searchTermViewModel.searchWord.value!!))
 
         lifecycleScope.launch {
             metaViewModel.getAudioUri(searchTermViewModel.searchWord.value!!).observe(viewLifecycleOwner, Observer { audioData ->

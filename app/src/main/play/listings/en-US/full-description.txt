@@ -14,7 +14,6 @@ Features:
 - Copy a word or definition
 - Translate a word or definition
 - Keep track of search history
-- View the Scrabble(R) score
 
 Functions as a dictionary, thesaurus, and reverse dictionary
 
