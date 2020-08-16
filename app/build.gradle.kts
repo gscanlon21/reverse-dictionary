@@ -16,6 +16,11 @@ plugins {
 data class ManifestFile (val version: String)
 android {
     testOptions.unitTests.isIncludeAndroidResources = true
+    sourceSets {
+        named("test") {
+            assets.srcDir(File("src/main/assets"))
+        }
+    }
     compileSdkVersion(30)
     buildToolsVersion("30.0.0")
     compileOptions {
@@ -37,7 +42,7 @@ android {
         versionName = readJsonFile(file("manifest.json"), ManifestFile::class.java).version
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         buildConfigField("int", "MIN_SDK_VERSION", "${minSdkVersion!!.apiLevel}")
-        buildConfigField("int", "TARGET_SDK_TEST_VERSION", "28") // Robolectric doesn"t support v29 w/ JAVA_1_8
+        buildConfigField("int", "TARGET_SDK_TEST_VERSION", "28") // Robolectric doesn't support v29 w/ JAVA_1_8
     }
     signingConfigs {
         register("release") {
@@ -90,7 +95,6 @@ dependencies {
     // AndroidX
     implementation("androidx.appcompat:appcompat:1.1.0")
     implementation("androidx.lifecycle:lifecycle-extensions:2.2.0")
-    implementation("androidx.constraintlayout:constraintlayout:1.1.3")
 
     // Material Styles
     implementation("com.google.android.material:material:1.3.0-alpha02")

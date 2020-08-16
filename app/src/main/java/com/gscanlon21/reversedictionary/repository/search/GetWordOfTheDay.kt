@@ -16,22 +16,25 @@ import kotlinx.coroutines.flow.single
 import kotlinx.coroutines.flow.singleOrNull
 
 @ExperimentalCoroutinesApi
-class GetWordOfTheDay(private val searchService: WebService.SearchService, private val searchDao: SearchDao) :
-        NetworkBoundResource<WordOfTheDayEntity, String>() {
+class GetWordOfTheDay(private val context: Context, private val searchDao: SearchDao) :
+    NetworkBoundResource<WordOfTheDayEntity, String> {
 
     override suspend fun loadFromDb() = flowOf(searchDao.getWordOfTheDay())
 
     /**
-     * @param data Flow<WordOfTheDayEntity>
-     * @return Boolean if the last saved item is before the start of the day
+     * @param data a stream of [WordOfTheDayEntity]
+     * @return true if the last saved item is before the start of the day, otherwise false
      */
     override suspend fun shouldFetch(data: Flow<WordOfTheDayEntity>): Boolean {
-        val localStartOfDay =
-            LocalDate.now(ZoneId.systemDefault()).atStartOfDay(ZoneId.systemDefault()).toInstant()
+        val localStartOfDay = LocalDate.now(ZoneId.systemDefault()).atStartOfDay(ZoneId.systemDefault()).toInstant()
         return data.singleOrNull()?.createdTime?.isBefore(localStartOfDay) ?: true
     }
 
-    override suspend fun createCall() = searchService.requestWordOfTheDay()
+    override suspend fun createCall(): Response<String> {
+        val randomWord = GetRandomWord(context).loadFromDb().single()
+        return Response.success(randomWord, Cache.Entry())
+    }
+
     override suspend fun saveCallResult(item: String): WordOfTheDayEntity {
         val entity = WordOfTheDayEntity(item, Instant.now())
         searchDao.insertWordOfTheDay(entity)
