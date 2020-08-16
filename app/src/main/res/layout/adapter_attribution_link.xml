@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    android:layout_marginVertical="@dimen/padding_default"
+    android:paddingHorizontal="@dimen/padding_default"
+    >
+
+    <TextView
+        android:id="@+id/adapter_attribution_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="@dimen/touch_target_minimum"
+        android:gravity="center_vertical"
+        android:text=""
+        android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
+        android:autoSizeTextType="none" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_alignParentEnd="true"
+        android:contentDescription="@string/content_description_open_in_browser"
+        android:src="@drawable/ic_open_in_browser_24dp" />
+
+</RelativeLayout>
