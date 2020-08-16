@@ -79,6 +79,11 @@ class SearchResultFragment : Fragment() {
     }
 
     private val resourceObserver = Observer<ViewResource<List<SearchResultItem>?>> { resource ->
+        // If the fragment was recreated and view model still has data, skip loading results
+        if (resource is ViewResource.WithData.Loading && searchViewModel.results.isNotEmpty()) {
+            return@Observer
+        }
+
         val results = when (resource) {
             is ViewResource.WithData.Success -> onSuccess(resource)
             is ViewResource.WithData.Loading -> onLoading(resource)

@@ -58,6 +58,11 @@ class HistoryFragment : Fragment() {
     }
 
     private val resourceObserver = Observer<ViewResource<List<HistoryItem>?>> { resource ->
+        // If the fragment was recreated and view model still has data, skip loading results
+        if (resource is ViewResource.WithData.Loading && historyViewModel.historyItems.isNotEmpty()) {
+            return@Observer
+        }
+
         val results = when (resource) {
             is ViewResource.WithData.Success -> onSuccess(resource)
             is ViewResource.WithData.Loading -> onLoading(resource)
