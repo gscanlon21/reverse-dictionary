@@ -9,7 +9,7 @@ class IdlingResource : IdlingResource {
 
     private val isIdle: AtomicBoolean = AtomicBoolean(true)
 
-    override fun getName() = IdlingResource::class.java.name
+    override fun getName(): String = IdlingResource::class.java.name
     override fun isIdleNow() = isIdle.get()
     override fun registerIdleTransitionCallback(callback: IdlingResource.ResourceCallback) {
         resourceCallback = callback

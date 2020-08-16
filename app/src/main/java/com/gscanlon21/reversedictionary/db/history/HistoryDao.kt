@@ -7,6 +7,7 @@ import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Transaction
 import androidx.room.Update
+import com.gscanlon21.reversedictionary.core.history.HistoryUpsert
 
 @Dao
 interface HistoryDao {
@@ -17,7 +18,7 @@ interface HistoryDao {
     suspend fun update(item: HistoryEntity)
 
     @Transaction
-    suspend fun upsert(entity: HistoryUpsertEntity) {
+    suspend fun upsert(entity: HistoryUpsert) {
         val existing = getOrNull(entity.name)
         if (existing != null) {
             update(HistoryEntity(entity, existing))

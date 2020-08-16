@@ -4,8 +4,8 @@ import com.android.volley.Cache
 import com.android.volley.Response
 import com.android.volley.VolleyError
 import com.gscanlon21.reversedictionary.BaseUnitTest
-import com.gscanlon21.reversedictionary.repository.data.NetworkOnlyBoundResource
-import com.gscanlon21.reversedictionary.repository.data.ViewResource
+import com.gscanlon21.reversedictionary.core.repository.NetworkOnlyBoundResource
+import com.gscanlon21.reversedictionary.core.repository.ViewResource
 import com.gscanlon21.reversedictionary.test.TestCoroutine
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -20,7 +20,7 @@ class NetworkOnlyBoundResourceUnitTest : BaseUnitTest(), TestCoroutine {
 
     @Test
     fun testFetchSuccess_returnsFromNetwork() = testDispatcher.runBlockingTest {
-        val nbr = object : NetworkOnlyBoundResource<String, String>() {
+        val nbr = object : NetworkOnlyBoundResource<String, String> {
             override suspend fun createCall(): Response<String> {
                 return Response.success("2", Cache.Entry())
             }
@@ -38,7 +38,7 @@ class NetworkOnlyBoundResourceUnitTest : BaseUnitTest(), TestCoroutine {
     @Test
     fun testFetchFailure_returnsError() = testDispatcher.runBlockingTest {
         val volleyError = VolleyError("")
-        val nbr = object : NetworkOnlyBoundResource<String, String>() {
+        val nbr = object : NetworkOnlyBoundResource<String, String> {
             override suspend fun createCall(): Response<String> {
                 return Response.error(volleyError)
             }

@@ -5,5 +5,5 @@
     <color name="accent">#D81B60</color>
     <color name="white">#fff</color>
     <color name="black">#000</color>
-    <color name="transparent_full">#00000000</color>
+    <color name="transparent">#00000000</color>
 </resources>

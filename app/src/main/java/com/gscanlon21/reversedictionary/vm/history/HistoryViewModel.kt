@@ -3,12 +3,11 @@ package com.gscanlon21.reversedictionary.vm.history
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
+import com.gscanlon21.reversedictionary.core.history.HistoryItem
+import com.gscanlon21.reversedictionary.core.repository.ViewResource
+import com.gscanlon21.reversedictionary.core.repository.map
 import com.gscanlon21.reversedictionary.db.history.HistoryEntity
-import com.gscanlon21.reversedictionary.repository.data.ViewResource
-import com.gscanlon21.reversedictionary.repository.data.map
 import com.gscanlon21.reversedictionary.repository.history.HistoryRepository
-import com.gscanlon21.reversedictionary.ui.main.history.HistoryItem
-import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.map
 
 @ExperimentalCoroutinesApi

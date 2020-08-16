@@ -1,7 +1,7 @@
 package com.gscanlon21.reversedictionary.db
 
 import androidx.room.TypeConverter
-import com.gscanlon21.reversedictionary.repository.data.ApiType
+import com.gscanlon21.reversedictionary.core.repository.ApiType
 import java.time.Instant
 
 object TypeConverter {

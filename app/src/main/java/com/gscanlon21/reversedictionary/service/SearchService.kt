@@ -3,30 +3,38 @@ package com.gscanlon21.reversedictionary.service
 import com.android.volley.Cache
 import com.android.volley.Request
 import com.android.volley.Response
-import com.android.volley.toolbox.JsonObjectRequest
-import com.gscanlon21.reversedictionary.R
+import com.android.volley.toolbox.JsonArrayRequest
+import com.gscanlon21.reversedictionary.core.repository.ApiType
+import com.gscanlon21.reversedictionary.core.service.DatamuseModel
+import com.gscanlon21.reversedictionary.extension.getInt
+import com.gscanlon21.reversedictionary.extension.getSequenceOrNull
+import com.gscanlon21.reversedictionary.extension.getString
+import com.gscanlon21.reversedictionary.extension.toSequence
 import com.gscanlon21.reversedictionary.service.api.Requests
 import kotlin.coroutines.resume
 import kotlin.coroutines.resumeWithException
-import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.suspendCancellableCoroutine
+import org.json.JSONObject
 
-@ExperimentalCoroutinesApi
-class SearchService constructor(private val requests: Requests) : WebService.SearchService {
-    private val wotdUrl =
-        "https://api.wordnik.com/v4/words.json/wordOfTheDay?api_key=" + requests.context.getString(
-            R.string.wordnik_api_key
-        )
-    private val randomWordUrl = "https://api.wordnik.com/v4/words.json/randomWord?hasDictionaryDef=true&maxCorpusCount=-1&minDictionaryCount=1&maxDictionaryCount=-1&minLength=5&maxLength=-1&api_key=" + requests.context.getString(
-        R.string.wordnik_api_key
-    )
+interface SearchService {
+    suspend fun datamuseLookup(term: String, type: ApiType.Datamuse): Response<List<DatamuseModel>>
+}
 
-    override suspend fun requestWordOfTheDay(): Response<String> {
+class SearchServiceImpl constructor(private val requests: Requests) : SearchService {
+    override suspend fun datamuseLookup(term: String, type: ApiType.Datamuse): Response<List<DatamuseModel>> {
         return suspendCancellableCoroutine { continuation ->
-            val jsonObjectRequest = JsonObjectRequest(
-                Request.Method.GET, wotdUrl, null,
+            val datamuseUrl = "https://api.datamuse.com/words?md=d&${type.apiRoute}$term"
+            val jsonObjectRequest = JsonArrayRequest(
+                Request.Method.GET, datamuseUrl, null,
                 Response.Listener { response ->
-                    continuation.resume(Response.success(response.getString(WORDNIK_WORD_KEY), Cache.Entry()))
+                    val words = response.toSequence<JSONObject>().map {
+                        DatamuseModel(
+                            it.getString(DatamuseModel.WORD_KEY, ""),
+                            it.getInt(DatamuseModel.SCORE_KEY, 0),
+                            it.getSequenceOrNull<String>(DatamuseModel.DEFS_KEY)?.toList()
+                        )
+                    }.toList()
+                    continuation.resume(Response.success(words, Cache.Entry()))
                 },
                 Response.ErrorListener { error ->
                     continuation.resumeWithException(error)
@@ -35,25 +43,5 @@ class SearchService constructor(private val requests: Requests) : WebService.Sea
 
             requests.queue.add(jsonObjectRequest)
         }
-    }
-
-    override suspend fun requestRandomWord(): Response<String> {
-        return suspendCancellableCoroutine { continuation ->
-            val jsonObjectRequest = JsonObjectRequest(
-                Request.Method.GET, randomWordUrl, null,
-                Response.Listener { response ->
-                    continuation.resume(Response.success(response.getString(WORDNIK_WORD_KEY), Cache.Entry()))
-                },
-                Response.ErrorListener { error ->
-                    continuation.resumeWithException(error)
-                }
-            )
-
-            requests.queue.add(jsonObjectRequest)
-        }
-    }
-
-    companion object {
-        const val WORDNIK_WORD_KEY = "word"
     }
 }

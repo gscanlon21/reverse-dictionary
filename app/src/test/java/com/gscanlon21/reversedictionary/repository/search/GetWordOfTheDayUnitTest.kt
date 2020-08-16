@@ -1,19 +1,18 @@
 package com.gscanlon21.reversedictionary.repository.search
 
+import androidx.test.core.app.ApplicationProvider
 import com.gscanlon21.reversedictionary.BaseUnitTest
 import com.gscanlon21.reversedictionary.db.search.WordOfTheDayEntity
 import com.gscanlon21.reversedictionary.test.TestCoroutine
 import com.gscanlon21.reversedictionary.test.TestDb
 import com.gscanlon21.reversedictionary.test.TestService
 import java.time.Instant
-import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.toList
 import kotlinx.coroutines.test.TestCoroutineDispatcher
 import kotlinx.coroutines.test.runBlockingTest
 import org.junit.Before
 import org.junit.Test
 
-@ExperimentalCoroutinesApi
 class GetWordOfTheDayUnitTest : BaseUnitTest(), TestCoroutine, TestDb, TestService {
     override val testDispatcher: TestCoroutineDispatcher = TestCoroutineDispatcher()
 
@@ -25,7 +24,7 @@ class GetWordOfTheDayUnitTest : BaseUnitTest(), TestCoroutine, TestDb, TestServi
     }
 
     private fun setupDependencies() {
-        getWordOfTheDay = GetWordOfTheDay(searchService, searchDao)
+        getWordOfTheDay = GetWordOfTheDay(ApplicationProvider.getApplicationContext(), searchDao)
     }
 
     @Test

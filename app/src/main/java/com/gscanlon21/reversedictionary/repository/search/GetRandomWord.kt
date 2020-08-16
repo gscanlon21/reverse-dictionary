@@ -1,8 +1,12 @@
 package com.gscanlon21.reversedictionary.repository.search
 
-import com.gscanlon21.reversedictionary.repository.data.NetworkOnlyBoundResource
-import com.gscanlon21.reversedictionary.service.WebService
+import android.content.Context
+import com.gscanlon21.reversedictionary.core.repository.DbBoundResource
+import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.withContext
 
 @ExperimentalCoroutinesApi
 class GetRandomWord(private val searchService: WebService.SearchService) :

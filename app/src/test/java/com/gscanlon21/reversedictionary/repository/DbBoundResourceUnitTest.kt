@@ -1,8 +1,8 @@
 package com.gscanlon21.reversedictionary.repository
 
 import com.gscanlon21.reversedictionary.BaseUnitTest
-import com.gscanlon21.reversedictionary.repository.data.DbBoundResource
-import com.gscanlon21.reversedictionary.repository.data.ViewResource
+import com.gscanlon21.reversedictionary.core.repository.DbBoundResource
+import com.gscanlon21.reversedictionary.core.repository.ViewResource
 import com.gscanlon21.reversedictionary.test.TestCoroutine
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -19,7 +19,7 @@ class DbBoundResourceUnitTest : BaseUnitTest(), TestCoroutine {
 
     @Test
     fun testDbSuccess_returnsFromDb() = testDispatcher.runBlockingTest {
-        val nbr = object : DbBoundResource<String>() {
+        val nbr = object : DbBoundResource<String> {
             override suspend fun loadFromDb(): Flow<String> = flowOf("1")
         }
 

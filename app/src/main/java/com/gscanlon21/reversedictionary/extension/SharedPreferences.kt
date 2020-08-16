@@ -4,7 +4,7 @@ import android.content.Context
 import android.content.SharedPreferences
 import androidx.preference.PreferenceManager
 import com.gscanlon21.reversedictionary.R
-import com.gscanlon21.reversedictionary.ui.navigation.UiView
+import com.gscanlon21.reversedictionary.core.ui.UiView
 
 fun Context.defaultSharedPreferences(): SharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
 

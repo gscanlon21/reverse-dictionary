@@ -4,8 +4,8 @@ import androidx.annotation.VisibleForTesting
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.gscanlon21.reversedictionary.repository.data.ViewResource
-import com.gscanlon21.reversedictionary.ui.navigation.UiView
+import com.gscanlon21.reversedictionary.core.repository.ViewResource
+import com.gscanlon21.reversedictionary.core.ui.UiView
 import com.gscanlon21.reversedictionary.utility.IdlingResource
 import kotlinx.coroutines.CompletableDeferred
 

@@ -4,8 +4,8 @@ import com.android.volley.Cache
 import com.android.volley.Response
 import com.android.volley.VolleyError
 import com.gscanlon21.reversedictionary.BaseUnitTest
-import com.gscanlon21.reversedictionary.repository.data.NetworkBoundResource
-import com.gscanlon21.reversedictionary.repository.data.ViewResource
+import com.gscanlon21.reversedictionary.core.repository.NetworkBoundResource
+import com.gscanlon21.reversedictionary.core.repository.ViewResource
 import com.gscanlon21.reversedictionary.test.TestCoroutine
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -22,7 +22,7 @@ class NetworkBoundResourceUnitTest : BaseUnitTest(), TestCoroutine {
 
     @Test
     fun testFetchSuccess_withData_returnsFromNetwork() = testDispatcher.runBlockingTest {
-        val nbr = object : NetworkBoundResource<String, String>() {
+        val nbr = object : NetworkBoundResource<String, String> {
             override suspend fun loadFromDb(): Flow<String> = flowOf("1")
             override suspend fun shouldFetch(data: Flow<String>) = true
             override suspend fun createCall(): Response<String> {
@@ -43,7 +43,7 @@ class NetworkBoundResourceUnitTest : BaseUnitTest(), TestCoroutine {
     @Test
     fun testFetchFailure_withData_returnsError() = testDispatcher.runBlockingTest {
         val volleyError = VolleyError("")
-        val nbr = object : NetworkBoundResource<String, String>() {
+        val nbr = object : NetworkBoundResource<String, String> {
             override suspend fun loadFromDb(): Flow<String> = flowOf("1")
             override suspend fun shouldFetch(data: Flow<String>) = true
             override suspend fun createCall(): Response<String> {
@@ -63,7 +63,7 @@ class NetworkBoundResourceUnitTest : BaseUnitTest(), TestCoroutine {
 
     @Test
     fun testNoFetch_withData_returnsFromDb() = testDispatcher.runBlockingTest {
-        val nbr = object : NetworkBoundResource<String, String>() {
+        val nbr = object : NetworkBoundResource<String, String> {
             override suspend fun loadFromDb(): Flow<String> = flowOf("1")
             override suspend fun shouldFetch(data: Flow<String>) = false
             override suspend fun createCall(): Response<String> {
@@ -82,7 +82,7 @@ class NetworkBoundResourceUnitTest : BaseUnitTest(), TestCoroutine {
 
     @Test
     fun testDefaultShouldFetch_withNoData_returnsTrue() = testDispatcher.runBlockingTest {
-        val nbr = object : NetworkBoundResource<String, String>() {
+        val nbr = object : NetworkBoundResource<String, String> {
             override suspend fun loadFromDb(): Flow<String> = flowOf()
             override suspend fun createCall(): Response<String> {
                 return Response.success("2", Cache.Entry())
@@ -100,7 +100,7 @@ class NetworkBoundResourceUnitTest : BaseUnitTest(), TestCoroutine {
 
     @Test
     fun testDefaultShouldFetch_withData_returnsFalse() = testDispatcher.runBlockingTest {
-        val nbr = object : NetworkBoundResource<String, String>() {
+        val nbr = object : NetworkBoundResource<String, String> {
             override suspend fun loadFromDb(): Flow<String> = flowOf("1")
             override suspend fun createCall(): Response<String> {
                 return Response.success("2", Cache.Entry())

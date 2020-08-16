@@ -8,13 +8,12 @@ import androidx.room.TypeConverters
 import com.gscanlon21.reversedictionary.db.history.HistoryDao
 import com.gscanlon21.reversedictionary.db.history.HistoryEntity
 import com.gscanlon21.reversedictionary.db.search.SearchDao
+import com.gscanlon21.reversedictionary.db.search.SearchResultEntity
 import com.gscanlon21.reversedictionary.db.search.WordOfTheDayEntity
-import com.gscanlon21.reversedictionary.db.search.result.SearchResultDao
-import com.gscanlon21.reversedictionary.db.search.result.SearchResultEntity
 
 @Database(
-    entities = [HistoryEntity::class, WordOfTheDayEntity::class, SearchResultEntity::class],
-    version = 7,
+    entities = [HistoryEntity::class, SearchResultEntity::class, WordOfTheDayEntity::class],
+    version = 9,
     exportSchema = false
 )
 @TypeConverters(TypeConverter::class)
@@ -44,5 +43,4 @@ abstract class SearchDb : RoomDatabase() {
 
     abstract fun history(): HistoryDao
     abstract fun search(): SearchDao
-    abstract fun searchResults(): SearchResultDao
 }

@@ -4,16 +4,14 @@ import android.app.Application
 import android.content.Context
 import com.gscanlon21.reversedictionary.db.SearchDb
 import com.gscanlon21.reversedictionary.repository.history.HistoryRepository
+import com.gscanlon21.reversedictionary.repository.history.HistoryRepositoryImpl
 import com.gscanlon21.reversedictionary.repository.search.SearchRepository
-import com.gscanlon21.reversedictionary.repository.search.result.SearchResultRepository
-import com.gscanlon21.reversedictionary.service.SearchResultService
-import com.gscanlon21.reversedictionary.service.SearchService
+import com.gscanlon21.reversedictionary.repository.search.SearchRepositoryImpl
+import com.gscanlon21.reversedictionary.service.SearchServiceImpl
 import com.gscanlon21.reversedictionary.service.api.Requests
 import com.gscanlon21.reversedictionary.vm.history.HistoryViewModelFactory
 import com.gscanlon21.reversedictionary.vm.search.SearchTermViewModelFactory
 import com.gscanlon21.reversedictionary.vm.search.SearchViewModelFactory
-import com.gscanlon21.reversedictionary.vm.search.result.MetaViewModelFactory
-import com.gscanlon21.reversedictionary.vm.search.result.SearchResultViewModelFactory
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 
 /**
@@ -22,17 +20,15 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 @ExperimentalCoroutinesApi
 object InjectorUtil {
     private fun getHistoryRepository(context: Context): HistoryRepository {
-        return HistoryRepository(SearchDb.getInstance(context.applicationContext).history())
+        return HistoryRepositoryImpl.getInstance(SearchDb.getInstance(context.applicationContext).history())
     }
 
     private fun getSearchRepository(context: Context): SearchRepository {
-        return SearchRepository(
-            SearchService(Requests.getInstance(context.applicationContext)), SearchDb.getInstance(context.applicationContext).search())
-    }
-
-    private fun getSearchResultRepository(context: Context): SearchResultRepository {
-        return SearchResultRepository(
-            SearchResultService(Requests.getInstance(context.applicationContext)), SearchDb.getInstance(context.applicationContext).searchResults())
+        return SearchRepositoryImpl.getInstance(
+            context.applicationContext,
+            SearchServiceImpl(Requests.getInstance(context.applicationContext)),
+            SearchDb.getInstance(context.applicationContext).search()
+        )
     }
 
     fun provideHistoryViewModelFactory(context: Context): HistoryViewModelFactory {
@@ -45,18 +41,8 @@ object InjectorUtil {
         return SearchTermViewModelFactory(repository)
     }
 
-    fun provideSearchViewModelFactory(context: Context): SearchViewModelFactory {
-        val repository = getSearchRepository(context)
-        return SearchViewModelFactory(repository)
-    }
-
-    fun provideSearchResultViewModelFactory(application: Application): SearchResultViewModelFactory {
-        val repository = getSearchResultRepository(application)
-        return SearchResultViewModelFactory(application, repository)
-    }
-
-    fun provideMetaViewModelFactory(context: Context): MetaViewModelFactory {
-        val repository = getSearchResultRepository(context)
-        return MetaViewModelFactory(repository)
+    fun provideSearchViewModelFactory(application: Application): SearchViewModelFactory {
+        val repository = getSearchRepository(application)
+        return SearchViewModelFactory(application, repository)
     }
 }
