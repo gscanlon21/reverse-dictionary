@@ -10,16 +10,18 @@ import com.gscanlon21.reversedictionary.db.history.HistoryEntity
 import com.gscanlon21.reversedictionary.repository.history.HistoryRepository
 import kotlinx.coroutines.flow.map
 
-@ExperimentalCoroutinesApi
 class HistoryViewModel constructor(private val historyRepository: HistoryRepository) : ViewModel() {
-    suspend fun historyList(): LiveData<ViewResource<List<HistoryItem>>> =
-        historyRepository.getHistory().map { response ->
+    val historyItems: ArrayList<HistoryItem> = arrayListOf()
+
+    suspend fun historyList(): LiveData<ViewResource<List<HistoryItem>>> {
+        return historyRepository.getHistory().map { response ->
             when (response) {
-                is ViewResource.WithData<List<HistoryEntity>> -> response.map { lst ->
-                    lst.sortedWith(compareByDescending<HistoryEntity> { it.pinned }.thenByDescending { it.lastModified })
+                is ViewResource.WithData<List<HistoryEntity>> -> response.map { list ->
+                    list.sortedWith(compareByDescending<HistoryEntity> { it.pinned }.thenByDescending { it.lastModified })
                         .map { HistoryItem(it) }
                 }
                 is ViewResource.Error -> response
             }
         }.asLiveData()
+    }
 }

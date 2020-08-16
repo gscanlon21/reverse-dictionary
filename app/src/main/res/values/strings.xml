@@ -33,6 +33,7 @@
     <string name="context_menu_copy">Copy</string>
     <string name="context_menu_translate">Translate</string>
     <string name="context_menu_attribution">View Attribution</string>
+    <string name="context_menu_copied">Copied to clipboard: %1$s</string>
     
     <string name="placeholder_loading">Loading…</string>
     <string name="placeholder_success">No Results</string>
