@@ -24,8 +24,10 @@ import com.gscanlon21.reversedictionary.utility.InjectorUtil
 import com.gscanlon21.reversedictionary.vm.MainViewModel
 import com.gscanlon21.reversedictionary.vm.search.SearchTermViewModel
 import kotlinx.coroutines.CompletableDeferred
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.launch
 
+@ExperimentalCoroutinesApi
 class MainActivity : AppCompatActivity() {
     @VisibleForTesting
     val mainViewModel: MainViewModel by viewModels()

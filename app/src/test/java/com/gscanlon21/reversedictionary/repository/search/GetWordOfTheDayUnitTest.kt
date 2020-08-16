@@ -7,12 +7,14 @@ import com.gscanlon21.reversedictionary.test.TestCoroutine
 import com.gscanlon21.reversedictionary.test.TestDb
 import com.gscanlon21.reversedictionary.test.TestService
 import java.time.Instant
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.toList
 import kotlinx.coroutines.test.TestCoroutineDispatcher
 import kotlinx.coroutines.test.runBlockingTest
 import org.junit.Before
 import org.junit.Test
 
+@ExperimentalCoroutinesApi
 class GetWordOfTheDayUnitTest : BaseUnitTest(), TestCoroutine, TestDb, TestService {
     override val testDispatcher: TestCoroutineDispatcher = TestCoroutineDispatcher()
 
