@@ -5,4 +5,5 @@
     <string name="key_shared_preference_pages_to_show">pages_to_show</string>
     <string name="key_shared_preference_translation_language">translation_language</string>
     <string name="key_shared_preference_source_code">source_code</string>
+    <string name="key_shared_preference_fragment_attribution">fragment_attribution</string>
 </resources>

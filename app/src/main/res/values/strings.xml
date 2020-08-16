@@ -2,8 +2,6 @@
     <string name="app_name">Reverse Dictionary</string>
     <string name="empty" />
 
-    <string name="activity_user_preference">Settings</string>
-
     <string name="main_tab_search">Search</string>
     <string name="main_tab_history">History</string>
 
@@ -51,6 +49,7 @@
     <string name="preference_title_hide_no_definitions">Hide Words without Definitions</string>
     <string name="preference_title_pages_to_show">Pages to Show</string>
     <string name="preference_title_translation_language">Preferred Translation Language</string>
+    <string name="preference_title_settings">Settings</string>
     <string name="preference_title_about">About</string>
     <string name="preference_title_attribution">Attribution</string>
     <string name="preference_title_source_code">Source Code</string>

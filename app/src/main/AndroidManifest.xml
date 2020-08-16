@@ -25,7 +25,6 @@
         <activity
             android:name=".ui.preference.PreferenceActivity"
             android:parentActivityName=".ui.MainActivity"
-            android:label="@string/activity_user_preference"
             android:theme="@style/AppTheme">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />

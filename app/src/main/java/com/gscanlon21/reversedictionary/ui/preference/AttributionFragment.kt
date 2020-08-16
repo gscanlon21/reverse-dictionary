@@ -32,4 +32,10 @@ class AttributionFragment : Fragment() {
 
         return root
     }
+
+    override fun onResume() {
+        super.onResume()
+
+        preferenceViewModel.setTitle(R.string.preference_title_attribution)
+    }
 }

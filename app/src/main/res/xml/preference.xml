@@ -42,7 +42,7 @@
 
         <Preference
             android:title="@string/preference_title_attribution"
-            android:fragment="com.gscanlon21.reversedictionary.ui.preference.AttributionFragment"
+            android:key="@string/key_shared_preference_fragment_attribution"
             />
 
         <Preference
