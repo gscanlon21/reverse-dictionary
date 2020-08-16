@@ -2,6 +2,7 @@ package com.gscanlon21.reversedictionary.repository.search
 
 import android.content.Context
 import com.gscanlon21.reversedictionary.core.repository.DbBoundResource
+import java.util.Locale
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -16,52 +17,43 @@ class GetAnagrams(
 ) : DbBoundResource<List<String>> {
 
     /**
+     * Provides a hash code unique to the characters contained in a string,
+     * regardless of their order
+     */
+    @Suppress("EqualsOrHashCode")
+    private class AnagramPrime(val string: String) {
+        private val primeMap = mapOf(
+            'a' to 2, 'b' to 3, 'c' to 5, 'd' to 7,
+            'e' to 11, 'f' to 13, 'g' to 17, 'h' to 19, 'i' to 23, 'j' to 29, 'k' to 31,
+            'l' to 37, 'm' to 41, 'n' to 43, 'o' to 47, 'p' to 53, 'q' to 59, 'r' to 61,
+            's' to 67, 't' to 71, 'u' to 73, 'v' to 79, 'w' to 83, 'x' to 89, 'y' to 97,
+            'z' to 101
+        )
+
+        override fun hashCode(): Int {
+            return string.toLowerCase(Locale.ROOT).fold(1) { hash: Int, c: Char ->
+                hash * (primeMap[c] ?: 1)
+            }
+        }
+    }
+
+    /**
      * Retrieves the anagrams of [word]
+     *
+     * Compares the potential anagrams using prime number hashing
      */
     override suspend fun loadFromDb() = flow {
+        val wordHash = AnagramPrime(word).hashCode()
         val words = withContext(dispatcher) {
             context.applicationContext.assets.open("words/en_US.dic")
                 .reader(Charsets.UTF_8)
                 .readLines()
-        }
+        }.map { AnagramPrime(it) }
 
-        val wordPermutations = listPermutations(StringBuffer(word))
-        val anagrams = words.intersect(wordPermutations).toList()
+        val anagrams = words
+            .filter { it.hashCode() == wordHash }
+            .map { it.string.toLowerCase(Locale.ROOT) }
 
         emit(anagrams)
-    }
-
-    /**
-     * Lists all available permutations of characters in a given string
-     *
-     * @param stringBuffer the [StringBuffer] to find permutations for
-     * @param index the index of the character to swap with all remaining characters in the string
-     * @return the permutations of [stringBuffer]
-     */
-    private fun listPermutations(stringBuffer: StringBuffer, index: Int = 0): List<String> {
-        val result = mutableListOf<String>()
-        if (index == stringBuffer.length) { result.add(stringBuffer.toString()) } else {
-            result.addAll(listPermutations(stringBuffer, index + 1))
-            for (i in index + 1 until stringBuffer.length) { // Swap all other chars with first character
-                swapChars(stringBuffer, index, i)
-                result.addAll(listPermutations(stringBuffer, index + 1))
-                swapChars(stringBuffer, i, index) // Restore previous string value
-            }
-        }
-        return result
-    }
-
-    /**
-     * Swaps two characters in a string
-     *
-     * The characters at positions [idx1] and [idx2] are swapped
-     *
-     * @param idx1 the index of the first character
-     * @param idx2 the index of the second character
-     */
-    private fun swapChars(stringBuffer: StringBuffer, idx1: Int, idx2: Int) {
-        val firstChar = stringBuffer[idx1]
-        stringBuffer.setCharAt(idx1, stringBuffer[idx2])
-        stringBuffer.setCharAt(idx2, firstChar)
     }
 }

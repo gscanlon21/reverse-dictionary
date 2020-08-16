@@ -33,7 +33,6 @@ class SearchViewModel constructor(
                         .map { SearchResultItem(it) }
                         .filterNot {
                             if (getApplication<ReverseDictionaryApp>().defaultSharedPreferences().missingDefinitionsHidden(getApplication<ReverseDictionaryApp>())) {
-                                // Keeping Anagrams since the aoi does not return definitions if they are not already cached
                                 it.description == null && type != ApiType.Datamuse.Definition
                             } else { false }
                         }.nullIfEmpty()
@@ -43,11 +42,11 @@ class SearchViewModel constructor(
         }.asLiveData()
     }
 
-    suspend fun findAnagrams(word: String): LiveData<ViewResource<List<SearchResultItem>>> {
+    suspend fun findAnagrams(word: String): LiveData<ViewResource<List<SearchResultItem>?>> {
         return searchRepository.getAnagrams(word).mapLatest { res ->
             when (res) {
                 is ViewResource.WithData -> res.map { lst ->
-                    lst.map { SearchResultItem(it) }
+                    lst.map { SearchResultItem(it) }.nullIfEmpty()
                 }
                 is ViewResource.Error -> res
             }

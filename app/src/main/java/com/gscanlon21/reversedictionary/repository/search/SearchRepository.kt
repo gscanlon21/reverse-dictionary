@@ -11,6 +11,7 @@ import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flowOf
 
 interface SearchRepository {
     suspend fun lookup(term: String, type: ApiType): Flow<ViewResource<List<SearchResultEntity>>>
@@ -35,6 +36,10 @@ class SearchRepositoryImpl private constructor(
     }
 
     override suspend fun getAnagrams(word: String): Flow<ViewResource<List<String>>> {
+        if (!word.matches("^[a-z]*$".toRegex(RegexOption.IGNORE_CASE))) {
+            return flowOf(ViewResource.Error(null))
+        }
+
         return GetAnagrams(context, word).flow(dispatcher)
     }
 
