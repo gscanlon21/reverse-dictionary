@@ -18,9 +18,9 @@ class GetAnagramsUnitTest : BaseUnitTest(), TestCoroutine, TestDb, TestService {
     @Test
     fun test_returnsCorrectAnagrams() = testDispatcher.runBlockingTest {
         val anagramMap = mapOf(
-            Pair("vile", arrayOf("evil", "levi", "live", "veil", "vile")),
-            Pair("ripe", arrayOf("pier", "ripe")),
-            Pair("apple", arrayOf("apple"))
+            Pair("vile", arrayOf("evil", "levi", "live", "veil")),
+            Pair("ripe", arrayOf("pier")),
+            Pair("apple", emptyArray())
         )
 
         anagramMap.forEach {

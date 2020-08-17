@@ -53,6 +53,7 @@ class GetAnagrams(
         val anagrams = words
             .filter { it.hashCode() == wordHash }
             .map { it.string.toLowerCase(Locale.ROOT) }
+            .filterNot { word.equals(it, ignoreCase = true) }
             .distinct()
 
         emit(anagrams)
