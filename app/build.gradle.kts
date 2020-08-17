@@ -121,7 +121,7 @@ dependencies {
     implementation("androidx.room:room-ktx:2.2.5") // Kotlin Extensions
 
     // Crash Reporting -- Firebase SDK for Crashlytics
-    implementation("com.google.firebase:firebase-crashlytics:17.1.1")
+    implementation("com.google.firebase:firebase-crashlytics:17.2.1")
 
     debugImplementation("androidx.fragment:fragment-testing:1.2.5")
 
