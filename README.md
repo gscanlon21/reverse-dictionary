@@ -12,7 +12,7 @@
 Reverse Dictionary is a word finding android app. Useful to look up and find words on the edge of your tongue.
 
 
-### Screeshots
+### Screenshots
 
 <div>
     <img src="https://github.com/gscanlon21/reversedictionary/blob/internal/app/src/main/play/listings/en-US/graphics/phone-screenshots/1.png?raw=true" width="275px"/>
