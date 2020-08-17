@@ -93,7 +93,7 @@ dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.3")
 
     // AndroidX
-    implementation("androidx.appcompat:appcompat:1.1.0")
+    implementation("androidx.appcompat:appcompat:1.2.0")
     implementation("androidx.lifecycle:lifecycle-extensions:2.2.0")
 
     // Material Styles
