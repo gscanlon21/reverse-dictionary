@@ -113,7 +113,7 @@ dependencies {
     implementation("androidx.viewpager2:viewpager2:1.0.0")
 
     // Network requests
-    implementation("com.android.volley:volley:1.1.1")
+    implementation("com.android.volley:volley:1.2.0")
 
     // Room database
     implementation("androidx.room:room-runtime:2.2.5")
