@@ -103,7 +103,7 @@ dependencies {
     implementation("androidx.core:core-ktx:1.3.2")
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.0")
     implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.3.0")
-    implementation("androidx.navigation:navigation-fragment-ktx:2.3.0")
+    implementation("androidx.navigation:navigation-fragment-ktx:2.3.4")
 
     // User Preference
     implementation("androidx.preference:preference:1.1.1")
