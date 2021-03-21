@@ -12,7 +12,7 @@ dependencies {
     testImplementation("junit:junit:4.13.1")
     testImplementation("com.android.tools.lint:lint:27.1.3")
     testImplementation("com.android.tools.lint:lint-tests:27.1.3")
-    testImplementation("com.android.tools:testutils:27.0.1")
+    testImplementation("com.android.tools:testutils:27.1.3")
 }
 
 tasks.jar {
