@@ -118,7 +118,7 @@ dependencies {
     // Room database
     implementation("androidx.room:room-runtime:2.2.6")
     kapt("androidx.room:room-compiler:2.2.6") // Coroutines support
-    implementation("androidx.room:room-ktx:2.2.5") // Kotlin Extensions
+    implementation("androidx.room:room-ktx:2.2.6") // Kotlin Extensions
 
     // Crash Reporting -- Firebase SDK for Crashlytics
     implementation("com.google.firebase:firebase-crashlytics:17.2.1")
