@@ -153,5 +153,5 @@ dependencies {
     testImplementation("com.jraska.livedata:testing-ktx:1.1.2") // LiveData testing
     testImplementation("io.mockk:mockk:1.10.0") // Mocking
 
-    implementation("androidx.test.espresso:espresso-idling-resource:3.2.0")
+    implementation("androidx.test.espresso:espresso-idling-resource:3.3.0")
 }
