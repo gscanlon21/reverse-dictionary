@@ -123,7 +123,7 @@ dependencies {
     // Crash Reporting -- Firebase SDK for Crashlytics
     implementation("com.google.firebase:firebase-crashlytics:17.4.0")
 
-    debugImplementation("androidx.fragment:fragment-testing:1.2.5")
+    debugImplementation("androidx.fragment:fragment-testing:1.3.1")
 
     // Instrumented Tests
     androidTestImplementation("androidx.test:core:1.2.0") // Core library
