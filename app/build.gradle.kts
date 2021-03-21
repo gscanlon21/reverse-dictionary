@@ -143,7 +143,7 @@ dependencies {
     testImplementation("androidx.test:core:1.2.0") // Core library
     testImplementation("androidx.test:core-ktx:1.2.0") // Core kotlin extensions
     testImplementation("androidx.test:runner:1.2.0") // AndroidJUnitRunner and JUnit Rules
-    testImplementation("androidx.test:rules:1.2.0") // AndroidJUnitRunner and JUnit Rules
+    testImplementation("androidx.test:rules:1.3.0") // AndroidJUnitRunner and JUnit Rules
     testImplementation("androidx.test.ext:junit:1.1.2") // AndroidJUnitRunner and JUnit Rules
     testImplementation("androidx.test.ext:junit-ktx:1.1.2") // AndroidJUnitRunner and JUnit Rules
     testImplementation("androidx.test.espresso:espresso-core:3.3.0")
