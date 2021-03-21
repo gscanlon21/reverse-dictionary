@@ -148,7 +148,7 @@ dependencies {
     testImplementation("androidx.test.ext:junit-ktx:1.1.1") // AndroidJUnitRunner and JUnit Rules
     testImplementation("androidx.test.espresso:espresso-core:3.2.0")
     testImplementation("androidx.arch.core:core-testing:2.1.0")
-    testImplementation("org.robolectric:robolectric:4.3.1")
+    testImplementation("org.robolectric:robolectric:4.5.1")
     testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.3.4") // Coroutines test support
     testImplementation("com.jraska.livedata:testing-ktx:1.1.2") // LiveData testing
     testImplementation("io.mockk:mockk:1.10.0") // Mocking
