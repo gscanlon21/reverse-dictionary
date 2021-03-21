@@ -97,7 +97,7 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-extensions:2.2.0")
 
     // Material Styles
-    implementation("com.google.android.material:material:1.3.0-alpha02")
+    implementation("com.google.android.material:material:1.3.0")
 
     // Kotlin Extensions
     implementation("androidx.core:core-ktx:1.3.1")
