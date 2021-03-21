@@ -127,7 +127,7 @@ dependencies {
 
     // Instrumented Tests
     androidTestImplementation("androidx.test:core:1.3.0") // Core library
-    androidTestImplementation("androidx.test:core-ktx:1.2.0") // Core kotlin extensions
+    androidTestImplementation("androidx.test:core-ktx:1.3.0") // Core kotlin extensions
     androidTestImplementation("androidx.test:runner:1.2.0") // AndroidJUnitRunner and JUnit Rules
     androidTestImplementation("androidx.test:rules:1.2.0") // AndroidJUnitRunner and JUnit Rules
     androidTestImplementation("androidx.test.ext:junit:1.1.1") // AndroidJUnitRunner and JUnit Rules
