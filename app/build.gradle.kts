@@ -131,7 +131,7 @@ dependencies {
     androidTestImplementation("androidx.test:runner:1.3.0") // AndroidJUnitRunner and JUnit Rules
     androidTestImplementation("androidx.test:rules:1.3.0") // AndroidJUnitRunner and JUnit Rules
     androidTestImplementation("androidx.test.ext:junit:1.1.2") // AndroidJUnitRunner and JUnit Rules
-    androidTestImplementation("androidx.test.ext:junit-ktx:1.1.1") // AndroidJUnitRunner and JUnit Rules
+    androidTestImplementation("androidx.test.ext:junit-ktx:1.1.2") // AndroidJUnitRunner and JUnit Rules
     androidTestImplementation("androidx.test.espresso:espresso-core:3.2.0")
     androidTestImplementation("androidx.test.espresso:espresso-contrib:3.2.0")
     androidTestImplementation("androidx.arch.core:core-testing:2.1.0")
