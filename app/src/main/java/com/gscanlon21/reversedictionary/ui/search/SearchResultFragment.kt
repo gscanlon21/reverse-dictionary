@@ -10,7 +10,6 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.android.volley.NetworkError
 import com.google.android.material.snackbar.Snackbar
 import com.gscanlon21.reversedictionary.R
@@ -19,6 +18,8 @@ import com.gscanlon21.reversedictionary.core.repository.ApiType
 import com.gscanlon21.reversedictionary.core.repository.ViewResource
 import com.gscanlon21.reversedictionary.core.search.SearchResultItem
 import com.gscanlon21.reversedictionary.core.ui.UiView
+import com.gscanlon21.reversedictionary.databinding.FragmentSearchResultBinding
+import com.gscanlon21.reversedictionary.databinding.RecyclerElevatedBinding
 import com.gscanlon21.reversedictionary.utility.InjectorUtil
 import com.gscanlon21.reversedictionary.vm.MainViewModel
 import com.gscanlon21.reversedictionary.vm.search.SearchTermViewModel
@@ -29,6 +30,8 @@ import kotlinx.coroutines.launch
 @ExperimentalCoroutinesApi
 class SearchResultFragment : Fragment() {
     private lateinit var searchResultAdapter: SearchResultAdapter
+    private lateinit var recyclerBinding: RecyclerElevatedBinding
+    private lateinit var binding: FragmentSearchResultBinding
 
     private val searchTermViewModel: SearchTermViewModel by activityViewModels()
     private val mainViewModel: MainViewModel by activityViewModels()
@@ -41,10 +44,12 @@ class SearchResultFragment : Fragment() {
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val root = inflater.inflate(R.layout.fragment_search_result, container, false)
-        if (uiView == UiView.None) { return root }
+        binding = FragmentSearchResultBinding.inflate(inflater, container, false)
+        recyclerBinding = RecyclerElevatedBinding.bind(binding.root)
 
-        root.findViewById<RecyclerView>(R.id.recycler_elevated).apply {
+        if (uiView == UiView.None) { return binding.root }
+
+        recyclerBinding.recyclerElevated.apply {
             layoutManager = LinearLayoutManager(context)
             adapter = SearchResultAdapter(searchViewModel.results).also { searchResultAdapter = it }
         }
@@ -67,7 +72,7 @@ class SearchResultFragment : Fragment() {
             }
         }
 
-        return root
+        return binding.root
     }
 
     private val searchResultObserver = Observer<ViewResource<List<SearchResultItem>?>> { resource ->

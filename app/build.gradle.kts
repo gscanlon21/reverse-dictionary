@@ -4,7 +4,6 @@ import org.jmailen.gradle.kotlinter.tasks.FormatTask
 plugins {
     id("com.android.application")
     kotlin("android")
-    kotlin("android.extensions")
     kotlin("kapt") // Room db annotation processing
     id("com.google.gms.google-services") // Google Services Gradle plugin
     id("com.google.firebase.crashlytics") // Crashlytics Gradle plugin
@@ -61,6 +60,9 @@ android {
             isMinifyEnabled = true
             setProguardFiles(listOf(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro"))
         }
+    }
+    buildFeatures {
+        viewBinding = true
     }
 
     tasks.withType(JavaCompile::class) {

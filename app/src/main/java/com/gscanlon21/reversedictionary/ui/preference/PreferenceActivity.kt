@@ -5,14 +5,19 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.observe
 import com.gscanlon21.reversedictionary.R
+import com.gscanlon21.reversedictionary.databinding.ActivityPreferenceBinding
 import com.gscanlon21.reversedictionary.vm.preference.PreferenceViewModel
 
 class PreferenceActivity : AppCompatActivity() {
+    private lateinit var binding: ActivityPreferenceBinding
+
     private val preferenceViewModel: PreferenceViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_preference)
+
+        binding = ActivityPreferenceBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         supportFragmentManager.beginTransaction()
             .add(R.id.user_preference, PreferenceFragment())

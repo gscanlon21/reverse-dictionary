@@ -8,29 +8,30 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.gscanlon21.reversedictionary.R
 import com.gscanlon21.reversedictionary.adapter.preference.AttributionAdapter
+import com.gscanlon21.reversedictionary.databinding.FragmentAttributionBinding
 import com.gscanlon21.reversedictionary.vm.preference.PreferenceViewModel
 
 class AttributionFragment : Fragment() {
+    private lateinit var binding: FragmentAttributionBinding
     private val preferenceViewModel: PreferenceViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        val root = inflater.inflate(R.layout.fragment_attribution, container, false)
+    ): View {
+        binding = FragmentAttributionBinding.inflate(inflater, container, false)
 
-        root.findViewById<RecyclerView>(R.id.license_licenses).apply {
+        binding.licenseLicenses.apply {
             setHasFixedSize(true)
             addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
             layoutManager = LinearLayoutManager(context)
             adapter = AttributionAdapter(preferenceViewModel.attributions)
         }
 
-        return root
+        return binding.root
     }
 
     override fun onResume() {

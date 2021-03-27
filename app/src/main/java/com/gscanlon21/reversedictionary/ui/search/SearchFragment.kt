@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
@@ -13,7 +12,6 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.android.volley.NetworkError
 import com.google.android.material.snackbar.Snackbar
 import com.gscanlon21.reversedictionary.R
@@ -21,6 +19,7 @@ import com.gscanlon21.reversedictionary.adapter.search.SearchResultAdapter
 import com.gscanlon21.reversedictionary.core.repository.ApiType
 import com.gscanlon21.reversedictionary.core.repository.ViewResource
 import com.gscanlon21.reversedictionary.core.search.SearchResultItem
+import com.gscanlon21.reversedictionary.databinding.FragmentSearchBinding
 import com.gscanlon21.reversedictionary.ui.MainActivity
 import com.gscanlon21.reversedictionary.utility.InjectorUtil
 import com.gscanlon21.reversedictionary.vm.search.SearchTermViewModel
@@ -31,6 +30,7 @@ import kotlinx.coroutines.launch
 @ExperimentalCoroutinesApi
 class SearchFragment : Fragment() {
     private lateinit var searchResultAdapter: SearchResultAdapter
+    private lateinit var binding: FragmentSearchBinding
 
     private val searchBarHandlers = SearchBarHandlers(this)
 
@@ -43,23 +43,23 @@ class SearchFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        val root = inflater.inflate(R.layout.fragment_search, container, false)
+    ): View {
+        binding = FragmentSearchBinding.inflate(inflater, container, false)
 
-        root.findViewById<RecyclerView>(R.id.search_list).apply {
+        binding.searchList.apply {
             layoutManager = LinearLayoutManager(context)
             adapter = SearchResultAdapter(searchViewModel.results).also { searchResultAdapter = it }
         }
 
-        root.findViewById<Button>(R.id.wotd_button).apply {
+        binding.wotdButton.apply {
             setOnClickListener { wotdButtonClickListener(it) }
         }
 
-        root.findViewById<Button>(R.id.random_word_button).apply {
+        binding.randomWordButton.apply {
             setOnClickListener { randomWordClickListener(it) }
         }
 
-        val searchBar = root.findViewById<SearchView>(R.id.search_bar).apply {
+        val searchBar = binding.searchBar.apply {
             setOnQueryTextListener(searchBarHandlers)
         }
 
@@ -74,7 +74,7 @@ class SearchFragment : Fragment() {
             }
         )
 
-        return root
+        return binding.root
     }
 
     private fun launchMainActivity(text: String) {

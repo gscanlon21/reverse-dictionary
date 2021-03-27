@@ -16,6 +16,7 @@ import com.gscanlon21.reversedictionary.R
 import com.gscanlon21.reversedictionary.adapter.MainPagerAdapterImpl
 import com.gscanlon21.reversedictionary.core.repository.ViewResource
 import com.gscanlon21.reversedictionary.core.ui.UiView
+import com.gscanlon21.reversedictionary.databinding.ActivityMainBinding
 import com.gscanlon21.reversedictionary.extension.defaultSharedPreferences
 import com.gscanlon21.reversedictionary.extension.emptyResultsHidden
 import com.gscanlon21.reversedictionary.extension.pagesToShow
@@ -29,6 +30,8 @@ import kotlinx.coroutines.launch
 
 @ExperimentalCoroutinesApi
 class MainActivity : AppCompatActivity() {
+    private lateinit var binding: ActivityMainBinding
+
     @VisibleForTesting
     val mainViewModel: MainViewModel by viewModels()
     private val searchTermViewModel: SearchTermViewModel by viewModels {
@@ -47,17 +50,22 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
 
-        val loadingView = findViewById<View>(R.id.loading)
-        if (savedInstanceState == null) { initActivity(loadingView) } else { restoreActivityFromDisk(savedInstanceState) }
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        if (savedInstanceState == null) {
+            initActivity(binding.loadingView.loading)
+        } else {
+            restoreActivityFromDisk(savedInstanceState)
+        }
 
         if (!searchTermViewModel.searchWord.value.isNullOrBlank()) {
             supportActionBar?.setDisplayHomeAsUpEnabled(true)
             supportActionBar?.title = searchTermViewModel.searchWord.value!!
         }
 
-        val viewPager = findViewById<ViewPager2>(R.id.view_pager).apply {
+        val viewPager = binding.viewPager.apply {
             adapter = pagerAdapter
             offscreenPageLimit = if (this@MainActivity.defaultSharedPreferences().emptyResultsHidden(this@MainActivity)) {
                 VIEWPAGER_OFFSCREEN_PAGE_LIMIT_NO_RESULTS
@@ -73,7 +81,7 @@ class MainActivity : AppCompatActivity() {
             })
         }
 
-        findViewById<TabLayout>(R.id.tabs).apply {
+        binding.tabs.apply {
             tabMode = TabLayout.MODE_SCROLLABLE
             TabLayoutMediator(this, viewPager) { tab, position ->
                 tab.text = pagerAdapter.getPageTitle(position)
