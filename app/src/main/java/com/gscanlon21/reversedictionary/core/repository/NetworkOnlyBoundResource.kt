@@ -33,7 +33,7 @@ interface NetworkOnlyBoundResource<ResultType, RequestType> {
             }
 
             if (apiResponse.isSuccess) {
-                emit(ViewResource.WithData.Success(saveCallResult(apiResponse.result)))
+                emit(ViewResource.WithData.Success(saveCallResult(apiResponse.result!!)))
             } else {
                 emit(ViewResource.Error(apiResponse.error))
             }

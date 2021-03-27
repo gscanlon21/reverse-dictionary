@@ -25,9 +25,11 @@ class DbBoundResourceUnitTest : BaseUnitTest(), TestCoroutine {
 
         val flo = nbr.flow(Dispatchers.Main).toList(mutableListOf())
 
-        assert(flo == listOf(
-            ViewResource.WithData.Loading(null),
-            ViewResource.WithData.Success("1")
-        ))
+        assert(
+            flo == listOf(
+                ViewResource.WithData.Loading(null),
+                ViewResource.WithData.Success("1")
+            )
+        )
     }
 }

@@ -39,9 +39,12 @@ class Lookup(
             item.flatMap { ite -> ite.defs?.map { SearchResultEntity(phrase, it, 0, type, null) } ?: emptyList() }
         } else {
             item.map { apiData ->
-                SearchResultEntity(phrase, apiData.word, apiData.score, type, apiData.defs?.map {
-                    SearchResultEntity(apiData.word, it, 0, ApiType.Datamuse.Definition, null)
-                })
+                SearchResultEntity(
+                    phrase, apiData.word, apiData.score, type,
+                    apiData.defs?.map {
+                        SearchResultEntity(apiData.word, it, 0, ApiType.Datamuse.Definition, null)
+                    }
+                )
             }
         }
 

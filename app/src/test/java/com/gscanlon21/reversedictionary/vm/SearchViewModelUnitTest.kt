@@ -16,13 +16,13 @@ import com.jraska.livedata.test
 import io.mockk.coEvery
 import io.mockk.mockkClass
 import io.mockk.slot
-import java.time.Instant
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.test.TestCoroutineDispatcher
 import kotlinx.coroutines.test.runBlockingTest
 import org.junit.Before
 import org.junit.Test
+import java.time.Instant
 
 @ExperimentalCoroutinesApi
 class SearchViewModelUnitTest : BaseUnitTest(), TestCoroutine {

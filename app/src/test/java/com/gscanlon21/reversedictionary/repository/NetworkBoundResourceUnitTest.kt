@@ -33,11 +33,13 @@ class NetworkBoundResourceUnitTest : BaseUnitTest(), TestCoroutine {
 
         val flo = nbr.flow(Dispatchers.Main).toList(mutableListOf())
 
-        assert(flo == listOf(
-            ViewResource.WithData.Loading(null),
-            ViewResource.WithData.Loading("1"),
-            ViewResource.WithData.Success("2")
-        ))
+        assert(
+            flo == listOf(
+                ViewResource.WithData.Loading(null),
+                ViewResource.WithData.Loading("1"),
+                ViewResource.WithData.Success("2")
+            )
+        )
     }
 
     @Test
@@ -54,11 +56,13 @@ class NetworkBoundResourceUnitTest : BaseUnitTest(), TestCoroutine {
 
         val flo = nbr.flow(Dispatchers.Main).toList(mutableListOf())
 
-        assert(flo == listOf(
-            ViewResource.WithData.Loading(null),
-            ViewResource.WithData.Loading("1"),
-            ViewResource.Error(volleyError)
-        ))
+        assert(
+            flo == listOf(
+                ViewResource.WithData.Loading(null),
+                ViewResource.WithData.Loading("1"),
+                ViewResource.Error(volleyError)
+            )
+        )
     }
 
     @Test
@@ -74,10 +78,12 @@ class NetworkBoundResourceUnitTest : BaseUnitTest(), TestCoroutine {
 
         val flo = nbr.flow(Dispatchers.Main).toList(mutableListOf())
 
-        assert(flo == listOf(
-            ViewResource.WithData.Loading(null),
-            ViewResource.WithData.Success("1")
-        ))
+        assert(
+            flo == listOf(
+                ViewResource.WithData.Loading(null),
+                ViewResource.WithData.Success("1")
+            )
+        )
     }
 
     @Test
@@ -92,10 +98,12 @@ class NetworkBoundResourceUnitTest : BaseUnitTest(), TestCoroutine {
 
         val flo = nbr.flow(Dispatchers.Main).toList(mutableListOf())
 
-        assert(flo == listOf(
-            ViewResource.WithData.Loading(null),
-            ViewResource.WithData.Success("2")
-        ))
+        assert(
+            flo == listOf(
+                ViewResource.WithData.Loading(null),
+                ViewResource.WithData.Success("2")
+            )
+        )
     }
 
     @Test
@@ -110,9 +118,11 @@ class NetworkBoundResourceUnitTest : BaseUnitTest(), TestCoroutine {
 
         val flo = nbr.flow(Dispatchers.Main).toList(mutableListOf())
 
-        assert(flo == listOf(
-            ViewResource.WithData.Loading(null),
-            ViewResource.WithData.Success("1")
-        ))
+        assert(
+            flo == listOf(
+                ViewResource.WithData.Loading(null),
+                ViewResource.WithData.Success("1")
+            )
+        )
     }
 }

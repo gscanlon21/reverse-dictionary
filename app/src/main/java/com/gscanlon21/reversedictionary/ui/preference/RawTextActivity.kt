@@ -26,9 +26,11 @@ class RawTextActivity : AppCompatActivity() {
             val resId = intent.getIntExtra(EXTRA_RAW_RESOURCE, 0)
             findViewById<TextView>(R.id.raw_text).apply {
                 movementMethod = ScrollingMovementMethod()
-                text = if (resId != 0) { withContext(Dispatchers.IO) {
-                    applicationContext.resources.openRawResource(resId).bufferedReader(Charsets.UTF_8).readText()
-                } } else {
+                text = if (resId != 0) {
+                    withContext(Dispatchers.IO) {
+                        applicationContext.resources.openRawResource(resId).bufferedReader(Charsets.UTF_8).readText()
+                    }
+                } else {
                     intent.getStringExtra(EXTRA_TEXT)
                 }
             }

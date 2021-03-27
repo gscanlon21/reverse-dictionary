@@ -63,13 +63,16 @@ class SearchFragment : Fragment() {
             setOnQueryTextListener(searchBarHandlers)
         }
 
-        searchTermViewModel.searchPhrase.observe(viewLifecycleOwner, Observer { word ->
-            searchBar.queryHint = word ?: getString(R.string.search_for_query_hint)
-            if (word == null) { return@Observer }
-            lifecycleScope.launch {
-                searchViewModel.resultList(ApiType.Datamuse.MeansLike, word).observe(viewLifecycleOwner, resourceObserver)
+        searchTermViewModel.searchPhrase.observe(
+            viewLifecycleOwner,
+            Observer { word ->
+                searchBar.queryHint = word ?: getString(R.string.search_for_query_hint)
+                if (word == null) { return@Observer }
+                lifecycleScope.launch {
+                    searchViewModel.resultList(ApiType.Datamuse.MeansLike, word).observe(viewLifecycleOwner, resourceObserver)
+                }
             }
-        })
+        )
 
         return root
     }
@@ -82,21 +85,27 @@ class SearchFragment : Fragment() {
     }
 
     private fun randomWordClickListener(view: View) = lifecycleScope.launch {
-        searchViewModel.getRandomWord().observe(viewLifecycleOwner, Observer { resource ->
-            when (resource) {
-                is ViewResource.WithData.Success -> launchMainActivity(resource.data)
-                is ViewResource.Error -> Snackbar.make(view, getString(R.string.placeholder_error), Snackbar.LENGTH_SHORT).show()
+        searchViewModel.getRandomWord().observe(
+            viewLifecycleOwner,
+            Observer { resource ->
+                when (resource) {
+                    is ViewResource.WithData.Success -> launchMainActivity(resource.data)
+                    is ViewResource.Error -> Snackbar.make(view, getString(R.string.placeholder_error), Snackbar.LENGTH_SHORT).show()
+                }
             }
-        })
+        )
     }
 
     private fun wotdButtonClickListener(view: View) = lifecycleScope.launch {
-        searchViewModel.getWordOfTheDay().observe(viewLifecycleOwner, Observer { resource ->
-            when (resource) {
-                is ViewResource.WithData.Success -> launchMainActivity(resource.data)
-                is ViewResource.Error -> Snackbar.make(view, getString(R.string.placeholder_error), Snackbar.LENGTH_SHORT).show()
+        searchViewModel.getWordOfTheDay().observe(
+            viewLifecycleOwner,
+            Observer { resource ->
+                when (resource) {
+                    is ViewResource.WithData.Success -> launchMainActivity(resource.data)
+                    is ViewResource.Error -> Snackbar.make(view, getString(R.string.placeholder_error), Snackbar.LENGTH_SHORT).show()
+                }
             }
-        })
+        )
     }
 
     private class SearchBarHandlers(private val searchFragment: SearchFragment) : SearchView.OnQueryTextListener {

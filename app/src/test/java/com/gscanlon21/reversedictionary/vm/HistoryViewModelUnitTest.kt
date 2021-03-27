@@ -10,12 +10,12 @@ import com.gscanlon21.reversedictionary.vm.history.HistoryViewModel
 import com.jraska.livedata.test
 import io.mockk.coEvery
 import io.mockk.mockkClass
-import java.time.Instant
 import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.test.TestCoroutineDispatcher
 import kotlinx.coroutines.test.runBlockingTest
 import org.junit.Before
 import org.junit.Test
+import java.time.Instant
 
 class HistoryViewModelUnitTest : BaseUnitTest(), TestCoroutine {
     override val testDispatcher: TestCoroutineDispatcher = TestCoroutineDispatcher()
@@ -38,11 +38,13 @@ class HistoryViewModelUnitTest : BaseUnitTest(), TestCoroutine {
         coEvery {
             historyRepository.getHistory()
         } returns flowOf(
-            ViewResource.WithData.Success(listOf(
-                HistoryEntity("First", false, Instant.EPOCH),
-                HistoryEntity("Second", false, Instant.MIN),
-                HistoryEntity("Third", false, Instant.MAX)
-            ))
+            ViewResource.WithData.Success(
+                listOf(
+                    HistoryEntity("First", false, Instant.EPOCH),
+                    HistoryEntity("Second", false, Instant.MIN),
+                    HistoryEntity("Third", false, Instant.MAX)
+                )
+            )
         )
     }
 
@@ -66,7 +68,9 @@ class HistoryViewModelUnitTest : BaseUnitTest(), TestCoroutine {
             )
         )
         historyViewModel.historyList().test()
-            .assertValue { it is ViewResource.WithData.Success<List<*>> &&
-                        it.data == expectedOrder }
+            .assertValue {
+                it is ViewResource.WithData.Success<List<*>> &&
+                    it.data == expectedOrder
+            }
     }
 }

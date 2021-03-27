@@ -15,5 +15,5 @@ data class SearchResultEntity(
     val extra: List<SearchResultEntity>? // For Definitions
 ) {
     constructor(key: String, value: String, score: Int, type: ApiType) :
-            this(key, value, score, type, null)
+        this(key, value, score, type, null)
 }

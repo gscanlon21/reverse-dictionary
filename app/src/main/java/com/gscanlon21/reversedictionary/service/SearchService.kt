@@ -11,10 +11,10 @@ import com.gscanlon21.reversedictionary.extension.getSequenceOrNull
 import com.gscanlon21.reversedictionary.extension.getString
 import com.gscanlon21.reversedictionary.extension.toSequence
 import com.gscanlon21.reversedictionary.service.api.Requests
-import kotlin.coroutines.resume
-import kotlin.coroutines.resumeWithException
 import kotlinx.coroutines.suspendCancellableCoroutine
 import org.json.JSONObject
+import kotlin.coroutines.resume
+import kotlin.coroutines.resumeWithException
 
 interface SearchService {
     suspend fun datamuseLookup(term: String, type: ApiType.Datamuse): Response<List<DatamuseModel>>

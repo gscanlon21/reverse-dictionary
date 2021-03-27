@@ -92,9 +92,11 @@ class MainActivity : AppCompatActivity() {
             mainViewModel.viewPagerItems.addAll(pagesToShow)
 
             if (defaultSharedPreferences().emptyResultsHidden(this)) {
-                mainViewModel.loadingJobs.putAll(pagesToShow.map {
-                    Pair(it, CompletableDeferred<ViewResource<Any?>>())
-                })
+                mainViewModel.loadingJobs.putAll(
+                    pagesToShow.map {
+                        Pair(it, CompletableDeferred<ViewResource<Any?>>())
+                    }
+                )
 
                 loadingView.visibility = View.VISIBLE
 

@@ -29,10 +29,12 @@ class NetworkOnlyBoundResourceUnitTest : BaseUnitTest(), TestCoroutine {
 
         val flo = nbr.flow(Dispatchers.Main).toList(mutableListOf())
 
-        assert(flo == listOf(
-            ViewResource.WithData.Loading(null),
-            ViewResource.WithData.Success("2")
-        ))
+        assert(
+            flo == listOf(
+                ViewResource.WithData.Loading(null),
+                ViewResource.WithData.Success("2")
+            )
+        )
     }
 
     @Test
@@ -47,9 +49,11 @@ class NetworkOnlyBoundResourceUnitTest : BaseUnitTest(), TestCoroutine {
 
         val flo = nbr.flow(Dispatchers.Main).toList(mutableListOf())
 
-        assert(flo == listOf(
-            ViewResource.WithData.Loading(null),
-            ViewResource.Error(volleyError)
-        ))
+        assert(
+            flo == listOf(
+                ViewResource.WithData.Loading(null),
+                ViewResource.Error(volleyError)
+            )
+        )
     }
 }

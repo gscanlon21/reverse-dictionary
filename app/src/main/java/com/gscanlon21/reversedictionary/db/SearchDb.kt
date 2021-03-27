@@ -36,8 +36,8 @@ abstract class SearchDb : RoomDatabase() {
         @Volatile private var instance: SearchDb? = null
         fun getInstance(context: Context): SearchDb {
             return instance ?: synchronized(this) {
-                    instance ?: create(context, false).also { instance = it }
-                }
+                instance ?: create(context, false).also { instance = it }
+            }
         }
     }
 

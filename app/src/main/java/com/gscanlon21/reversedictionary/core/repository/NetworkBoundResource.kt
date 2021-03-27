@@ -17,7 +17,8 @@ import kotlinx.coroutines.flow.toList
  * @param RequestType Type for the API response
  */
 @ExperimentalCoroutinesApi
-interface NetworkBoundResource<ResultType, RequestType> : DbBoundResource<ResultType>,
+interface NetworkBoundResource<ResultType, RequestType> :
+    DbBoundResource<ResultType>,
     NetworkOnlyBoundResource<ResultType, RequestType> {
 
     /**
@@ -37,20 +38,22 @@ interface NetworkBoundResource<ResultType, RequestType> : DbBoundResource<Result
                     networkSemaphore.acquire()
                     createCall()
                 } catch (ex: VolleyError) {
-                    Response.error<RequestType>(ex)
+                    Response.error(ex)
                 } finally {
                     networkSemaphore.release()
                 }
 
                 if (apiResult.isSuccess) {
-                    emit(ViewResource.WithData.Success(saveCallResult(apiResult.result)))
+                    emit(ViewResource.WithData.Success(saveCallResult(apiResult.result!!)))
                 } else {
                     emit(ViewResource.Error(apiResult.error))
                 }
             } else {
-                emitAll(dbSource.map {
-                    ViewResource.WithData.Success(it)
-                })
+                emitAll(
+                    dbSource.map {
+                        ViewResource.WithData.Success(it)
+                    }
+                )
             }
         }
             .onStart { emit(ViewResource.WithData.Loading(null)) }

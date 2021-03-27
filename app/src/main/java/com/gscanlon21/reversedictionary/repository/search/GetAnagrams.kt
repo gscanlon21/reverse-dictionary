@@ -2,12 +2,12 @@ package com.gscanlon21.reversedictionary.repository.search
 
 import android.content.Context
 import com.gscanlon21.reversedictionary.core.repository.DbBoundResource
-import java.util.Locale
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.withContext
+import java.util.Locale
 
 @ExperimentalCoroutinesApi
 class GetAnagrams(

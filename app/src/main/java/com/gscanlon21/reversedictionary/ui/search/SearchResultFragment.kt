@@ -121,7 +121,8 @@ class SearchResultFragment : Fragment() {
 
     private fun delayResultsWhileViewPagerScrolling(results: List<SearchResultItem>) {
         mainViewModel.viewPagerScrolling.observe(
-            viewLifecycleOwner, object : Observer<Boolean> {
+            viewLifecycleOwner,
+            object : Observer<Boolean> {
                 override fun onChanged(t: Boolean?) {
                     if (t == false) {
                         setResults(results)

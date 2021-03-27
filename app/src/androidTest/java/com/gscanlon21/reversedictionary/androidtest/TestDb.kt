@@ -7,9 +7,9 @@ import com.gscanlon21.reversedictionary.db.history.HistoryDao
 import com.gscanlon21.reversedictionary.db.search.SearchDao
 import io.mockk.every
 import io.mockk.mockkObject
-import java.io.IOException
 import org.junit.After
 import org.junit.Before
+import java.io.IOException
 
 interface TestDb {
     val db: SearchDb get() = SearchDb.getInstance(ApplicationProvider.getApplicationContext<Context>())
