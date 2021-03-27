@@ -4,7 +4,7 @@ plugins {
 }
 
 dependencies {
-    compileOnly(kotlin("stdlib", "1.3.72"))
+    compileOnly(kotlin("stdlib", Dependencies.KOTLIN_VERSION))
 
     compileOnly("com.android.tools.lint:lint-api:27.1.3")
     compileOnly("com.android.tools.lint:lint-checks:27.1.3")

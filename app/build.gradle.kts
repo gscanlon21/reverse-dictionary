@@ -1,6 +1,5 @@
 import com.android.build.gradle.internal.cxx.json.readJsonFile
 import org.jmailen.gradle.kotlinter.tasks.FormatTask
-import org.jetbrains.kotlin.config.KotlinCompilerVersion
 
 plugins {
     id("com.android.application")
@@ -88,7 +87,7 @@ dependencies {
     implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
 
     // Kotlin
-    implementation(kotlin("stdlib", KotlinCompilerVersion.VERSION))
+    implementation(kotlin("stdlib", Dependencies.KOTLIN_VERSION))
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.6")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.3")
 
