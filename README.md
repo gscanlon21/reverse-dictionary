@@ -15,9 +15,9 @@ Reverse Dictionary is a word finding android app. Useful to look up and find wor
 ### Screenshots
 
 <div>
-    <img src="https://github.com/gscanlon21/reversedictionary/blob/internal/app/src/main/play/listings/en-US/graphics/phone-screenshots/1.png?raw=true" width="275px"/>
-    <img src="https://github.com/gscanlon21/reversedictionary/blob/internal/app/src/main/play/listings/en-US/graphics/phone-screenshots/3.png?raw=true" width="275px"/>
-    <img src="https://github.com/gscanlon21/reversedictionary/blob/internal/app/src/main/play/listings/en-US/graphics/phone-screenshots/6.png?raw=true" width="275px"/>
+    <img src="https://github.com/gscanlon21/reversedictionary/blob/internal/app/src/main/play/listings/en-US/graphics/phone-screenshots/1.png?raw=true" width="250px"/>
+    <img src="https://github.com/gscanlon21/reversedictionary/blob/internal/app/src/main/play/listings/en-US/graphics/phone-screenshots/3.png?raw=true" width="250px"/>
+    <img src="https://github.com/gscanlon21/reversedictionary/blob/internal/app/src/main/play/listings/en-US/graphics/phone-screenshots/6.png?raw=true" width="250px"/>
 </div>
 
 
