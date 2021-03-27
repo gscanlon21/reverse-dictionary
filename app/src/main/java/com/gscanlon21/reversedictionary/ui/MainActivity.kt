@@ -45,6 +45,8 @@ class MainActivity : AppCompatActivity() {
     companion object {
         const val EXTRA_SEARCH_TERM = "EXTRA_SEARCH_TERM"
         const val INSTANCE_STATE_TITLE = "INSTANCE_STATE_TITLE"
+        // Hiding pages with no results requires we load in
+        // ... all the pages before the user navigates to them
         const val VIEWPAGER_OFFSCREEN_PAGE_LIMIT_NO_RESULTS = 99
     }
 

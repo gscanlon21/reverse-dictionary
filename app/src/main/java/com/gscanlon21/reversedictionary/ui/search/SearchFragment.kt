@@ -87,10 +87,11 @@ class SearchFragment : Fragment() {
     private fun randomWordClickListener(view: View) = lifecycleScope.launch {
         searchViewModel.getRandomWord().observe(
             viewLifecycleOwner,
-            Observer { resource ->
+            { resource ->
                 when (resource) {
                     is ViewResource.WithData.Success -> launchMainActivity(resource.data)
                     is ViewResource.Error -> Snackbar.make(view, getString(R.string.placeholder_error), Snackbar.LENGTH_SHORT).show()
+                    else -> Unit
                 }
             }
         )
@@ -99,10 +100,11 @@ class SearchFragment : Fragment() {
     private fun wotdButtonClickListener(view: View) = lifecycleScope.launch {
         searchViewModel.getWordOfTheDay().observe(
             viewLifecycleOwner,
-            Observer { resource ->
+            { resource ->
                 when (resource) {
                     is ViewResource.WithData.Success -> launchMainActivity(resource.data)
                     is ViewResource.Error -> Snackbar.make(view, getString(R.string.placeholder_error), Snackbar.LENGTH_SHORT).show()
+                    else -> Unit
                 }
             }
         )

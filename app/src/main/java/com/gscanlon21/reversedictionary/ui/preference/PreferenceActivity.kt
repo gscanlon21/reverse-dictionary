@@ -3,7 +3,6 @@ package com.gscanlon21.reversedictionary.ui.preference
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.observe
 import com.gscanlon21.reversedictionary.R
 import com.gscanlon21.reversedictionary.databinding.ActivityPreferenceBinding
 import com.gscanlon21.reversedictionary.vm.preference.PreferenceViewModel

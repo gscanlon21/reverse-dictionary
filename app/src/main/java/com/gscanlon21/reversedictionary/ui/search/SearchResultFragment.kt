@@ -80,6 +80,7 @@ class SearchResultFragment : Fragment() {
             !is ViewResource.WithData.Loading -> {
                 mainViewModel.loadingJobs[uiView]?.complete(resource)
             }
+            else -> Unit
         }
     }
 

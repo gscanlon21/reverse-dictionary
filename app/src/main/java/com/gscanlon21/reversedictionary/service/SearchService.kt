@@ -26,7 +26,7 @@ class SearchServiceImpl constructor(private val requests: Requests) : SearchServ
             val datamuseUrl = "https://api.datamuse.com/words?md=d&${type.apiRoute}$term"
             val jsonObjectRequest = JsonArrayRequest(
                 Request.Method.GET, datamuseUrl, null,
-                Response.Listener { response ->
+                { response ->
                     val words = response.toSequence<JSONObject>().map {
                         DatamuseModel(
                             it.getString(DatamuseModel.WORD_KEY, ""),
@@ -36,7 +36,7 @@ class SearchServiceImpl constructor(private val requests: Requests) : SearchServ
                     }.toList()
                     continuation.resume(Response.success(words, Cache.Entry()))
                 },
-                Response.ErrorListener { error ->
+                { error ->
                     continuation.resumeWithException(error)
                 }
             )

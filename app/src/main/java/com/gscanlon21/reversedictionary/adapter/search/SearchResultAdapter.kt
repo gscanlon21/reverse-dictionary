@@ -24,7 +24,7 @@ class SearchResultAdapter(private val results: List<SearchResultItem>) :
         RecyclerView.ViewHolder(itemView), ContextMenuAdapter.ContextMenuViewHolder {
 
         val title: TextView = itemView.findViewById(R.id.list_item_title)
-        val description = itemView.findViewById<TextView?>(R.id.list_item_description)
+        val description: TextView? = itemView.findViewById(R.id.list_item_description)
 
         override val contextMenuView = itemView
         override val targetText: CharSequence get() = title.text.split("\t").last()
