@@ -3,8 +3,7 @@
 
 # Build Files
 /build
-/app/build
-/lint/build
+*/build
 .gradle
 
 # Misc
@@ -14,9 +13,10 @@
 .cxx
 /captures
 /app/release/output.json
+/*/local.properties
 
 # IntelliJ IDE
-/.idea
+.idea
 
 # Java Keystore
 *.jks
