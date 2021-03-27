@@ -90,8 +90,8 @@ dependencies {
 
     // Kotlin
     implementation(kotlin("stdlib", Dependencies.KOTLIN_VERSION))
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.6")
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.3")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.4.1")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.4.1")
 
     // AndroidX
     implementation("androidx.appcompat:appcompat:1.2.0")
