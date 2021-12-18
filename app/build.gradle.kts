@@ -5,7 +5,6 @@ plugins {
     id("com.android.application")
     kotlin("android")
     kotlin("kapt") // Room db annotation processing
-    id("com.google.gms.google-services") // Google Services Gradle plugin
     id("org.jmailen.kotlinter") //ktlint
     id("com.github.triplet.play") version "2.8.0" // Release Management
 }

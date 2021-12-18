@@ -100,12 +100,6 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-gradle-
             
-      # Decode Google services configuration file
-      - name: Decode google-services.json
-        run: echo $FIREBASE_CONFIG > ./app/google-services.json
-        env:
-          FIREBASE_CONFIG: ${{ secrets.FIREBASE_CONFIG }}
-
       # Populate Secrets
       - name: Decode secrets.xml
         env:
