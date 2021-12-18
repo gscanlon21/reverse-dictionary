@@ -6,7 +6,6 @@ plugins {
     kotlin("android")
     kotlin("kapt") // Room db annotation processing
     id("com.google.gms.google-services") // Google Services Gradle plugin
-    id("com.google.firebase.crashlytics") // Crashlytics Gradle plugin
     id("org.jmailen.kotlinter") //ktlint
     id("com.github.triplet.play") version "2.8.0" // Release Management
 }
@@ -120,9 +119,6 @@ dependencies {
     implementation("androidx.room:room-runtime:2.2.6")
     kapt("androidx.room:room-compiler:2.2.6") // Coroutines support
     implementation("androidx.room:room-ktx:2.2.6") // Kotlin Extensions
-
-    // Crash Reporting -- Firebase SDK for Crashlytics
-    implementation("com.google.firebase:firebase-crashlytics:17.4.0")
 
     debugImplementation("androidx.fragment:fragment-testing:1.3.1")
 
