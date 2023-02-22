@@ -15,6 +15,7 @@
         <activity
             android:name=".ui.MainActivity"
             android:label="@string/app_name"
+            android:exported="true"
             android:theme="@style/AppTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -25,17 +26,13 @@
         <activity
             android:name=".ui.preference.PreferenceActivity"
             android:parentActivityName=".ui.MainActivity"
+            android:exported="false"
             android:theme="@style/AppTheme">
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".ui.preference.RawTextActivity"
+            android:exported="false"
             android:theme="@style/AppTheme">
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-            </intent-filter>
         </activity>
     </application>
 </manifest>

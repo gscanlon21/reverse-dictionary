@@ -1,6 +1,9 @@
 package dev.ascallion.reversedictionary.vm
 
 import androidx.test.core.app.ApplicationProvider
+import com.jraska.livedata.TestLifecycle
+import com.jraska.livedata.TestObserver
+import com.jraska.livedata.test
 import dev.ascallion.reversedictionary.BaseUnitTest
 import dev.ascallion.reversedictionary.core.repository.ApiType
 import dev.ascallion.reversedictionary.core.repository.ViewResource
@@ -10,9 +13,6 @@ import dev.ascallion.reversedictionary.db.search.WordOfTheDayEntity
 import dev.ascallion.reversedictionary.repository.search.SearchRepository
 import dev.ascallion.reversedictionary.test.TestCoroutine
 import dev.ascallion.reversedictionary.vm.search.SearchViewModel
-import com.jraska.livedata.TestLifecycle
-import com.jraska.livedata.TestObserver
-import com.jraska.livedata.test
 import io.mockk.coEvery
 import io.mockk.mockkClass
 import io.mockk.slot

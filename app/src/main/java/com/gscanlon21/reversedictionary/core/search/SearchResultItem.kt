@@ -11,7 +11,7 @@ class SearchResultItem constructor(
 ) {
     constructor(entity: SearchResultEntity) : this(
         entity.value,
-        entity.extra?.maxBy { it.score }?.value,
+        if (entity.extra.isNullOrEmpty()) { null } else { entity.extra.maxBy { it.score }.value },
         if (entity.type == ApiType.Datamuse.Definition) { R.layout.adapter_search_result } else { R.layout.adapter_search_result }
     )
 }

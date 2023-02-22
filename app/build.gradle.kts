@@ -17,8 +17,7 @@ android {
             assets.srcDir(File("src/main/assets"))
         }
     }
-    compileSdkVersion(30)
-    buildToolsVersion("30.0.0")
+    compileSdkVersion(33)
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
@@ -33,11 +32,11 @@ android {
     defaultConfig {
         applicationId = "dev.ascallion.reversedictionary"
         minSdkVersion(26)
-        targetSdkVersion(31)
+        targetSdkVersion(33)
         versionCode = System.getenv("GITHUB_RUN_NUMBER")?.toIntOrNull() ?: 1
         versionName = readJsonFile(file("manifest.json"), ManifestFile::class.java).version
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-        buildConfigField("int", "MIN_SDK_VERSION", "${minSdkVersion!!.apiLevel}")
+        buildConfigField("int", "MIN_SDK_VERSION", "26")
         buildConfigField("int", "TARGET_SDK_TEST_VERSION", "28") // Robolectric doesn't support v29 w/ JAVA_1_8
     }
     signingConfigs {
@@ -88,38 +87,38 @@ dependencies {
 
     // Kotlin
     implementation(kotlin("stdlib", Dependencies.KOTLIN_VERSION))
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.4.1")
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.4.1")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4")
 
     // AndroidX
-    implementation("androidx.appcompat:appcompat:1.2.0")
+    implementation("androidx.appcompat:appcompat:1.4.2")
     implementation("androidx.lifecycle:lifecycle-extensions:2.2.0")
 
     // Material Styles
-    implementation("com.google.android.material:material:1.3.0")
+    implementation("com.google.android.material:material:1.6.0")
 
     // Kotlin Extensions
-    implementation("androidx.core:core-ktx:1.3.2")
-    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.0")
-    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.3.0")
-    implementation("androidx.navigation:navigation-fragment-ktx:2.3.4")
+    implementation("androidx.core:core-ktx:1.9.0")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1")
+    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.5.1")
+    implementation("androidx.navigation:navigation-fragment-ktx:2.5.3")
 
     // User Preference
-    implementation("androidx.preference:preference:1.1.1")
-    implementation("androidx.preference:preference-ktx:1.1.1")
+    implementation("androidx.preference:preference:1.2.0")
+    implementation("androidx.preference:preference-ktx:1.2.0")
 
     // Actively developed version of ViewPager
     implementation("androidx.viewpager2:viewpager2:1.0.0")
 
     // Network requests
-    implementation("com.android.volley:volley:1.2.0")
+    implementation("com.android.volley:volley:1.2.1")
 
     // Room database
-    implementation("androidx.room:room-runtime:2.2.6")
-    kapt("androidx.room:room-compiler:2.2.6") // Coroutines support
-    implementation("androidx.room:room-ktx:2.2.6") // Kotlin Extensions
+    implementation("androidx.room:room-runtime:2.5.0")
+    kapt("androidx.room:room-compiler:2.5.0") // Coroutines support
+    implementation("androidx.room:room-ktx:2.5.0") // Kotlin Extensions
 
-    debugImplementation("androidx.fragment:fragment-testing:1.3.1")
+    debugImplementation("androidx.fragment:fragment-testing:1.5.5")
 
     // Instrumented Tests
     androidTestImplementation("androidx.test:core:1.3.0") // Core library

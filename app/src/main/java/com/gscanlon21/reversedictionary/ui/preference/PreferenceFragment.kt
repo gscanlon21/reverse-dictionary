@@ -23,9 +23,8 @@ class PreferenceFragment : PreferenceFragmentCompat() {
 
         preferenceViewModel.setTitle(R.string.preference_title_settings)
     }
-
-    override fun onPreferenceTreeClick(preference: Preference?): Boolean {
-        return when (preference?.key) {
+    override fun onPreferenceTreeClick(preference: Preference): Boolean {
+        return when (preference.key) {
             getString(R.string.key_shared_preference_source_code) -> {
                 startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(SOURCE_CODE_URL)))
                 true
@@ -41,10 +40,10 @@ class PreferenceFragment : PreferenceFragmentCompat() {
         }
     }
 
-    override fun onDisplayPreferenceDialog(preference: Preference?) {
+    override fun onDisplayPreferenceDialog(preference: Preference) {
         super.onDisplayPreferenceDialog(preference)
 
-        if (preference?.key == getString(R.string.key_shared_preference_pages_to_show)) {
+        if (preference.key == getString(R.string.key_shared_preference_pages_to_show)) {
             preference.setOnPreferenceChangeListener prefChange@{ _, newValue ->
                 val isValid = (newValue as HashSet<*>).count() > 0
                 if (!isValid) {
