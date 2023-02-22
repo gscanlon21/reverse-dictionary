@@ -19,11 +19,11 @@ android {
     }
     compileOptions {
         compileSdk = 33
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
     }
     kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_1_8.toString()
+        jvmTarget = JavaVersion.VERSION_11.toString()
         freeCompilerArgs = freeCompilerArgs + "-Xopt-in=kotlin.RequiresOptIn"
     }
     kotlinter {
@@ -31,8 +31,8 @@ android {
     }
     defaultConfig {
         applicationId = "dev.ascallion.reversedictionary"
-        minSdkVersion(26)
-        targetSdkVersion(33)
+        minSdk = 26
+        targetSdk = 33
         versionCode = System.getenv("GITHUB_RUN_NUMBER")?.toIntOrNull() ?: 1
         versionName = readJsonFile(file("manifest.json"), ManifestFile::class.java).version
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
