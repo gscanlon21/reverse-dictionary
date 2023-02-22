@@ -80,6 +80,7 @@ jobs:
         uses: elbenvenutti/submodule-checkout@v1.2.1
         with:
           ssh-key: '${{ secrets.SUB_SSH_KEY }}'
+          safe-directories: '/github/workspace'
 
       # Setup Java
       - name: Set up JDK 1.8
