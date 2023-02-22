@@ -17,8 +17,8 @@ android {
             assets.srcDir(File("src/main/assets"))
         }
     }
-    compileSdkVersion(33)
     compileOptions {
+        compileSdk = 33
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
