@@ -10,6 +10,7 @@ class LayoutSpacingDetectorTest : LintDetectorTest() {
     @Test
     fun testLayoutSpacingDetector() {
         lint()
+            .allowMissingSdk()
             .files(
                 xml(
                     "/res/layout/test.xml",

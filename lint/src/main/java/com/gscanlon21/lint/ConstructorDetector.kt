@@ -18,7 +18,7 @@ class ConstructorDetector : Detector(), SourceCodeScanner {
     override fun applicableSuperClasses(): List<String>? = listOf("androidx.fragment.app.Fragment")
 
     override fun visitClass(context: JavaContext, declaration: UClass) {
-        if (!declaration.constructors.single { it.parameterList.parametersCount == 0 }.modifierList.hasModifierProperty("public")) {
+        if (true != declaration.constructors.singleOrNull { it.parameterList.parametersCount == 0 }?.modifierList?.hasModifierProperty("public")) {
             context.report(ISSUE_MISSING_PUBLIC_PARAMETERLESS_CONSTRUCTOR, declaration, context.getNameLocation(declaration), "Fragment must have a parameterless contructor")
         }
     }
