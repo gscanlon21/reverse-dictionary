@@ -77,7 +77,7 @@ jobs:
 
       # Checkout Submodules
       - name: Checkout Submodules
-        uses: jwsi/submodule-checkout@v1
+        uses: elbenvenutti/submodule-checkout@master
         with:
           ssh-key: '${{ secrets.SUB_SSH_KEY }}'
 
