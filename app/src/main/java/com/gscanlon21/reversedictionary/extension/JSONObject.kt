@@ -1,4 +1,4 @@
-package com.gscanlon21.reversedictionary.extension
+package dev.ascallion.reversedictionary.extension
 
 import org.json.JSONObject
 

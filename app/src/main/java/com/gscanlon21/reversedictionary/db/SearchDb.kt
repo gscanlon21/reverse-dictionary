@@ -1,15 +1,15 @@
-package com.gscanlon21.reversedictionary.db
+package dev.ascallion.reversedictionary.db
 
 import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
-import com.gscanlon21.reversedictionary.db.history.HistoryDao
-import com.gscanlon21.reversedictionary.db.history.HistoryEntity
-import com.gscanlon21.reversedictionary.db.search.SearchDao
-import com.gscanlon21.reversedictionary.db.search.SearchResultEntity
-import com.gscanlon21.reversedictionary.db.search.WordOfTheDayEntity
+import dev.ascallion.reversedictionary.db.history.HistoryDao
+import dev.ascallion.reversedictionary.db.history.HistoryEntity
+import dev.ascallion.reversedictionary.db.search.SearchDao
+import dev.ascallion.reversedictionary.db.search.SearchResultEntity
+import dev.ascallion.reversedictionary.db.search.WordOfTheDayEntity
 
 @Database(
     entities = [HistoryEntity::class, SearchResultEntity::class, WordOfTheDayEntity::class],

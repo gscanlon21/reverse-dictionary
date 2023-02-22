@@ -1,8 +1,8 @@
-package com.gscanlon21.reversedictionary.core.repository
+package dev.ascallion.reversedictionary.core.repository
 
 import com.android.volley.Response
 import com.android.volley.VolleyError
-import com.gscanlon21.reversedictionary.core.repository.NetworkOnlyBoundResource.Companion.networkSemaphore
+import dev.ascallion.reversedictionary.core.repository.NetworkOnlyBoundResource.Companion.networkSemaphore
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.Flow

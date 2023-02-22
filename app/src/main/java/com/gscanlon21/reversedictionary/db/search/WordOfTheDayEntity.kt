@@ -1,4 +1,4 @@
-package com.gscanlon21.reversedictionary.db.search
+package dev.ascallion.reversedictionary.db.search
 
 import androidx.room.Entity
 import androidx.room.Index

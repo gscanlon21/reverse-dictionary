@@ -1,4 +1,4 @@
-package com.gscanlon21.reversedictionary.ui
+package dev.ascallion.reversedictionary.ui
 
 import android.content.ClipboardManager
 import android.content.Context
@@ -17,10 +17,10 @@ import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.espresso.matcher.ViewMatchers.withText
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.filters.LargeTest
-import com.gscanlon21.reversedictionary.R
-import com.gscanlon21.reversedictionary.androidtest.TestDb
-import com.gscanlon21.reversedictionary.androidtest.TestService
-import com.gscanlon21.reversedictionary.db.history.HistoryEntity
+import dev.ascallion.reversedictionary.R
+import dev.ascallion.reversedictionary.androidtest.TestDb
+import dev.ascallion.reversedictionary.androidtest.TestService
+import dev.ascallion.reversedictionary.db.history.HistoryEntity
 import kotlinx.coroutines.runBlocking
 import org.hamcrest.CoreMatchers
 import org.junit.After

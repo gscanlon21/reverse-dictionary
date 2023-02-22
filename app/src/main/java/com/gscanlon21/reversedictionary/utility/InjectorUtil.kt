@@ -1,17 +1,17 @@
-package com.gscanlon21.reversedictionary.utility
+package dev.ascallion.reversedictionary.utility
 
 import android.app.Application
 import android.content.Context
-import com.gscanlon21.reversedictionary.db.SearchDb
-import com.gscanlon21.reversedictionary.repository.history.HistoryRepository
-import com.gscanlon21.reversedictionary.repository.history.HistoryRepositoryImpl
-import com.gscanlon21.reversedictionary.repository.search.SearchRepository
-import com.gscanlon21.reversedictionary.repository.search.SearchRepositoryImpl
-import com.gscanlon21.reversedictionary.service.SearchServiceImpl
-import com.gscanlon21.reversedictionary.service.api.Requests
-import com.gscanlon21.reversedictionary.vm.history.HistoryViewModelFactory
-import com.gscanlon21.reversedictionary.vm.search.SearchTermViewModelFactory
-import com.gscanlon21.reversedictionary.vm.search.SearchViewModelFactory
+import dev.ascallion.reversedictionary.db.SearchDb
+import dev.ascallion.reversedictionary.repository.history.HistoryRepository
+import dev.ascallion.reversedictionary.repository.history.HistoryRepositoryImpl
+import dev.ascallion.reversedictionary.repository.search.SearchRepository
+import dev.ascallion.reversedictionary.repository.search.SearchRepositoryImpl
+import dev.ascallion.reversedictionary.service.SearchServiceImpl
+import dev.ascallion.reversedictionary.service.api.Requests
+import dev.ascallion.reversedictionary.vm.history.HistoryViewModelFactory
+import dev.ascallion.reversedictionary.vm.search.SearchTermViewModelFactory
+import dev.ascallion.reversedictionary.vm.search.SearchViewModelFactory
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 
 /**

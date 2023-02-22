@@ -1,4 +1,4 @@
-package com.gscanlon21.reversedictionary.core.repository
+package dev.ascallion.reversedictionary.core.repository
 
 import android.util.Log
 

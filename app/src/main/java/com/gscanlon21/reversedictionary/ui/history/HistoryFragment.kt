@@ -1,4 +1,4 @@
-package com.gscanlon21.reversedictionary.ui.history
+package dev.ascallion.reversedictionary.ui.history
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -12,15 +12,15 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.android.volley.NetworkError
 import com.google.android.material.snackbar.Snackbar
-import com.gscanlon21.reversedictionary.R
-import com.gscanlon21.reversedictionary.adapter.history.HistoryAdapter
-import com.gscanlon21.reversedictionary.core.history.HistoryItem
-import com.gscanlon21.reversedictionary.core.repository.ViewResource
-import com.gscanlon21.reversedictionary.databinding.FragmentHistoryBinding
-import com.gscanlon21.reversedictionary.databinding.RecyclerElevatedBinding
-import com.gscanlon21.reversedictionary.utility.InjectorUtil
-import com.gscanlon21.reversedictionary.vm.history.HistoryViewModel
-import com.gscanlon21.reversedictionary.vm.search.SearchTermViewModel
+import dev.ascallion.reversedictionary.R
+import dev.ascallion.reversedictionary.adapter.history.HistoryAdapter
+import dev.ascallion.reversedictionary.core.history.HistoryItem
+import dev.ascallion.reversedictionary.core.repository.ViewResource
+import dev.ascallion.reversedictionary.databinding.FragmentHistoryBinding
+import dev.ascallion.reversedictionary.databinding.RecyclerElevatedBinding
+import dev.ascallion.reversedictionary.utility.InjectorUtil
+import dev.ascallion.reversedictionary.vm.history.HistoryViewModel
+import dev.ascallion.reversedictionary.vm.search.SearchTermViewModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.launch
 

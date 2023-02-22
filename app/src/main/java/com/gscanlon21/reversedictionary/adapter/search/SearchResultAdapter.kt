@@ -1,4 +1,4 @@
-package com.gscanlon21.reversedictionary.adapter.search
+package dev.ascallion.reversedictionary.adapter.search
 
 import android.graphics.Typeface
 import android.text.SpannableStringBuilder
@@ -13,9 +13,9 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.core.text.set
 import androidx.recyclerview.widget.RecyclerView
-import com.gscanlon21.reversedictionary.R
-import com.gscanlon21.reversedictionary.adapter.ContextMenuAdapter
-import com.gscanlon21.reversedictionary.core.search.SearchResultItem
+import dev.ascallion.reversedictionary.R
+import dev.ascallion.reversedictionary.adapter.ContextMenuAdapter
+import dev.ascallion.reversedictionary.core.search.SearchResultItem
 
 class SearchResultAdapter(private val results: List<SearchResultItem>) :
     RecyclerView.Adapter<SearchResultAdapter.SearchResultViewHolder>(), ContextMenuAdapter {

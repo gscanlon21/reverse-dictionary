@@ -1,4 +1,4 @@
-package com.gscanlon21.reversedictionary.core.service
+package dev.ascallion.reversedictionary.core.service
 
 data class DatamuseModel(
     val word: String,

@@ -18,7 +18,7 @@ dependencies {
 tasks.jar {
     manifest {
         attributes(
-            "Lint-Registry-v2" to "com.gscanlon21.lint.LintRegistry"
+            "Lint-Registry-v2" to "dev.ascallion.lint.LintRegistry"
         )
     }
 }

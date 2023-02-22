@@ -1,13 +1,13 @@
-package com.gscanlon21.reversedictionary.vm.history
+package dev.ascallion.reversedictionary.vm.history
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
-import com.gscanlon21.reversedictionary.core.history.HistoryItem
-import com.gscanlon21.reversedictionary.core.repository.ViewResource
-import com.gscanlon21.reversedictionary.core.repository.map
-import com.gscanlon21.reversedictionary.db.history.HistoryEntity
-import com.gscanlon21.reversedictionary.repository.history.HistoryRepository
+import dev.ascallion.reversedictionary.core.history.HistoryItem
+import dev.ascallion.reversedictionary.core.repository.ViewResource
+import dev.ascallion.reversedictionary.core.repository.map
+import dev.ascallion.reversedictionary.db.history.HistoryEntity
+import dev.ascallion.reversedictionary.repository.history.HistoryRepository
 import kotlinx.coroutines.flow.map
 
 class HistoryViewModel constructor(private val historyRepository: HistoryRepository) : ViewModel() {

@@ -1,12 +1,12 @@
-package com.gscanlon21.reversedictionary.repository.search
+package dev.ascallion.reversedictionary.repository.search
 
 import com.android.volley.Response
-import com.gscanlon21.reversedictionary.core.repository.ApiType
-import com.gscanlon21.reversedictionary.core.repository.NetworkBoundResource
-import com.gscanlon21.reversedictionary.core.service.DatamuseModel
-import com.gscanlon21.reversedictionary.db.search.SearchDao
-import com.gscanlon21.reversedictionary.db.search.SearchResultEntity
-import com.gscanlon21.reversedictionary.service.SearchService
+import dev.ascallion.reversedictionary.core.repository.ApiType
+import dev.ascallion.reversedictionary.core.repository.NetworkBoundResource
+import dev.ascallion.reversedictionary.core.service.DatamuseModel
+import dev.ascallion.reversedictionary.db.search.SearchDao
+import dev.ascallion.reversedictionary.db.search.SearchResultEntity
+import dev.ascallion.reversedictionary.service.SearchService
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOf

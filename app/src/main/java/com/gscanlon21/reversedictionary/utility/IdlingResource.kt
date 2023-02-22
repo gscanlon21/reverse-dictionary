@@ -1,4 +1,4 @@
-package com.gscanlon21.reversedictionary.utility
+package dev.ascallion.reversedictionary.utility
 
 import androidx.test.espresso.IdlingResource
 import java.util.concurrent.atomic.AtomicBoolean

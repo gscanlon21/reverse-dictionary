@@ -1,4 +1,4 @@
-package com.gscanlon21.reversedictionary.ui.preference
+package dev.ascallion.reversedictionary.ui.preference
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,10 +8,10 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.gscanlon21.reversedictionary.R
-import com.gscanlon21.reversedictionary.adapter.preference.AttributionAdapter
-import com.gscanlon21.reversedictionary.databinding.FragmentAttributionBinding
-import com.gscanlon21.reversedictionary.vm.preference.PreferenceViewModel
+import dev.ascallion.reversedictionary.R
+import dev.ascallion.reversedictionary.adapter.preference.AttributionAdapter
+import dev.ascallion.reversedictionary.databinding.FragmentAttributionBinding
+import dev.ascallion.reversedictionary.vm.preference.PreferenceViewModel
 
 class AttributionFragment : Fragment() {
     private lateinit var binding: FragmentAttributionBinding

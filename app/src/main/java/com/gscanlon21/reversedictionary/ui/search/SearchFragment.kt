@@ -1,4 +1,4 @@
-package com.gscanlon21.reversedictionary.ui.search
+package dev.ascallion.reversedictionary.ui.search
 
 import android.content.Intent
 import android.os.Bundle
@@ -14,16 +14,16 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.android.volley.NetworkError
 import com.google.android.material.snackbar.Snackbar
-import com.gscanlon21.reversedictionary.R
-import com.gscanlon21.reversedictionary.adapter.search.SearchResultAdapter
-import com.gscanlon21.reversedictionary.core.repository.ApiType
-import com.gscanlon21.reversedictionary.core.repository.ViewResource
-import com.gscanlon21.reversedictionary.core.search.SearchResultItem
-import com.gscanlon21.reversedictionary.databinding.FragmentSearchBinding
-import com.gscanlon21.reversedictionary.ui.MainActivity
-import com.gscanlon21.reversedictionary.utility.InjectorUtil
-import com.gscanlon21.reversedictionary.vm.search.SearchTermViewModel
-import com.gscanlon21.reversedictionary.vm.search.SearchViewModel
+import dev.ascallion.reversedictionary.R
+import dev.ascallion.reversedictionary.adapter.search.SearchResultAdapter
+import dev.ascallion.reversedictionary.core.repository.ApiType
+import dev.ascallion.reversedictionary.core.repository.ViewResource
+import dev.ascallion.reversedictionary.core.search.SearchResultItem
+import dev.ascallion.reversedictionary.databinding.FragmentSearchBinding
+import dev.ascallion.reversedictionary.ui.MainActivity
+import dev.ascallion.reversedictionary.utility.InjectorUtil
+import dev.ascallion.reversedictionary.vm.search.SearchTermViewModel
+import dev.ascallion.reversedictionary.vm.search.SearchViewModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.launch
 

@@ -1,4 +1,4 @@
-package com.gscanlon21.reversedictionary.core.preference
+package dev.ascallion.reversedictionary.core.preference
 
 data class Attribution(
     val title: Int,

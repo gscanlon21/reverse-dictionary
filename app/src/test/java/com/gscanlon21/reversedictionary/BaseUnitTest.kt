@@ -1,4 +1,4 @@
-package com.gscanlon21.reversedictionary
+package dev.ascallion.reversedictionary
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.test.ext.junit.runners.AndroidJUnit4

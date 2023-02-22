@@ -1,12 +1,12 @@
-package com.gscanlon21.reversedictionary.repository
+package dev.ascallion.reversedictionary.repository
 
 import com.android.volley.Cache
 import com.android.volley.Response
 import com.android.volley.VolleyError
-import com.gscanlon21.reversedictionary.BaseUnitTest
-import com.gscanlon21.reversedictionary.core.repository.NetworkBoundResource
-import com.gscanlon21.reversedictionary.core.repository.ViewResource
-import com.gscanlon21.reversedictionary.test.TestCoroutine
+import dev.ascallion.reversedictionary.BaseUnitTest
+import dev.ascallion.reversedictionary.core.repository.NetworkBoundResource
+import dev.ascallion.reversedictionary.core.repository.ViewResource
+import dev.ascallion.reversedictionary.test.TestCoroutine
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.Flow

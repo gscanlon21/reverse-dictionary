@@ -1,11 +1,11 @@
-package com.gscanlon21.reversedictionary.ui.preference
+package dev.ascallion.reversedictionary.ui.preference
 
 import android.os.Bundle
 import android.text.method.ScrollingMovementMethod
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
-import com.gscanlon21.reversedictionary.R
-import com.gscanlon21.reversedictionary.databinding.ActivityRawTextBinding
+import dev.ascallion.reversedictionary.R
+import dev.ascallion.reversedictionary.databinding.ActivityRawTextBinding
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 

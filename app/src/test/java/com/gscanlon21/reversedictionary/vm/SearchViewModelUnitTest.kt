@@ -1,15 +1,15 @@
-package com.gscanlon21.reversedictionary.vm
+package dev.ascallion.reversedictionary.vm
 
 import androidx.test.core.app.ApplicationProvider
-import com.gscanlon21.reversedictionary.BaseUnitTest
-import com.gscanlon21.reversedictionary.core.repository.ApiType
-import com.gscanlon21.reversedictionary.core.repository.ViewResource
-import com.gscanlon21.reversedictionary.core.search.SearchResultItem
-import com.gscanlon21.reversedictionary.db.search.SearchResultEntity
-import com.gscanlon21.reversedictionary.db.search.WordOfTheDayEntity
-import com.gscanlon21.reversedictionary.repository.search.SearchRepository
-import com.gscanlon21.reversedictionary.test.TestCoroutine
-import com.gscanlon21.reversedictionary.vm.search.SearchViewModel
+import dev.ascallion.reversedictionary.BaseUnitTest
+import dev.ascallion.reversedictionary.core.repository.ApiType
+import dev.ascallion.reversedictionary.core.repository.ViewResource
+import dev.ascallion.reversedictionary.core.search.SearchResultItem
+import dev.ascallion.reversedictionary.db.search.SearchResultEntity
+import dev.ascallion.reversedictionary.db.search.WordOfTheDayEntity
+import dev.ascallion.reversedictionary.repository.search.SearchRepository
+import dev.ascallion.reversedictionary.test.TestCoroutine
+import dev.ascallion.reversedictionary.vm.search.SearchViewModel
 import com.jraska.livedata.TestLifecycle
 import com.jraska.livedata.TestObserver
 import com.jraska.livedata.test

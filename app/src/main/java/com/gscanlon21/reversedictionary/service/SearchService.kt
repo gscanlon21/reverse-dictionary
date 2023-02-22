@@ -1,16 +1,16 @@
-package com.gscanlon21.reversedictionary.service
+package dev.ascallion.reversedictionary.service
 
 import com.android.volley.Cache
 import com.android.volley.Request
 import com.android.volley.Response
 import com.android.volley.toolbox.JsonArrayRequest
-import com.gscanlon21.reversedictionary.core.repository.ApiType
-import com.gscanlon21.reversedictionary.core.service.DatamuseModel
-import com.gscanlon21.reversedictionary.extension.getInt
-import com.gscanlon21.reversedictionary.extension.getSequenceOrNull
-import com.gscanlon21.reversedictionary.extension.getString
-import com.gscanlon21.reversedictionary.extension.toSequence
-import com.gscanlon21.reversedictionary.service.api.Requests
+import dev.ascallion.reversedictionary.core.repository.ApiType
+import dev.ascallion.reversedictionary.core.service.DatamuseModel
+import dev.ascallion.reversedictionary.extension.getInt
+import dev.ascallion.reversedictionary.extension.getSequenceOrNull
+import dev.ascallion.reversedictionary.extension.getString
+import dev.ascallion.reversedictionary.extension.toSequence
+import dev.ascallion.reversedictionary.service.api.Requests
 import kotlinx.coroutines.suspendCancellableCoroutine
 import org.json.JSONObject
 import kotlin.coroutines.resume

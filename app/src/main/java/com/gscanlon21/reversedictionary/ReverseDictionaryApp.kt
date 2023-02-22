@@ -1,4 +1,4 @@
-package com.gscanlon21.reversedictionary
+package dev.ascallion.reversedictionary
 
 import android.app.Application
 import android.os.Build

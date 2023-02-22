@@ -1,9 +1,9 @@
-package com.gscanlon21.reversedictionary.repository.history
+package dev.ascallion.reversedictionary.repository.history
 
-import com.gscanlon21.reversedictionary.core.history.HistoryUpsert
-import com.gscanlon21.reversedictionary.core.repository.ViewResource
-import com.gscanlon21.reversedictionary.db.history.HistoryDao
-import com.gscanlon21.reversedictionary.db.history.HistoryEntity
+import dev.ascallion.reversedictionary.core.history.HistoryUpsert
+import dev.ascallion.reversedictionary.core.repository.ViewResource
+import dev.ascallion.reversedictionary.db.history.HistoryDao
+import dev.ascallion.reversedictionary.db.history.HistoryEntity
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi

@@ -1,12 +1,12 @@
-package com.gscanlon21.reversedictionary.adapter
+package dev.ascallion.reversedictionary.adapter
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.gscanlon21.reversedictionary.core.ui.UiView
-import com.gscanlon21.reversedictionary.ui.history.HistoryFragment
-import com.gscanlon21.reversedictionary.ui.search.SearchFragment
-import com.gscanlon21.reversedictionary.ui.search.SearchResultFragment
+import dev.ascallion.reversedictionary.core.ui.UiView
+import dev.ascallion.reversedictionary.ui.history.HistoryFragment
+import dev.ascallion.reversedictionary.ui.search.SearchFragment
+import dev.ascallion.reversedictionary.ui.search.SearchResultFragment
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 
 interface MainPagerAdapter {

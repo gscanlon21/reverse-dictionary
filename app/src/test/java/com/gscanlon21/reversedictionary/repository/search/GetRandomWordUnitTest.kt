@@ -1,8 +1,8 @@
-package com.gscanlon21.reversedictionary.repository.search
+package dev.ascallion.reversedictionary.repository.search
 
 import androidx.test.core.app.ApplicationProvider
-import com.gscanlon21.reversedictionary.BaseUnitTest
-import com.gscanlon21.reversedictionary.test.TestCoroutine
+import dev.ascallion.reversedictionary.BaseUnitTest
+import dev.ascallion.reversedictionary.test.TestCoroutine
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.toList
 import kotlinx.coroutines.test.TestCoroutineDispatcher

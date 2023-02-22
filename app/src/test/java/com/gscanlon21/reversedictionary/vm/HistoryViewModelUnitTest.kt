@@ -1,12 +1,12 @@
-package com.gscanlon21.reversedictionary.vm
+package dev.ascallion.reversedictionary.vm
 
-import com.gscanlon21.reversedictionary.BaseUnitTest
-import com.gscanlon21.reversedictionary.core.history.HistoryItem
-import com.gscanlon21.reversedictionary.core.repository.ViewResource
-import com.gscanlon21.reversedictionary.db.history.HistoryEntity
-import com.gscanlon21.reversedictionary.repository.history.HistoryRepository
-import com.gscanlon21.reversedictionary.test.TestCoroutine
-import com.gscanlon21.reversedictionary.vm.history.HistoryViewModel
+import dev.ascallion.reversedictionary.BaseUnitTest
+import dev.ascallion.reversedictionary.core.history.HistoryItem
+import dev.ascallion.reversedictionary.core.repository.ViewResource
+import dev.ascallion.reversedictionary.db.history.HistoryEntity
+import dev.ascallion.reversedictionary.repository.history.HistoryRepository
+import dev.ascallion.reversedictionary.test.TestCoroutine
+import dev.ascallion.reversedictionary.vm.history.HistoryViewModel
 import com.jraska.livedata.test
 import io.mockk.coEvery
 import io.mockk.mockkClass

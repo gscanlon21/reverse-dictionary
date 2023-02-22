@@ -1,8 +1,8 @@
-package com.gscanlon21.reversedictionary.core.search
+package dev.ascallion.reversedictionary.core.search
 
-import com.gscanlon21.reversedictionary.R
-import com.gscanlon21.reversedictionary.core.repository.ApiType
-import com.gscanlon21.reversedictionary.db.search.SearchResultEntity
+import dev.ascallion.reversedictionary.R
+import dev.ascallion.reversedictionary.core.repository.ApiType
+import dev.ascallion.reversedictionary.db.search.SearchResultEntity
 
 class SearchResultItem constructor(
     val title: String,

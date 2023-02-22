@@ -1,9 +1,9 @@
-package com.gscanlon21.reversedictionary.repository
+package dev.ascallion.reversedictionary.repository
 
-import com.gscanlon21.reversedictionary.BaseUnitTest
-import com.gscanlon21.reversedictionary.core.repository.DbBoundResource
-import com.gscanlon21.reversedictionary.core.repository.ViewResource
-import com.gscanlon21.reversedictionary.test.TestCoroutine
+import dev.ascallion.reversedictionary.BaseUnitTest
+import dev.ascallion.reversedictionary.core.repository.DbBoundResource
+import dev.ascallion.reversedictionary.core.repository.ViewResource
+import dev.ascallion.reversedictionary.test.TestCoroutine
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.Flow

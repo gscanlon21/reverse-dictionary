@@ -1,4 +1,4 @@
-package com.gscanlon21.reversedictionary.adapter.history
+package dev.ascallion.reversedictionary.adapter.history
 
 import android.view.LayoutInflater
 import android.view.View
@@ -6,9 +6,9 @@ import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.ToggleButton
 import androidx.recyclerview.widget.RecyclerView
-import com.gscanlon21.reversedictionary.R
-import com.gscanlon21.reversedictionary.adapter.ContextMenuAdapter
-import com.gscanlon21.reversedictionary.core.history.HistoryItem
+import dev.ascallion.reversedictionary.R
+import dev.ascallion.reversedictionary.adapter.ContextMenuAdapter
+import dev.ascallion.reversedictionary.core.history.HistoryItem
 
 class HistoryAdapter(private val results: List<HistoryItem>) :
     RecyclerView.Adapter<HistoryAdapter.HistoryViewHolder>(), ContextMenuAdapter {

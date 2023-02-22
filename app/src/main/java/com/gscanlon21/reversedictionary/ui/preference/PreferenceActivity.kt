@@ -1,11 +1,11 @@
-package com.gscanlon21.reversedictionary.ui.preference
+package dev.ascallion.reversedictionary.ui.preference
 
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import com.gscanlon21.reversedictionary.R
-import com.gscanlon21.reversedictionary.databinding.ActivityPreferenceBinding
-import com.gscanlon21.reversedictionary.vm.preference.PreferenceViewModel
+import dev.ascallion.reversedictionary.R
+import dev.ascallion.reversedictionary.databinding.ActivityPreferenceBinding
+import dev.ascallion.reversedictionary.vm.preference.PreferenceViewModel
 
 class PreferenceActivity : AppCompatActivity() {
     private lateinit var binding: ActivityPreferenceBinding

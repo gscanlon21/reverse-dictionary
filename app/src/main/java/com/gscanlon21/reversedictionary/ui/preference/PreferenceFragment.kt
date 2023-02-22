@@ -1,4 +1,4 @@
-package com.gscanlon21.reversedictionary.ui.preference
+package dev.ascallion.reversedictionary.ui.preference
 
 import android.content.Intent
 import android.net.Uri
@@ -7,8 +7,8 @@ import androidx.fragment.app.activityViewModels
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
 import com.google.android.material.snackbar.Snackbar
-import com.gscanlon21.reversedictionary.R
-import com.gscanlon21.reversedictionary.vm.preference.PreferenceViewModel
+import dev.ascallion.reversedictionary.R
+import dev.ascallion.reversedictionary.vm.preference.PreferenceViewModel
 import java.util.HashSet
 
 class PreferenceFragment : PreferenceFragmentCompat() {

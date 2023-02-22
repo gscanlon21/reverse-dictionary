@@ -1,4 +1,4 @@
-package com.gscanlon21.reversedictionary.androidtest
+package dev.ascallion.reversedictionary.androidtest
 
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi

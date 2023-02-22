@@ -1,10 +1,10 @@
-package com.gscanlon21.reversedictionary.androidtest
+package dev.ascallion.reversedictionary.androidtest
 
 import android.content.Context
 import androidx.test.core.app.ApplicationProvider
-import com.gscanlon21.reversedictionary.db.SearchDb
-import com.gscanlon21.reversedictionary.db.history.HistoryDao
-import com.gscanlon21.reversedictionary.db.search.SearchDao
+import dev.ascallion.reversedictionary.db.SearchDb
+import dev.ascallion.reversedictionary.db.history.HistoryDao
+import dev.ascallion.reversedictionary.db.search.SearchDao
 import io.mockk.every
 import io.mockk.mockkObject
 import org.junit.After

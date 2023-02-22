@@ -1,4 +1,4 @@
-package com.gscanlon21.reversedictionary.db.history
+package dev.ascallion.reversedictionary.db.history
 
 import androidx.lifecycle.LiveData
 import androidx.room.Dao
@@ -7,7 +7,7 @@ import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Transaction
 import androidx.room.Update
-import com.gscanlon21.reversedictionary.core.history.HistoryUpsert
+import dev.ascallion.reversedictionary.core.history.HistoryUpsert
 
 @Dao
 interface HistoryDao {

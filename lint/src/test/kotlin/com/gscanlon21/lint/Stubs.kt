@@ -1,4 +1,4 @@
-package com.gscanlon21.lint
+package dev.ascallion.lint
 
 import com.android.tools.lint.checks.infrastructure.LintDetectorTest
 
@@ -7,7 +7,7 @@ object Stubs {
     val CONSTRUCTOR_TEST_KT = LintDetectorTest.kotlin(
         "com/gscanlon21/lint/Test.kt",
         """
-package com.gscanlon21.lint
+package dev.ascallion.lint
 
 class PublicConstructorWithInstanceWithParams {
     init {

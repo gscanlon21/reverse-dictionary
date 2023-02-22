@@ -1,12 +1,12 @@
-package com.gscanlon21.reversedictionary.vm
+package dev.ascallion.reversedictionary.vm
 
 import androidx.annotation.VisibleForTesting
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.gscanlon21.reversedictionary.core.repository.ViewResource
-import com.gscanlon21.reversedictionary.core.ui.UiView
-import com.gscanlon21.reversedictionary.utility.IdlingResource
+import dev.ascallion.reversedictionary.core.repository.ViewResource
+import dev.ascallion.reversedictionary.core.ui.UiView
+import dev.ascallion.reversedictionary.utility.IdlingResource
 import kotlinx.coroutines.CompletableDeferred
 
 class MainViewModel : ViewModel() {

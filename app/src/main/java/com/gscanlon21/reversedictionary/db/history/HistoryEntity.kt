@@ -1,9 +1,9 @@
-package com.gscanlon21.reversedictionary.db.history
+package dev.ascallion.reversedictionary.db.history
 
 import androidx.room.Entity
 import androidx.room.Index
 import androidx.room.PrimaryKey
-import com.gscanlon21.reversedictionary.core.history.HistoryUpsert
+import dev.ascallion.reversedictionary.core.history.HistoryUpsert
 import java.time.Instant
 
 @Entity(tableName = "history", indices = [Index(value = ["name"], unique = true)])

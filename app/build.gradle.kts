@@ -31,9 +31,9 @@ android {
         disabledRules = arrayOf("filename") // Disables _class_ should be declared in a file named _class.kt_
     }
     defaultConfig {
-        applicationId = "com.gscanlon21.reversedictionary"
+        applicationId = "dev.ascallion.reversedictionary"
         minSdkVersion(26)
-        targetSdkVersion(30)
+        targetSdkVersion(31)
         versionCode = System.getenv("GITHUB_RUN_NUMBER")?.toIntOrNull() ?: 1
         versionName = readJsonFile(file("manifest.json"), ManifestFile::class.java).version
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"

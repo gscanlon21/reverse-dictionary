@@ -1,10 +1,10 @@
-package com.gscanlon21.reversedictionary.db.search
+package dev.ascallion.reversedictionary.db.search
 
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.gscanlon21.reversedictionary.core.repository.ApiType
+import dev.ascallion.reversedictionary.core.repository.ApiType
 
 @Dao
 interface SearchDao {

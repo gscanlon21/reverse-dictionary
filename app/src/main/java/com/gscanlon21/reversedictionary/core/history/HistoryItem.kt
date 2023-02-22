@@ -1,6 +1,6 @@
-package com.gscanlon21.reversedictionary.core.history
+package dev.ascallion.reversedictionary.core.history
 
-import com.gscanlon21.reversedictionary.db.history.HistoryEntity
+import dev.ascallion.reversedictionary.db.history.HistoryEntity
 
 data class HistoryItem constructor(
     val title: String,

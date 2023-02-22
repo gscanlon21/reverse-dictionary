@@ -1,12 +1,12 @@
-package com.gscanlon21.reversedictionary.repository.search
+package dev.ascallion.reversedictionary.repository.search
 
 import android.content.Context
-import com.gscanlon21.reversedictionary.core.repository.ApiType
-import com.gscanlon21.reversedictionary.core.repository.ViewResource
-import com.gscanlon21.reversedictionary.db.search.SearchDao
-import com.gscanlon21.reversedictionary.db.search.SearchResultEntity
-import com.gscanlon21.reversedictionary.db.search.WordOfTheDayEntity
-import com.gscanlon21.reversedictionary.service.SearchService
+import dev.ascallion.reversedictionary.core.repository.ApiType
+import dev.ascallion.reversedictionary.core.repository.ViewResource
+import dev.ascallion.reversedictionary.db.search.SearchDao
+import dev.ascallion.reversedictionary.db.search.SearchResultEntity
+import dev.ascallion.reversedictionary.db.search.WordOfTheDayEntity
+import dev.ascallion.reversedictionary.service.SearchService
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi

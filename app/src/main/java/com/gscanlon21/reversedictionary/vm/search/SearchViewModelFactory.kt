@@ -1,9 +1,9 @@
-package com.gscanlon21.reversedictionary.vm.search
+package dev.ascallion.reversedictionary.vm.search
 
 import android.app.Application
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.gscanlon21.reversedictionary.repository.search.SearchRepository
+import dev.ascallion.reversedictionary.repository.search.SearchRepository
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 
 /**

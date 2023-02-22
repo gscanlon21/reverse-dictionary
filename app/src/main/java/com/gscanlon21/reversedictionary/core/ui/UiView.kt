@@ -1,7 +1,7 @@
-package com.gscanlon21.reversedictionary.core.ui
+package dev.ascallion.reversedictionary.core.ui
 
 import android.content.Context
-import com.gscanlon21.reversedictionary.R
+import dev.ascallion.reversedictionary.R
 
 sealed class UiView(val name: String, val resId: Int) {
     companion object {

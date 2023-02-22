@@ -1,4 +1,4 @@
-package com.gscanlon21.reversedictionary.ui.search
+package dev.ascallion.reversedictionary.ui.search
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -12,18 +12,18 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.android.volley.NetworkError
 import com.google.android.material.snackbar.Snackbar
-import com.gscanlon21.reversedictionary.R
-import com.gscanlon21.reversedictionary.adapter.search.SearchResultAdapter
-import com.gscanlon21.reversedictionary.core.repository.ApiType
-import com.gscanlon21.reversedictionary.core.repository.ViewResource
-import com.gscanlon21.reversedictionary.core.search.SearchResultItem
-import com.gscanlon21.reversedictionary.core.ui.UiView
-import com.gscanlon21.reversedictionary.databinding.FragmentSearchResultBinding
-import com.gscanlon21.reversedictionary.databinding.RecyclerElevatedBinding
-import com.gscanlon21.reversedictionary.utility.InjectorUtil
-import com.gscanlon21.reversedictionary.vm.MainViewModel
-import com.gscanlon21.reversedictionary.vm.search.SearchTermViewModel
-import com.gscanlon21.reversedictionary.vm.search.SearchViewModel
+import dev.ascallion.reversedictionary.R
+import dev.ascallion.reversedictionary.adapter.search.SearchResultAdapter
+import dev.ascallion.reversedictionary.core.repository.ApiType
+import dev.ascallion.reversedictionary.core.repository.ViewResource
+import dev.ascallion.reversedictionary.core.search.SearchResultItem
+import dev.ascallion.reversedictionary.core.ui.UiView
+import dev.ascallion.reversedictionary.databinding.FragmentSearchResultBinding
+import dev.ascallion.reversedictionary.databinding.RecyclerElevatedBinding
+import dev.ascallion.reversedictionary.utility.InjectorUtil
+import dev.ascallion.reversedictionary.vm.MainViewModel
+import dev.ascallion.reversedictionary.vm.search.SearchTermViewModel
+import dev.ascallion.reversedictionary.vm.search.SearchViewModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.launch
 

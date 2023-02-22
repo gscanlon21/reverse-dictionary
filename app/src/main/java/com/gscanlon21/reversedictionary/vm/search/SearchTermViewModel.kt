@@ -1,11 +1,11 @@
-package com.gscanlon21.reversedictionary.vm.search
+package dev.ascallion.reversedictionary.vm.search
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.gscanlon21.reversedictionary.core.history.HistoryUpsert
-import com.gscanlon21.reversedictionary.repository.history.HistoryRepository
+import dev.ascallion.reversedictionary.core.history.HistoryUpsert
+import dev.ascallion.reversedictionary.repository.history.HistoryRepository
 import kotlinx.coroutines.launch
 
 class SearchTermViewModel constructor(private val historyRepository: HistoryRepository) : ViewModel() {

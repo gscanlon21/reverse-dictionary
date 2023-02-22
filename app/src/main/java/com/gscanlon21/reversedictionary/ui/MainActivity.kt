@@ -1,4 +1,4 @@
-package com.gscanlon21.reversedictionary.ui
+package dev.ascallion.reversedictionary.ui
 
 import android.content.Intent
 import android.os.Bundle
@@ -12,18 +12,18 @@ import androidx.lifecycle.lifecycleScope
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
-import com.gscanlon21.reversedictionary.R
-import com.gscanlon21.reversedictionary.adapter.MainPagerAdapterImpl
-import com.gscanlon21.reversedictionary.core.repository.ViewResource
-import com.gscanlon21.reversedictionary.core.ui.UiView
-import com.gscanlon21.reversedictionary.databinding.ActivityMainBinding
-import com.gscanlon21.reversedictionary.extension.defaultSharedPreferences
-import com.gscanlon21.reversedictionary.extension.emptyResultsHidden
-import com.gscanlon21.reversedictionary.extension.pagesToShow
-import com.gscanlon21.reversedictionary.ui.preference.PreferenceActivity
-import com.gscanlon21.reversedictionary.utility.InjectorUtil
-import com.gscanlon21.reversedictionary.vm.MainViewModel
-import com.gscanlon21.reversedictionary.vm.search.SearchTermViewModel
+import dev.ascallion.reversedictionary.R
+import dev.ascallion.reversedictionary.adapter.MainPagerAdapterImpl
+import dev.ascallion.reversedictionary.core.repository.ViewResource
+import dev.ascallion.reversedictionary.core.ui.UiView
+import dev.ascallion.reversedictionary.databinding.ActivityMainBinding
+import dev.ascallion.reversedictionary.extension.defaultSharedPreferences
+import dev.ascallion.reversedictionary.extension.emptyResultsHidden
+import dev.ascallion.reversedictionary.extension.pagesToShow
+import dev.ascallion.reversedictionary.ui.preference.PreferenceActivity
+import dev.ascallion.reversedictionary.utility.InjectorUtil
+import dev.ascallion.reversedictionary.vm.MainViewModel
+import dev.ascallion.reversedictionary.vm.search.SearchTermViewModel
 import kotlinx.coroutines.CompletableDeferred
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.launch

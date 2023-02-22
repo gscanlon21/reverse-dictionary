@@ -1,11 +1,11 @@
-package com.gscanlon21.reversedictionary.repository.search
+package dev.ascallion.reversedictionary.repository.search
 
 import android.content.Context
 import com.android.volley.Cache
 import com.android.volley.Response
-import com.gscanlon21.reversedictionary.core.repository.NetworkBoundResource
-import com.gscanlon21.reversedictionary.db.search.SearchDao
-import com.gscanlon21.reversedictionary.db.search.WordOfTheDayEntity
+import dev.ascallion.reversedictionary.core.repository.NetworkBoundResource
+import dev.ascallion.reversedictionary.db.search.SearchDao
+import dev.ascallion.reversedictionary.db.search.WordOfTheDayEntity
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOf

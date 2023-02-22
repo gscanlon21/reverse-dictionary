@@ -1,4 +1,4 @@
-package com.gscanlon21.reversedictionary.adapter
+package dev.ascallion.reversedictionary.adapter
 
 import android.content.ClipData
 import android.content.ClipboardManager
@@ -11,10 +11,10 @@ import android.view.View
 import androidx.appcompat.widget.PopupMenu
 import androidx.core.content.ContextCompat
 import com.google.android.material.snackbar.Snackbar
-import com.gscanlon21.reversedictionary.R
-import com.gscanlon21.reversedictionary.extension.defaultSharedPreferences
-import com.gscanlon21.reversedictionary.extension.translationLanguageCode
-import com.gscanlon21.reversedictionary.ui.MainActivity
+import dev.ascallion.reversedictionary.R
+import dev.ascallion.reversedictionary.extension.defaultSharedPreferences
+import dev.ascallion.reversedictionary.extension.translationLanguageCode
+import dev.ascallion.reversedictionary.ui.MainActivity
 
 interface ContextMenuAdapter {
     val snackbarShowDuration: Int /* ms */ get() = 5000

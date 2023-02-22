@@ -1,4 +1,4 @@
-package com.gscanlon21.reversedictionary.core.repository
+package dev.ascallion.reversedictionary.core.repository
 
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers

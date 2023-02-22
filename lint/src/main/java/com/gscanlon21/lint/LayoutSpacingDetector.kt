@@ -1,4 +1,4 @@
-package com.gscanlon21.lint
+package dev.ascallion.lint
 
 import com.android.SdkConstants
 import com.android.tools.lint.detector.api.Category

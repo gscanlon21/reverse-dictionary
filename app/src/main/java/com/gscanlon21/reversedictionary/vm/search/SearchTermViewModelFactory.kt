@@ -1,8 +1,8 @@
-package com.gscanlon21.reversedictionary.vm.search
+package dev.ascallion.reversedictionary.vm.search
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.gscanlon21.reversedictionary.repository.history.HistoryRepository
+import dev.ascallion.reversedictionary.repository.history.HistoryRepository
 
 /**
  * Factory for creating a [SearchTermViewModel] with a constructor that takes a [HistoryRepository]

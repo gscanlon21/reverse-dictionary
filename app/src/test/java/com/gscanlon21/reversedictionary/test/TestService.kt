@@ -1,7 +1,7 @@
-package com.gscanlon21.reversedictionary.test
+package dev.ascallion.reversedictionary.test
 
-import com.gscanlon21.reversedictionary.core.repository.ApiType
-import com.gscanlon21.reversedictionary.service.SearchService
+import dev.ascallion.reversedictionary.core.repository.ApiType
+import dev.ascallion.reversedictionary.service.SearchService
 import io.mockk.clearAllMocks
 import io.mockk.coEvery
 import io.mockk.mockkConstructor

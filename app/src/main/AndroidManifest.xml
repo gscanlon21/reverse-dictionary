@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.gscanlon21.reversedictionary">
+    package="dev.ascallion.reversedictionary">
 
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
-        android:name="com.gscanlon21.reversedictionary.ReverseDictionaryApp"
+        android:name="dev.ascallion.reversedictionary.ReverseDictionaryApp"
         android:allowBackup="true"
         android:fullBackupContent="true"
         android:icon="@mipmap/ic_launcher"

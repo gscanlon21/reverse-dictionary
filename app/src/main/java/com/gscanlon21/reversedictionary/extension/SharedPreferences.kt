@@ -1,10 +1,10 @@
-package com.gscanlon21.reversedictionary.extension
+package dev.ascallion.reversedictionary.extension
 
 import android.content.Context
 import android.content.SharedPreferences
 import androidx.preference.PreferenceManager
-import com.gscanlon21.reversedictionary.R
-import com.gscanlon21.reversedictionary.core.ui.UiView
+import dev.ascallion.reversedictionary.R
+import dev.ascallion.reversedictionary.core.ui.UiView
 
 fun Context.defaultSharedPreferences(): SharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
 

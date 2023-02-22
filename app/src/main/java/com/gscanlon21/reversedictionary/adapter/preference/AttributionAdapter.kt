@@ -1,4 +1,4 @@
-package com.gscanlon21.reversedictionary.adapter.preference
+package dev.ascallion.reversedictionary.adapter.preference
 
 import android.content.Intent
 import android.net.Uri
@@ -8,9 +8,9 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
-import com.gscanlon21.reversedictionary.R
-import com.gscanlon21.reversedictionary.core.preference.Attribution
-import com.gscanlon21.reversedictionary.ui.preference.RawTextActivity
+import dev.ascallion.reversedictionary.R
+import dev.ascallion.reversedictionary.core.preference.Attribution
+import dev.ascallion.reversedictionary.ui.preference.RawTextActivity
 
 class AttributionAdapter(private val attributions: List<Attribution>) :
     RecyclerView.Adapter<AttributionAdapter.AttributionViewHolder>() {

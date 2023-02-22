@@ -1,4 +1,4 @@
-package com.gscanlon21.lint
+package dev.ascallion.lint
 
 import com.android.tools.lint.checks.infrastructure.TestLintTask.lint
 import org.junit.Test

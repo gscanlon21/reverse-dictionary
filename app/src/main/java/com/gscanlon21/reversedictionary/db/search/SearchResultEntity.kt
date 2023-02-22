@@ -1,8 +1,8 @@
-package com.gscanlon21.reversedictionary.db.search
+package dev.ascallion.reversedictionary.db.search
 
 import androidx.room.Entity
 import androidx.room.Ignore
-import com.gscanlon21.reversedictionary.core.repository.ApiType
+import dev.ascallion.reversedictionary.core.repository.ApiType
 
 @Entity(tableName = "searchresult", primaryKeys = ["type", "key", "value"])
 data class SearchResultEntity(

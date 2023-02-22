@@ -1,10 +1,10 @@
-package com.gscanlon21.reversedictionary.vm.preference
+package dev.ascallion.reversedictionary.vm.preference
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.gscanlon21.reversedictionary.R
-import com.gscanlon21.reversedictionary.core.preference.Attribution
+import dev.ascallion.reversedictionary.R
+import dev.ascallion.reversedictionary.core.preference.Attribution
 
 class PreferenceViewModel : ViewModel() {
     private val _title: MutableLiveData<Int?> = MutableLiveData()

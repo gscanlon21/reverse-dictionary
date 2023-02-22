@@ -1,4 +1,4 @@
-package com.gscanlon21.reversedictionary.service.api
+package dev.ascallion.reversedictionary.service.api
 
 import android.annotation.SuppressLint
 import android.content.Context
