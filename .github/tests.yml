@@ -5,6 +5,6 @@ android-pixel-4:
   test: app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk
   device:
     - model: flame
-      version: 29
+      version: 33
       locale: 'en'
       orientation: portrait
