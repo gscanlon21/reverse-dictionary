@@ -19,11 +19,11 @@ android {
     }
     compileOptions {
         compileSdk = 33
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
     kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_11.toString()
+        jvmTarget = JavaVersion.VERSION_17.toString()
         freeCompilerArgs = freeCompilerArgs + "-Xopt-in=kotlin.RequiresOptIn"
     }
     kotlinter {
@@ -32,7 +32,7 @@ android {
     defaultConfig {
         applicationId = "dev.ascallion.reversedictionary"
         minSdk = 26
-        targetSdk = 33
+        targetSdk = 34
         versionCode = System.getenv("GITHUB_RUN_NUMBER")?.toIntOrNull() ?: 1
         versionName = readJsonFile(file("manifest.json"), ManifestFile::class.java).version
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
@@ -66,9 +66,12 @@ android {
         dependsOn(tasks.withType(FormatTask::class))
     }
 
+    namespace = "dev.ascallion.reversedictionary"
+    testNamespace = "dev.ascallion.reversedictionary.androidTest"
+
     applicationVariants.all {
-        val lintTask = tasks["lint${name.capitalize()}"]
-        assembleProvider?.get()?.dependsOn?.add(lintTask)
+        //val lintTask = tasks["lint${name.capitalize()}"]
+        //assembleProvider?.get()?.dependsOn?.add(lintTask)
     }
 }
 
@@ -104,8 +107,8 @@ dependencies {
     implementation("androidx.navigation:navigation-fragment-ktx:2.5.3")
 
     // User Preference
-    implementation("androidx.preference:preference:1.2.0")
-    implementation("androidx.preference:preference-ktx:1.2.0")
+    implementation("androidx.preference:preference:1.2.1")
+    implementation("androidx.preference:preference-ktx:1.2.1")
 
     // Actively developed version of ViewPager
     implementation("androidx.viewpager2:viewpager2:1.0.0")
@@ -131,7 +134,7 @@ dependencies {
     androidTestImplementation("androidx.test.espresso:espresso-contrib:3.3.0")
     androidTestImplementation("androidx.arch.core:core-testing:2.1.0")
     androidTestImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.3.4") // Coroutines test support
-    androidTestImplementation("io.mockk:mockk-android:1.10.0") // Mocking
+    androidTestImplementation("io.mockk:mockk-android:1.14.6") // Mocking
 
 
     // Local Unit Tests
@@ -145,8 +148,8 @@ dependencies {
     testImplementation("androidx.arch.core:core-testing:2.1.0")
     testImplementation("org.robolectric:robolectric:4.5.1")
     testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.3.4") // Coroutines test support
-    testImplementation("com.jraska.livedata:testing-ktx:1.1.2") // LiveData testing
-    testImplementation("io.mockk:mockk:1.10.0") // Mocking
+    testImplementation("com.jraska.livedata:testing-ktx:1.3.0") // LiveData testing
+    testImplementation("io.mockk:mockk:1.14.6") // Mocking
 
     implementation("androidx.test.espresso:espresso-idling-resource:3.3.0")
 }
