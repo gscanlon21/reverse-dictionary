@@ -31,7 +31,7 @@ class GetAnagrams(
         )
 
         override fun hashCode(): Int {
-            return string.toLowerCase(Locale.ROOT).fold(1) { hash: Int, c: Char ->
+            return string.lowercase(Locale.ROOT).fold(1) { hash: Int, c: Char ->
                 hash * (primeMap[c] ?: 1)
             }
         }
@@ -52,7 +52,7 @@ class GetAnagrams(
 
         val anagrams = words
             .filter { it.hashCode() == wordHash }
-            .map { it.string.toLowerCase(Locale.ROOT) }
+            .map { it.string.lowercase(Locale.ROOT) }
             .filterNot { word.equals(it, ignoreCase = true) }
             .distinct()
 

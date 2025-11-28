@@ -129,7 +129,7 @@ class SearchResultFragment : Fragment() {
         mainViewModel.viewPagerScrolling.observe(
             viewLifecycleOwner,
             object : Observer<Boolean> {
-                override fun onChanged(t: Boolean?) {
+                override fun onChanged(t: Boolean) {
                     if (t == false) {
                         setResults(results)
                         mainViewModel.viewPagerScrolling.removeObserver(this)
