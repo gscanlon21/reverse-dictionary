@@ -56,9 +56,8 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        if (savedInstanceState == null) {
-            initActivity(binding.loadingView.loading)
-        } else {
+        initActivity(binding.loadingView.loading)
+        if (savedInstanceState != null) {
             restoreActivityFromDisk(savedInstanceState)
         }
 
