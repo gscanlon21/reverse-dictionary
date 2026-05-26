@@ -119,6 +119,7 @@ jobs:
             ./app/build/outputs/bundle
   
   deploy:
+    if: false
     name: Deploy
     needs: [build]
     runs-on: ubuntu-latest
